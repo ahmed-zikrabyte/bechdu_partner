@@ -1,7 +1,7 @@
 class ApiEndPoints {
   //base urls
-  static String baseUrl = 'https://api.bechdu.in';
-  // static const String baseUrl = 'https://bechdu-mern.onrender.com/';
+//   static String baseUrl = 'https://api.bechdu.in';
+  static const String baseUrl = 'https://bechdu-mern.onrender.com/';
   // static String baseUrl = 'https://3hr04lds-5000.inc1.devtunnels.ms/';
 
   static String baseUrlImage = 'https://api.bechdu.in/uploads/';
@@ -16,6 +16,7 @@ class ApiEndPoints {
   static String getNewOrders = '/partner/get-partner-orders/{phone}';
   static String getAssignedOrders =
       '/partner/get-assigned-partner-orders/{phone}';
+
 
   // order managing
   static String acceptOrder = '/partner/accept-order/{partnerPhone}/{orderID}';
@@ -72,3 +73,6 @@ class ApiEndPoints {
   static String changeNotificationStatus =
       '/partner/notificationStatus/{phone}/{id}';
 }
+
+
+

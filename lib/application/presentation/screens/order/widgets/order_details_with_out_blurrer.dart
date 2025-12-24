@@ -28,7 +28,9 @@ class OrderDetailWithoutBlur extends StatelessWidget {
               coin: orderDetail.coins ?? '--',
               deviceName: orderDetail.productDetails?.name ?? '----',
               image: orderDetail.productDetails?.image ?? '',
-              price: orderDetail.deviceInfo?.finalPrice ??orderDetail.productDetails?.price?? '--'),
+              price: orderDetail.deviceInfo?.finalPrice ??
+                  orderDetail.productDetails?.price ??
+                  '--'),
           orderDetail.status == 'cancelled' || orderDetail.status == 'Completed'
               ? kEmpty
               : OrderDetailTopPart(orderDetail: orderDetail),
@@ -69,7 +71,6 @@ class OrderDetailWithoutBlur extends StatelessWidget {
           ),
           kHeight10,
           OrderDetailDiviceDetailsSession(
-              isBlurred: orderDetail.status == 'cancelled',
               productDetails: orderDetail.productDetails),
           kHeight20
         ],

@@ -42,7 +42,6 @@ double sWidth = 400;
 
 // for entire app conversion from partner to pickup guy
 late bool partner;
-
 const kEmpty = SizedBox();
 
 const kHeight5 = SizedBox(height: 5);

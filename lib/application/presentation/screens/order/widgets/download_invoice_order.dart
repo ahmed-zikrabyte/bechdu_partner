@@ -9,8 +9,9 @@ import 'package:bechdu_partner/application/presentation/utils/pdf/pdf_preview.da
 import 'package:bechdu_partner/application/presentation/widgets/status_colored_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:http/http.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 class OrderInvoiceDownload extends StatefulWidget {
   const OrderInvoiceDownload({super.key});
@@ -59,7 +60,6 @@ class _OrderInvoiceDownloadState extends State<OrderInvoiceDownload> {
               ),
             );
           } else if (result == 'download') {
-            print('object');
             final bytes = base64Decode(state.orderInvoice!);
             final fileName = '${state.orderDetail?.orderId ?? "invoice"}.pdf';
             await savePdfToDownloads(bytes, fileName);
@@ -83,7 +83,7 @@ class _OrderInvoiceDownloadState extends State<OrderInvoiceDownload> {
                     blurRadius: 10,
                     offset: Offset(0, 1),
                     color: kGreyLight,
-                  )
+                  ),
                 ],
                 color: kWhite,
                 borderRadius: kRadius5,
@@ -143,26 +143,26 @@ class _OrderInvoiceDownloadState extends State<OrderInvoiceDownload> {
   }
 
   Future<void> savePdfToDownloads(Uint8List bytes, String fileName) async {
-    // Request storage permissions
-    final status = await Permission.manageExternalStorage.request();
+    try {
+      // Get temporary directory to save the file before sharing
+      final directory = await getTemporaryDirectory();
+      final filePath = '${directory.path}/$fileName';
+      final file = File(filePath);
 
-    if (!status.isGranted) {
-      throw Exception('Storage permission not granted');
+      // Write the bytes to the file
+      await file.writeAsBytes(bytes);
+
+      // share the file, which allows the user to save it to their preferred location
+      await Share.shareXFiles(
+        [XFile(filePath)],
+        subject: 'Order Invoice',
+        text: 'Save or share your invoice',
+      );
+
+      print('PDF saved for sharing at $filePath');
+    } catch (e) {
+      print('Error saving/sharing PDF: $e');
+      rethrow;
     }
-
-    // Downloads directory path for Android
-    final directory = Directory('/storage/emulated/0/Download');
-
-    // Make sure the directory exists
-    if (!await directory.exists()) {
-      await directory.create(recursive: true);
-    }
-
-    final filePath = '${directory.path}/$fileName';
-    final file = File(filePath);
-
-    await file.writeAsBytes(bytes);
-
-    print('PDF saved to $filePath');
   }
 }

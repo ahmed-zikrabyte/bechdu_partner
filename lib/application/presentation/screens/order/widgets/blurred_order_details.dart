@@ -1,3 +1,4 @@
+
 import 'package:bechdu_partner/application/presentation/screens/order/widgets/device_detail_orders_session.dart';
 import 'package:bechdu_partner/application/presentation/screens/order/widgets/order_detail_image_and_price_session.dart';
 import 'package:bechdu_partner/application/presentation/screens/order/widgets/slide_to_accept_order_slider.dart';
@@ -38,7 +39,7 @@ class BlurredOrderDetails extends StatelessWidget {
             ),
             kHeight10,
             OrderDetailDiviceDetailsSession(
-                isBlurred: true, productDetails: orderDetail.productDetails)
+                productDetails: orderDetail.productDetails)
           ]),
         ),
         SliderOrderAccepting(

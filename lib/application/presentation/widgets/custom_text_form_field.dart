@@ -64,22 +64,21 @@ class CustomTextFormField extends StatelessWidget {
         } else if ((value == null || value.isEmpty) &&
             validate == Validate.notNull) {
           return 'Please enter $hintText';
-        } else if (validate == Validate.email && !isValidEmail(value!)) {
+        } else if (validate == Validate.email && !isValidEmail(value ?? '')) {
           return 'Please enter a valid email address';
         } else if (Validate.phone == validate) {
-          if (!RegExp(r'^[0-9]+$').hasMatch(value!)) {
+          if (!RegExp(r'^[0-9]+$').hasMatch(value ?? '')) {
             return 'Enter valid phone number (numeric characters only)';
-          } else if (value.length != 10) {
+          } else if ((value ?? '').length != 10) {
             return 'Phone number should have exactly 10 digits';
           } else {
             return null;
           }
         } else if (Validate.imei == validate) {
-          // IMEI validation
-          if (!RegExp(r'^[0-9]+$').hasMatch(value!)) {
-            return 'IMEI should contain only digits';
+          if (value == null || value.trim().isEmpty) {
+            return 'Please enter a valid 15-digit IMEI number';
           } else if (value.length != 15) {
-            return 'IMEI number must be exactly 15 digits';
+            return 'Please enter a valid 15-digit IMEI number';
           } else {
             return null;
           }
