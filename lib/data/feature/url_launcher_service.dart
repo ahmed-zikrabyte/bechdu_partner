@@ -38,7 +38,8 @@ class OpenLauncherFeature {
       log(e.toString());
     }
   }
-    static Future<void> launchEmail({required String email}) async {
+
+  static Future<void> launchEmail({required String email}) async {
     if (email.isEmpty) return;
     try {
       final Uri emailUri = Uri(
@@ -55,5 +56,4 @@ class OpenLauncherFeature {
       log(e.toString());
     }
   }
-  
 }

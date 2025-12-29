@@ -35,7 +35,7 @@ class OrderDetailWithoutBlur extends StatelessWidget {
               ? kEmpty
               : OrderDetailTopPart(orderDetail: orderDetail),
           kHeight20,
-          partner
+          partner && orderDetail.status != 'Completed'
               ? BlocBuilder<PickupPartnerBloc, PickupPartnerState>(
                   builder: (context, state) {
                     if (state.assigningOrderLoader) {
@@ -55,7 +55,7 @@ class OrderDetailWithoutBlur extends StatelessWidget {
                   },
                 )
               : kEmpty,
-          partner ? kHeight20 : kEmpty,
+          partner && orderDetail.status != 'Completed' ? kHeight20 : kEmpty,
           partner && orderDetail.status == 'Completed'
               ? const OrderInvoiceDownload()
               : kEmpty,

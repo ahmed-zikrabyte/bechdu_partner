@@ -48,14 +48,34 @@ class InvoiceMaker {
   // }
   Future<XFile> savePdfFile(String base64String, String fileName) async {
     final bytes = base64Decode(base64String);
-    final file = File('/some/temp/path/$fileName.pdf');
+    final directory = await getTemporaryDirectory();
+    final file = File('${directory.path}/$fileName.pdf');
     await file.writeAsBytes(bytes);
-    return XFile(file.path); // <-- return XFile
+    return XFile(file.path);
   }
 
   Future<void> sharePdf(
       String base64String, String fileName, String text) async {
     final xfile = await savePdfFile(base64String, fileName);
     await Share.shareXFiles([xfile], text: text);
+  }
+
+  Future<String?> downloadPdf(String base64String, String fileName) async {
+    try {
+      final bytes = base64Decode(base64String);
+      String? filePath;
+      if (Platform.isAndroid) {
+        filePath = '/storage/emulated/0/Download/$fileName.pdf';
+      } else {
+        final directory = await getApplicationDocumentsDirectory();
+        filePath = '${directory.path}/$fileName.pdf';
+      }
+      final file = File(filePath);
+      await file.writeAsBytes(bytes);
+      return filePath;
+    } catch (e) {
+      log('Error downloading PDF: $e');
+      return null;
+    }
   }
 }

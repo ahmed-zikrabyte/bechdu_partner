@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:bechdu_partner/application/business_logic/order/orders/orders_bloc.dart';
@@ -9,9 +8,7 @@ import 'package:bechdu_partner/application/presentation/utils/pdf/pdf_preview.da
 import 'package:bechdu_partner/application/presentation/widgets/status_colored_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/http.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:share_plus/share_plus.dart';
 
 class OrderInvoiceDownload extends StatefulWidget {
   const OrderInvoiceDownload({super.key});
@@ -27,49 +24,20 @@ class _OrderInvoiceDownloadState extends State<OrderInvoiceDownload> {
   Widget build(BuildContext context) {
     return BlocConsumer<OrdersBloc, OrdersState>(
       listener: (context, state) async {
-        if (state.downloaded) {
+        if (state.downloaded && state.orderInvoice != null) {
           setState(() {
             isLoading = false;
           });
 
-          final result = await showDialog<String>(
-            context: context,
-            builder: (context) => AlertDialog(
-              title: Text('Invoice Ready'),
-              content: Text('What would you like to do with the invoice?'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context, 'preview'),
-                  child: Text('Preview'),
-                ),
-                TextButton(
-                  onPressed: () => Navigator.pop(context, 'download'),
-                  child: Text('Download'),
-                ),
-              ],
+          // Navigate to PDF preview directly like transactions do
+          Navigator.pushNamed(
+            context,
+            Routes.pdfPage,
+            arguments: PreviewArguments(
+              base64: state.orderInvoice!,
+              fileName: state.orderDetail?.orderId ?? 'BECHDU',
             ),
           );
-
-          if (result == 'preview') {
-            Navigator.pushNamed(
-              context,
-              Routes.pdfPage,
-              arguments: PreviewArguments(
-                base64: state.orderInvoice!,
-                fileName: state.orderDetail?.orderId ?? 'BECHDU',
-              ),
-            );
-          } else if (result == 'download') {
-            final bytes = base64Decode(state.orderInvoice!);
-            final fileName = '${state.orderDetail?.orderId ?? "invoice"}.pdf';
-            await savePdfToDownloads(bytes, fileName);
-            if (mounted) {
-              Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('PDF saved as $fileName')),
-              );
-            }
-          }
         }
       },
       builder: (context, state) {
@@ -95,23 +63,10 @@ class _OrderInvoiceDownloadState extends State<OrderInvoiceDownload> {
                 children: [
                   Text('Download Order Invoice', style: textHeadBold1),
                   StatusColoredBox(
-                    text: state.orderInvoice != null
-                        ? 'Invoice'
-                        : isLoading
-                            ? 'Downloading...'
-                            : 'Download',
+                    text: isLoading ? 'Downloading...' : 'Download',
                     color: kBluePrimary,
                     onTap: () {
-                      if (state.orderInvoice != null) {
-                        Navigator.pushNamed(
-                          context,
-                          Routes.pdfPage,
-                          arguments: PreviewArguments(
-                            base64: state.orderInvoice!,
-                            fileName: state.orderDetail?.orderId ?? 'BECHDU',
-                          ),
-                        );
-                      } else if (!isLoading) {
+                      if (!isLoading) {
                         setState(() {
                           isLoading = true;
                         });
@@ -144,24 +99,18 @@ class _OrderInvoiceDownloadState extends State<OrderInvoiceDownload> {
 
   Future<void> savePdfToDownloads(Uint8List bytes, String fileName) async {
     try {
-      // Get temporary directory to save the file before sharing
-      final directory = await getTemporaryDirectory();
-      final filePath = '${directory.path}/$fileName';
+      String? filePath;
+      if (Platform.isAndroid) {
+        filePath = '/storage/emulated/0/Download/$fileName';
+      } else {
+        final directory = await getApplicationDocumentsDirectory();
+        filePath = '${directory.path}/$fileName';
+      }
       final file = File(filePath);
-
-      // Write the bytes to the file
       await file.writeAsBytes(bytes);
-
-      // share the file, which allows the user to save it to their preferred location
-      await Share.shareXFiles(
-        [XFile(filePath)],
-        subject: 'Order Invoice',
-        text: 'Save or share your invoice',
-      );
-
-      print('PDF saved for sharing at $filePath');
+      print('PDF saved to $filePath');
     } catch (e) {
-      print('Error saving/sharing PDF: $e');
+      print('Error saving PDF: $e');
       rethrow;
     }
   }

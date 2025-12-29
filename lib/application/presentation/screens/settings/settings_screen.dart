@@ -27,7 +27,11 @@ class ScreenSettings extends StatelessWidget {
               SizedBox(
                   height: 150.h,
                   child: BellIconAnimation(
-                      animate: true, child: Image.asset(iconBechdu))),
+                    animate: true,
+                    child: Image.asset(
+                      iconBechdu,
+                    ),
+                  )),
               kHeight50,
               const Divider(),
               ListTile(
