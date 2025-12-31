@@ -33,6 +33,7 @@ class User {
     String? addPhone,
     String? address,
     String? orderpincode,
+    String? ordercity,
   }) {
     return User(
       name: name ?? this.name,
@@ -41,6 +42,7 @@ class User {
       addPhone: addPhone ?? this.addPhone,
       address: address ?? this.address,
       orderpincode: orderpincode ?? this.orderpincode,
+      ordercity: ordercity ?? this.ordercity,
     );
   }
 }

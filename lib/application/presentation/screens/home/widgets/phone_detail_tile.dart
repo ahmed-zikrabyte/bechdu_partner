@@ -101,12 +101,36 @@ class PhoneDetailTile extends StatelessWidget {
               Positioned(
                 bottom: 2,
                 right: 5,
-                child: Text(
-                  orderDetail.user?.orderpincode ?? '',
-                  style: textHeadRegular1.copyWith(
-                    color: Colors.black,
-                    fontSize: 10,
-                  ),
+                child: Row(
+                  children: [
+                    Text(
+                      orderDetail.user?.ordercity?.isNotEmpty == true
+                          ? orderDetail.user!.ordercity!
+                          : (orderDetail.user?.address
+                                      ?.trim()
+                                      .split(' ')
+                                      .lastWhere(
+                                        (element) =>
+                                            element !=
+                                            orderDetail.user?.orderpincode,
+                                        orElse: () => '',
+                                      ) ??
+                                  '')
+                              .replaceAll(',', ''),
+                      style: textHeadRegular1.copyWith(
+                        color: Colors.black,
+                        fontSize: 10,
+                      ),
+                    ),
+                    kWidth5,
+                    Text(
+                      orderDetail.user?.orderpincode ?? '',
+                      style: textHeadRegular1.copyWith(
+                        color: Colors.black,
+                        fontSize: 10,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
