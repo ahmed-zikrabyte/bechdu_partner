@@ -3,6 +3,7 @@
            package="com.bechduapp.partner">
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <application
         android:label="Bechdu.in Partner"
         android:name="${applicationName}"
