@@ -29,7 +29,7 @@ android {
         applicationId "com.bechduapp.partner"
         minSdkVersion flutter.minSdkVersion
         targetSdk 36
-        versionCode 13
+        versionCode 14
         versionName "1.1.2"
         multiDexEnabled true
 
