@@ -1,7 +1,7 @@
 part of 'transcation_bloc.dart';
 
 @freezed
-class TranscationState with _$TranscationState {
+abstract class TranscationState with _$TranscationState {
   const factory TranscationState(
       {required bool hasError,
       required bool isLoading,

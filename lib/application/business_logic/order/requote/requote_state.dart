@@ -1,7 +1,7 @@
 part of 'requote_bloc.dart';
 
 @freezed
-class RequoteState with _$RequoteState {
+abstract class RequoteState with _$RequoteState {
   const factory RequoteState({
     required bool isLoading,
     required bool hasError,

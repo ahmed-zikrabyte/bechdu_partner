@@ -1,0 +1,51 @@
+{
+    "info": {
+        "name": "Order Complete API",
+        "_postman_id": "b1f8c1a2-1234-4abc-9876-abcdef123456",
+        "description": "API to complete an order by Admin",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Complete Order",
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer YOUR_ADMIN_JWT_TOKEN",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"deviceInfo\": {\n    \"deviceName\": \"iPhone 14\",\n    \"imei\": \"123456789012345\",\n    \"condition\": \"Good\",\n    \"storage\": \"128GB\",\n    \"color\": \"Black\"\n  },\n  \"customerSignature\": \"base64-encoded-signature-string\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://localhost:5000/api/orders/ORDER_ID_HERE/complete",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "5000",
+                    "path": [
+                        "api",
+                        "orders",
+                        "ORDER_ID_HERE",
+                        "complete"
+                    ]
+                }
+            },
+            "response": []
+        }
+    ]
+}

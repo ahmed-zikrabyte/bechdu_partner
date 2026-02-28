@@ -12,7 +12,7 @@ GetNotificationResponseModel _$GetNotificationResponseModelFromJson(
       data: (json['data'] as List<dynamic>?)
           ?.map((e) => NotificationModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      length: json['length'] as int?,
+      length: (json['length'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$GetNotificationResponseModelToJson(

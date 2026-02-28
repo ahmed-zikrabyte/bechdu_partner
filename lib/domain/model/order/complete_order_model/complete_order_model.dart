@@ -7,8 +7,9 @@ part 'complete_order_model.g.dart';
 @JsonSerializable()
 class CompleteOrderModel {
   DeviceInfo? deviceInfo;
+  String? customerSignature;
 
-  CompleteOrderModel({this.deviceInfo});
+  CompleteOrderModel({this.deviceInfo, this.customerSignature});
 
   factory CompleteOrderModel.fromJson(Map<String, dynamic> json) {
     return _$CompleteOrderModelFromJson(json);

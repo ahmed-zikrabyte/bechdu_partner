@@ -5,22 +5,24 @@ import 'package:bechdu_partner/data/feature/url_launcher_service.dart';
 import 'package:flutter/material.dart';
 
 class PickUpDetailOrderTile extends StatelessWidget {
+  final bool isBlurred;
+  final bool isUser;
+  final String name;
+  final String address;
+  final String phone;
+  final String? addPhone;
+  final String dateTime;
+
   const PickUpDetailOrderTile({
     super.key,
     this.isBlurred = false,
     required this.name,
     required this.address,
     required this.phone,
+    this.addPhone,
     required this.dateTime,
     required this.isUser,
   });
-
-  final bool isBlurred;
-  final bool isUser;
-  final String name;
-  final String address;
-  final String phone;
-  final String dateTime;
 
   @override
   Widget build(BuildContext context) {
@@ -59,13 +61,63 @@ class PickUpDetailOrderTile extends StatelessWidget {
                 ),
                 trailing: isBlurred
                     ? null
-                    : isUser
-                        ? _circleIconMaker(
-                            icon: iconPhone,
-                            onTap: () {
-                              OpenLauncherFeature.launchPhone(phone: phone);
-                            })
-                        : null,
+                    : _circleIconMaker(
+                        icon: iconPhone,
+                        onTap: () {
+                          if (addPhone != null && addPhone!.isNotEmpty) {
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: kRadius15),
+                                title: Text('Select Phone Number',
+                                    style: textHeadBoldBig,
+                                    textAlign: TextAlign.center),
+                                content: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: kGreenPrimary,
+                                        foregroundColor: kWhite,
+                                        minimumSize:
+                                            const Size(double.infinity, 45),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: kRadius10),
+                                      ),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                        OpenLauncherFeature.launchPhone(
+                                            phone: phone);
+                                      },
+                                      child: const Text('Primary Number'),
+                                    ),
+                                    kHeight10,
+                                    ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: kGreenPrimary,
+                                        foregroundColor: kWhite,
+                                        minimumSize:
+                                            const Size(double.infinity, 45),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: kRadius10),
+                                      ),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                        OpenLauncherFeature.launchPhone(
+                                            phone: addPhone!);
+                                      },
+                                      child: const Text('Alternative Number'),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          } else {
+                            OpenLauncherFeature.launchPhone(phone: phone);
+                          }
+                        },
+                      ),
               ),
               ListTile(
                 leading: SizedBox(

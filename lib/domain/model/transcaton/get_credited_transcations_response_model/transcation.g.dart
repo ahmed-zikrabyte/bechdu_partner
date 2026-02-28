@@ -11,10 +11,10 @@ Transcation _$TranscationFromJson(Map<String, dynamic> json) => Transcation(
       paymentId: json['paymentId'] as String?,
       price: (json['price'] as num?)?.toDouble(),
       gstPrice: (json['gstPrice'] as num?)?.toDouble(),
-      gstPercentage: json['gstPercentage'] as int?,
+      gstPercentage: (json['gstPercentage'] as num?)?.toInt(),
       partnerState: json['partnerState'] as String?,
       homeState: json['HomeState'] as String?,
-      coins: json['coins'] as int?,
+      coins: (json['coins'] as num?)?.toInt(),
       message: json['message'] as String?,
       id: json['_id'] as String?,
       timestamp: json['timestamp'] == null

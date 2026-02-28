@@ -35,6 +35,7 @@ class BlurredOrderDetails extends StatelessWidget {
                   '${orderDetail.pickUpDetails?.time ?? '--,--'} ${orderDetail.pickUpDetails?.date ?? '--/--/--'}',
               address: orderDetail.user?.address ?? '----- ------- -------',
               phone: orderDetail.user?.phone ?? '',
+              addPhone: orderDetail.user?.addPhone,
             ),
             kHeight10,
             OrderDetailDiviceDetailsSession(

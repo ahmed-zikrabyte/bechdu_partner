@@ -38,11 +38,7 @@ class ApiService {
           await _dio.get(url, data: data, queryParameters: queryParameters);
       return response;
     } on DioException catch (exception) {
-      log('Dio exception code => ${exception.response?.statusCode}');
-      log('Dio exception => ${exception.response}');
-      if (exception.response?.statusCode == 403) {
-        _logOut();
-      }
+      _handleDioError(exception);
       rethrow;
     } catch (e) {
       log('Exception => $e');
@@ -78,11 +74,7 @@ class ApiService {
       );
       return response;
     } on DioException catch (exception) {
-      log('Dio exception code => ${exception.response?.statusCode}');
-      log('Dio exception => ${exception.response?.statusCode}');
-      if (exception.response?.statusCode == 403) {
-        _logOut();
-      }
+      _handleDioError(exception);
       rethrow;
     } catch (e) {
       log('Exception => $e');
@@ -116,11 +108,7 @@ class ApiService {
           queryParameters: queryParameters);
       return response;
     } on DioException catch (exception) {
-      log('Dio exception code => ${exception.response?.statusCode}');
-      log('Dio exception => ${exception.response?.statusCode}');
-      if (exception.response?.statusCode == 403) {
-        _logOut();
-      }
+      _handleDioError(exception);
       rethrow;
     } catch (e) {
       log('Exception => $e');
@@ -153,11 +141,7 @@ class ApiService {
           await _dio.delete(url, data: data, queryParameters: queryParameters);
       return response;
     } on DioException catch (exception) {
-      log('Dio exception code => ${exception.response?.statusCode}');
-      log('Dio exception => ${exception.response?.statusCode}');
-      if (exception.response?.statusCode == 403) {
-        _logOut();
-      }
+      _handleDioError(exception);
       rethrow;
     } catch (e) {
       log('Exception => $e');
@@ -190,15 +174,26 @@ class ApiService {
           await _dio.patch(url, data: data, queryParameters: queryParameters);
       return response;
     } on DioException catch (exception) {
-      log('Dio exception code => ${exception.response?.statusCode}');
-      log('Dio exception => ${exception.response?.statusCode}');
-      if (exception.response?.statusCode == 403) {
-        _logOut();
-      }
+      _handleDioError(exception);
       rethrow;
     } catch (e) {
       log('Exception => $e');
       rethrow;
+    }
+  }
+
+  void _handleDioError(DioException exception) {
+    log('Dio exception code => ${exception.response?.statusCode}');
+    log('Dio exception => ${exception.response}');
+    if (exception.response?.statusCode == 403 ||
+        ((exception.response?.statusCode == 400 ||
+                exception.response?.statusCode == 404) &&
+            exception.response?.data
+                    .toString()
+                    .toLowerCase()
+                    .contains("partner not found") ==
+                true)) {
+      _logOut();
     }
   }
 
