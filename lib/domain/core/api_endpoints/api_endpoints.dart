@@ -1,9 +1,9 @@
 class ApiEndPoints {
   //base urls
   static String baseUrl = 'https://api.bechdu.in';
-  // static const String baseUrl = 'https://bechdu-mern.onrender.com/';
+  // static const String baseUrl = 'https://bechdu-mern-api.onrender.com';
   // static const String baseUrl = 'https://jp6lrvpv-5000.inc1.devtunnels.ms';
-  // static String baseUrl = 'https://3hr04lds-5000.inc1.devtunnels.ms/';
+//   static String baseUrl = 'https://itchy-regions-divide.loca.lt/';
 
   static String baseUrlImage = 'https://api.bechdu.in/uploads/';
 
@@ -72,4 +72,5 @@ class ApiEndPoints {
       '/partner/get-single-orders/{phone}/{id}';
   static String changeNotificationStatus =
       '/partner/notificationStatus/{phone}/{id}';
+  static String getMyNotifications = '/partner/get-my-notifications';
 }

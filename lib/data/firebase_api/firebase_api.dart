@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -112,6 +113,13 @@ class NotificationServices {
     NotificationDetails notificationDetails = NotificationDetails(
         android: androidNotificationDetails, iOS: darwinNotificationDetails);
 
+    if (Platform.isAndroid) {
+      await _flutterLocalNotificationsPlugin
+          .resolvePlatformSpecificImplementation<
+              AndroidFlutterLocalNotificationsPlugin>()
+          ?.createNotificationChannel(channel);
+    }
+
     Future.delayed(Duration.zero, () {
       print("in delay show.====");
       _flutterLocalNotificationsPlugin.show(
@@ -126,14 +134,15 @@ class NotificationServices {
   //function to get device token on which we will send the notifications
   Future<String> getDeviceToken() async {
     String? token = await messaging.getToken();
+    print("NEW FCM TOKEN: $token");
     return token!;
   }
 
   void isTokenRefresh() async {
     messaging.onTokenRefresh.listen((event) {
-      event.toString();
+      log('FCM Token Refreshed: $event');
       if (kDebugMode) {
-        print('refresh');
+        print('refresh token: $event');
       }
     });
   }

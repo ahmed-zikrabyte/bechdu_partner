@@ -143,6 +143,8 @@ IconData getNotificationIcon(String status) {
       return Icons.restore;
     case "rescheduled":
       return Icons.restore;
+    case "Announcement":
+      return Icons.campaign;
     default:
       return Icons.circle;
   }

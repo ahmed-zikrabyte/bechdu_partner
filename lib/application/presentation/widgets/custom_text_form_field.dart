@@ -16,7 +16,8 @@ class CustomTextFormField extends StatelessWidget {
       this.textCapitalization = TextCapitalization.none,
       this.validate = Validate.none,
       this.borderColor = kGreyLight,
-      this.isObscure = false});
+      this.isObscure = false,
+      this.minValue});
 
   final TextEditingController controller;
   final String hintText;
@@ -26,6 +27,9 @@ class CustomTextFormField extends StatelessWidget {
   final int? maxlength;
   final Validate validate;
   final TextCapitalization textCapitalization;
+
+  /// When set, the validator ensures the entered numeric value is >= [minValue].
+  final int? minValue;
 
   @override
   Widget build(BuildContext context) {
@@ -81,6 +85,15 @@ class CustomTextFormField extends StatelessWidget {
             return 'Please enter a valid 15-digit IMEI number';
           } else {
             return null;
+          }
+        }
+        // Minimum value check (applies to any validate mode when minValue is set)
+        if (minValue != null && value != null && value.isNotEmpty) {
+          final entered = int.tryParse(value);
+          if (entered == null) {
+            return 'Please enter a valid number';
+          } else if (entered < minValue!) {
+            return 'Price cannot be less than ₹$minValue';
           }
         }
         return null;

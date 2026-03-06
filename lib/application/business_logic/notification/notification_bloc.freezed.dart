@@ -56,6 +56,7 @@ extension NotificationEventPatterns on NotificationEvent {
     TResult Function(ResetLength value)? resetLength,
     TResult Function(Sort value)? sort,
     TResult Function(MarkAsRead value)? markAsRead,
+    TResult Function(GetOffers value)? getOffers,
     required TResult orElse(),
   }) {
     final _that = this;
@@ -70,6 +71,8 @@ extension NotificationEventPatterns on NotificationEvent {
         return sort(_that);
       case MarkAsRead() when markAsRead != null:
         return markAsRead(_that);
+      case GetOffers() when getOffers != null:
+        return getOffers(_that);
       case _:
         return orElse();
     }
@@ -95,6 +98,7 @@ extension NotificationEventPatterns on NotificationEvent {
     required TResult Function(ResetLength value) resetLength,
     required TResult Function(Sort value) sort,
     required TResult Function(MarkAsRead value) markAsRead,
+    required TResult Function(GetOffers value) getOffers,
   }) {
     final _that = this;
     switch (_that) {
@@ -108,6 +112,8 @@ extension NotificationEventPatterns on NotificationEvent {
         return sort(_that);
       case MarkAsRead():
         return markAsRead(_that);
+      case GetOffers():
+        return getOffers(_that);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -132,6 +138,7 @@ extension NotificationEventPatterns on NotificationEvent {
     TResult? Function(ResetLength value)? resetLength,
     TResult? Function(Sort value)? sort,
     TResult? Function(MarkAsRead value)? markAsRead,
+    TResult? Function(GetOffers value)? getOffers,
   }) {
     final _that = this;
     switch (_that) {
@@ -145,6 +152,8 @@ extension NotificationEventPatterns on NotificationEvent {
         return sort(_that);
       case MarkAsRead() when markAsRead != null:
         return markAsRead(_that);
+      case GetOffers() when getOffers != null:
+        return getOffers(_that);
       case _:
         return null;
     }
@@ -169,6 +178,7 @@ extension NotificationEventPatterns on NotificationEvent {
     TResult Function()? resetLength,
     TResult Function(int index)? sort,
     TResult Function(String id)? markAsRead,
+    TResult Function()? getOffers,
     required TResult orElse(),
   }) {
     final _that = this;
@@ -183,6 +193,8 @@ extension NotificationEventPatterns on NotificationEvent {
         return sort(_that.index);
       case MarkAsRead() when markAsRead != null:
         return markAsRead(_that.id);
+      case GetOffers() when getOffers != null:
+        return getOffers();
       case _:
         return orElse();
     }
@@ -208,6 +220,7 @@ extension NotificationEventPatterns on NotificationEvent {
     required TResult Function() resetLength,
     required TResult Function(int index) sort,
     required TResult Function(String id) markAsRead,
+    required TResult Function() getOffers,
   }) {
     final _that = this;
     switch (_that) {
@@ -221,6 +234,8 @@ extension NotificationEventPatterns on NotificationEvent {
         return sort(_that.index);
       case MarkAsRead():
         return markAsRead(_that.id);
+      case GetOffers():
+        return getOffers();
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -245,6 +260,7 @@ extension NotificationEventPatterns on NotificationEvent {
     TResult? Function()? resetLength,
     TResult? Function(int index)? sort,
     TResult? Function(String id)? markAsRead,
+    TResult? Function()? getOffers,
   }) {
     final _that = this;
     switch (_that) {
@@ -258,6 +274,8 @@ extension NotificationEventPatterns on NotificationEvent {
         return sort(_that.index);
       case MarkAsRead() when markAsRead != null:
         return markAsRead(_that.id);
+      case GetOffers() when getOffers != null:
+        return getOffers();
       case _:
         return null;
     }
@@ -494,15 +512,37 @@ class _$MarkAsReadCopyWithImpl<$Res> implements $MarkAsReadCopyWith<$Res> {
 }
 
 /// @nodoc
+
+class GetOffers implements NotificationEvent {
+  const GetOffers();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is GetOffers);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'NotificationEvent.getOffers()';
+  }
+}
+
+/// @nodoc
 mixin _$NotificationState {
   bool get isLoading;
   bool get pageLoading;
   bool get hasError;
+  bool get offersLoading;
   int? get notiLength;
   int? get totalNotiLength;
   String? get message;
   List<int> get sortIndexs;
   List<NotificationModel>? get notificationList;
+  List<NotificationModel>? get offersList;
 
   /// Create a copy of NotificationState
   /// with the given fields replaced by the non-null parameter values.
@@ -523,6 +563,8 @@ mixin _$NotificationState {
                 other.pageLoading == pageLoading) &&
             (identical(other.hasError, hasError) ||
                 other.hasError == hasError) &&
+            (identical(other.offersLoading, offersLoading) ||
+                other.offersLoading == offersLoading) &&
             (identical(other.notiLength, notiLength) ||
                 other.notiLength == notiLength) &&
             (identical(other.totalNotiLength, totalNotiLength) ||
@@ -531,7 +573,9 @@ mixin _$NotificationState {
             const DeepCollectionEquality()
                 .equals(other.sortIndexs, sortIndexs) &&
             const DeepCollectionEquality()
-                .equals(other.notificationList, notificationList));
+                .equals(other.notificationList, notificationList) &&
+            const DeepCollectionEquality()
+                .equals(other.offersList, offersList));
   }
 
   @override
@@ -540,15 +584,17 @@ mixin _$NotificationState {
       isLoading,
       pageLoading,
       hasError,
+      offersLoading,
       notiLength,
       totalNotiLength,
       message,
       const DeepCollectionEquality().hash(sortIndexs),
-      const DeepCollectionEquality().hash(notificationList));
+      const DeepCollectionEquality().hash(notificationList),
+      const DeepCollectionEquality().hash(offersList));
 
   @override
   String toString() {
-    return 'NotificationState(isLoading: $isLoading, pageLoading: $pageLoading, hasError: $hasError, notiLength: $notiLength, totalNotiLength: $totalNotiLength, message: $message, sortIndexs: $sortIndexs, notificationList: $notificationList)';
+    return 'NotificationState(isLoading: $isLoading, pageLoading: $pageLoading, hasError: $hasError, offersLoading: $offersLoading, notiLength: $notiLength, totalNotiLength: $totalNotiLength, message: $message, sortIndexs: $sortIndexs, notificationList: $notificationList, offersList: $offersList)';
   }
 }
 
@@ -562,11 +608,13 @@ abstract mixin class $NotificationStateCopyWith<$Res> {
       {bool isLoading,
       bool pageLoading,
       bool hasError,
+      bool offersLoading,
       int? notiLength,
       int? totalNotiLength,
       String? message,
       List<int> sortIndexs,
-      List<NotificationModel>? notificationList});
+      List<NotificationModel>? notificationList,
+      List<NotificationModel>? offersList});
 }
 
 /// @nodoc
@@ -585,11 +633,13 @@ class _$NotificationStateCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? pageLoading = null,
     Object? hasError = null,
+    Object? offersLoading = null,
     Object? notiLength = freezed,
     Object? totalNotiLength = freezed,
     Object? message = freezed,
     Object? sortIndexs = null,
     Object? notificationList = freezed,
+    Object? offersList = freezed,
   }) {
     return _then(_self.copyWith(
       isLoading: null == isLoading
@@ -603,6 +653,10 @@ class _$NotificationStateCopyWithImpl<$Res>
       hasError: null == hasError
           ? _self.hasError
           : hasError // ignore: cast_nullable_to_non_nullable
+              as bool,
+      offersLoading: null == offersLoading
+          ? _self.offersLoading
+          : offersLoading // ignore: cast_nullable_to_non_nullable
               as bool,
       notiLength: freezed == notiLength
           ? _self.notiLength
@@ -623,6 +677,10 @@ class _$NotificationStateCopyWithImpl<$Res>
       notificationList: freezed == notificationList
           ? _self.notificationList
           : notificationList // ignore: cast_nullable_to_non_nullable
+              as List<NotificationModel>?,
+      offersList: freezed == offersList
+          ? _self.offersList
+          : offersList // ignore: cast_nullable_to_non_nullable
               as List<NotificationModel>?,
     ));
   }
@@ -725,11 +783,13 @@ extension NotificationStatePatterns on NotificationState {
             bool isLoading,
             bool pageLoading,
             bool hasError,
+            bool offersLoading,
             int? notiLength,
             int? totalNotiLength,
             String? message,
             List<int> sortIndexs,
-            List<NotificationModel>? notificationList)?
+            List<NotificationModel>? notificationList,
+            List<NotificationModel>? offersList)?
         $default, {
     required TResult orElse(),
   }) {
@@ -740,11 +800,13 @@ extension NotificationStatePatterns on NotificationState {
             _that.isLoading,
             _that.pageLoading,
             _that.hasError,
+            _that.offersLoading,
             _that.notiLength,
             _that.totalNotiLength,
             _that.message,
             _that.sortIndexs,
-            _that.notificationList);
+            _that.notificationList,
+            _that.offersList);
       case _:
         return orElse();
     }
@@ -769,11 +831,13 @@ extension NotificationStatePatterns on NotificationState {
             bool isLoading,
             bool pageLoading,
             bool hasError,
+            bool offersLoading,
             int? notiLength,
             int? totalNotiLength,
             String? message,
             List<int> sortIndexs,
-            List<NotificationModel>? notificationList)
+            List<NotificationModel>? notificationList,
+            List<NotificationModel>? offersList)
         $default,
   ) {
     final _that = this;
@@ -783,11 +847,13 @@ extension NotificationStatePatterns on NotificationState {
             _that.isLoading,
             _that.pageLoading,
             _that.hasError,
+            _that.offersLoading,
             _that.notiLength,
             _that.totalNotiLength,
             _that.message,
             _that.sortIndexs,
-            _that.notificationList);
+            _that.notificationList,
+            _that.offersList);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -811,11 +877,13 @@ extension NotificationStatePatterns on NotificationState {
             bool isLoading,
             bool pageLoading,
             bool hasError,
+            bool offersLoading,
             int? notiLength,
             int? totalNotiLength,
             String? message,
             List<int> sortIndexs,
-            List<NotificationModel>? notificationList)?
+            List<NotificationModel>? notificationList,
+            List<NotificationModel>? offersList)?
         $default,
   ) {
     final _that = this;
@@ -825,11 +893,13 @@ extension NotificationStatePatterns on NotificationState {
             _that.isLoading,
             _that.pageLoading,
             _that.hasError,
+            _that.offersLoading,
             _that.notiLength,
             _that.totalNotiLength,
             _that.message,
             _that.sortIndexs,
-            _that.notificationList);
+            _that.notificationList,
+            _that.offersList);
       case _:
         return null;
     }
@@ -843,13 +913,16 @@ class _Initial implements NotificationState {
       {required this.isLoading,
       required this.pageLoading,
       required this.hasError,
+      required this.offersLoading,
       this.notiLength,
       this.totalNotiLength,
       this.message,
       required final List<int> sortIndexs,
-      final List<NotificationModel>? notificationList})
+      final List<NotificationModel>? notificationList,
+      final List<NotificationModel>? offersList})
       : _sortIndexs = sortIndexs,
-        _notificationList = notificationList;
+        _notificationList = notificationList,
+        _offersList = offersList;
 
   @override
   final bool isLoading;
@@ -857,6 +930,8 @@ class _Initial implements NotificationState {
   final bool pageLoading;
   @override
   final bool hasError;
+  @override
+  final bool offersLoading;
   @override
   final int? notiLength;
   @override
@@ -882,6 +957,16 @@ class _Initial implements NotificationState {
     return EqualUnmodifiableListView(value);
   }
 
+  final List<NotificationModel>? _offersList;
+  @override
+  List<NotificationModel>? get offersList {
+    final value = _offersList;
+    if (value == null) return null;
+    if (_offersList is EqualUnmodifiableListView) return _offersList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   /// Create a copy of NotificationState
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -901,6 +986,8 @@ class _Initial implements NotificationState {
                 other.pageLoading == pageLoading) &&
             (identical(other.hasError, hasError) ||
                 other.hasError == hasError) &&
+            (identical(other.offersLoading, offersLoading) ||
+                other.offersLoading == offersLoading) &&
             (identical(other.notiLength, notiLength) ||
                 other.notiLength == notiLength) &&
             (identical(other.totalNotiLength, totalNotiLength) ||
@@ -909,7 +996,9 @@ class _Initial implements NotificationState {
             const DeepCollectionEquality()
                 .equals(other._sortIndexs, _sortIndexs) &&
             const DeepCollectionEquality()
-                .equals(other._notificationList, _notificationList));
+                .equals(other._notificationList, _notificationList) &&
+            const DeepCollectionEquality()
+                .equals(other._offersList, _offersList));
   }
 
   @override
@@ -918,15 +1007,17 @@ class _Initial implements NotificationState {
       isLoading,
       pageLoading,
       hasError,
+      offersLoading,
       notiLength,
       totalNotiLength,
       message,
       const DeepCollectionEquality().hash(_sortIndexs),
-      const DeepCollectionEquality().hash(_notificationList));
+      const DeepCollectionEquality().hash(_notificationList),
+      const DeepCollectionEquality().hash(_offersList));
 
   @override
   String toString() {
-    return 'NotificationState(isLoading: $isLoading, pageLoading: $pageLoading, hasError: $hasError, notiLength: $notiLength, totalNotiLength: $totalNotiLength, message: $message, sortIndexs: $sortIndexs, notificationList: $notificationList)';
+    return 'NotificationState(isLoading: $isLoading, pageLoading: $pageLoading, hasError: $hasError, offersLoading: $offersLoading, notiLength: $notiLength, totalNotiLength: $totalNotiLength, message: $message, sortIndexs: $sortIndexs, notificationList: $notificationList, offersList: $offersList)';
   }
 }
 
@@ -941,11 +1032,13 @@ abstract mixin class _$InitialCopyWith<$Res>
       {bool isLoading,
       bool pageLoading,
       bool hasError,
+      bool offersLoading,
       int? notiLength,
       int? totalNotiLength,
       String? message,
       List<int> sortIndexs,
-      List<NotificationModel>? notificationList});
+      List<NotificationModel>? notificationList,
+      List<NotificationModel>? offersList});
 }
 
 /// @nodoc
@@ -963,11 +1056,13 @@ class __$InitialCopyWithImpl<$Res> implements _$InitialCopyWith<$Res> {
     Object? isLoading = null,
     Object? pageLoading = null,
     Object? hasError = null,
+    Object? offersLoading = null,
     Object? notiLength = freezed,
     Object? totalNotiLength = freezed,
     Object? message = freezed,
     Object? sortIndexs = null,
     Object? notificationList = freezed,
+    Object? offersList = freezed,
   }) {
     return _then(_Initial(
       isLoading: null == isLoading
@@ -981,6 +1076,10 @@ class __$InitialCopyWithImpl<$Res> implements _$InitialCopyWith<$Res> {
       hasError: null == hasError
           ? _self.hasError
           : hasError // ignore: cast_nullable_to_non_nullable
+              as bool,
+      offersLoading: null == offersLoading
+          ? _self.offersLoading
+          : offersLoading // ignore: cast_nullable_to_non_nullable
               as bool,
       notiLength: freezed == notiLength
           ? _self.notiLength
@@ -1001,6 +1100,10 @@ class __$InitialCopyWithImpl<$Res> implements _$InitialCopyWith<$Res> {
       notificationList: freezed == notificationList
           ? _self._notificationList
           : notificationList // ignore: cast_nullable_to_non_nullable
+              as List<NotificationModel>?,
+      offersList: freezed == offersList
+          ? _self._offersList
+          : offersList // ignore: cast_nullable_to_non_nullable
               as List<NotificationModel>?,
     ));
   }

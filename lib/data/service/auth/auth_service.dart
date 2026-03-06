@@ -49,6 +49,8 @@ class AuthService implements AuthRepo {
       _dio.options.headers.addAll(
           {'user-agent': userAgent, 'content-Type': 'application/json'});
       log(_dio.options.headers.toString());
+      log("POST Request to ${ApiEndPoints.verifyOtp}");
+      log("Payload: ${verifyOtpModel.toJson()}");
       final response = await _dio.post(ApiEndPoints.verifyOtp,
           data: verifyOtpModel.toJson());
       return Right(VerifyOtpResponseModel.fromJson(response.data));

@@ -33,6 +33,7 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
     on<ResetLength>(resetLength);
     on<MarkAsRead>(markAsRead);
     on<Sort>(sort);
+    on<GetOffers>(getOffers);
   }
 
   FutureOr<void> getNotifications(GetNotifications event, emit) async {
@@ -82,6 +83,7 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
     final result = await notificatonRepo.changeNotificationStatus(
         phone: phone!, orderID: event.id);
     result.fold((l) => null, (r) {
+      // Update notificationList
       List<NotificationModel> notifications = [];
       for (NotificationModel notification in state.notificationList ?? []) {
         if (notification.id == event.id) {
@@ -89,7 +91,17 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
         }
         notifications.add(notification);
       }
-      return emit(state.copyWith(notificationList: notifications));
+      // Also update offersList so the Offers tab refreshes instantly
+      List<NotificationModel> offers = [];
+      for (NotificationModel offer in state.offersList ?? []) {
+        if (offer.id == event.id) {
+          offers.add(offer.copyWith(status: true));
+        } else {
+          offers.add(offer);
+        }
+      }
+      return emit(
+          state.copyWith(notificationList: notifications, offersList: offers));
     });
   }
 
@@ -165,6 +177,16 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
         notificationQuery: query.copyWith(page: 1, pageSize: size));
     result.fold(
         (l) => null, (r) => emit(state.copyWith(notificationList: r.data)));
+  }
+
+  FutureOr<void> getOffers(GetOffers event, emit) async {
+    emit(state.copyWith(offersLoading: true));
+    final result = await notificatonRepo.getOffers();
+    result.fold(
+      (l) => emit(state.copyWith(offersLoading: false)),
+      (r) => emit(
+          state.copyWith(offersLoading: false, offersList: r.notifications)),
+    );
   }
 
   List<int> removeNumber(int number, List<int> selectedIndex) {

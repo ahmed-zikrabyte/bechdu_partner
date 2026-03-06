@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer' as developer;
 import 'package:bechdu_partner/application/presentation/utils/constant.dart';
 import 'package:bechdu_partner/data/feature/device_informations.dart';
 import 'package:bechdu_partner/data/firebase_api/firebase_api.dart';
@@ -109,8 +110,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(AuthState.initial()
         .copyWith(isLoading: true, otpVerificationError: false));
     final userAgent = await DeviceInformation.getDeviceInformation();
-    final token = await NotificationServices().getDeviceToken();
+    String? token;
+    try {
+      token = await NotificationServices().getDeviceToken();
+      developer.log("FCM Token for login: $token");
+    } catch (e) {
+      developer.log("Error fetching FCM token: $e");
+    }
+
     final model = event.verifyOtpModel.copyWith(deviceToken: token);
+    developer.log("Sending VerifyOtp request with token: ${model.deviceToken}");
+
     final result =
         await authRepo.verifyOtp(verifyOtpModel: model, userAgent: userAgent);
     result.fold((l) {

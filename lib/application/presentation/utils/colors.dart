@@ -39,6 +39,8 @@ Color getStatusColor(String status) {
       return kYellowPrimary;
     case "rescheduled":
       return kYellowPrimary;
+    case "Announcement":
+      return kOrangePrimary;
     default:
       return kBluePrimary;
   }
