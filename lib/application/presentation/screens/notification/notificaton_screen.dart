@@ -27,9 +27,9 @@ class _ScreenNotificationState extends State<ScreenNotification> {
     context
         .read<NotificationBloc>()
         .add(const NotificationEvent.getNotifications(reset: true));
-    // Fetch offers from dedicated endpoint (Offers tab)
-    context.read<NotificationBloc>().add(const NotificationEvent.getOffers());
+    // Fetch offers only for partner role
     if (partner) {
+      context.read<NotificationBloc>().add(const NotificationEvent.getOffers());
       context.read<OrdersBloc>().add(const OrdersEvent.getNewOrder(call: true));
     }
     controller.addListener(() {
@@ -51,6 +51,21 @@ class _ScreenNotificationState extends State<ScreenNotification> {
 
   @override
   Widget build(BuildContext context) {
+    // pickUp role: single Notification tab only
+    if (!partner) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('Alerts', style: textHeadBoldBig2),
+        ),
+        body: BlocBuilder<NotificationBloc, NotificationState>(
+          builder: (context, state) {
+            return _buildNotificationsTab(state);
+          },
+        ),
+      );
+    }
+
+    // partner role: two tabs — Notification + Offers
     return DefaultTabController(
       length: 2,
       child: Scaffold(

@@ -1,6 +1,6 @@
 String formatDateTime(DateTime dateTime) {
-  // Convert UTC time to IST (UTC+5:30)
-  dateTime = dateTime.add(const Duration(hours: 5, minutes: 30));
+  // DateTime.parse() already converts UTC (Z-suffix) to local time — no manual offset needed
+  dateTime = dateTime.toLocal();
 
   final day = dateTime.day.toString().padLeft(2, '0');
   final month = dateTime.month.toString().padLeft(2, '0');
