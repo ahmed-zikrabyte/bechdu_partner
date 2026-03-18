@@ -11,24 +11,27 @@ class PhoneDetailTile extends StatelessWidget {
   const PhoneDetailTile({
     super.key,
     required this.orderDetail,
+    this.onTap,
   });
 
   final OrderDetail orderDetail;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-        Navigator.pushNamed(context, Routes.orderScreen,
-            arguments: orderDetail);
-        context
-            .read<NotificationBloc>()
-            .add(const NotificationEvent.getNotifications(reset: true));
-        context.read<OrdersBloc>().add(
-            OrdersEvent.changeNotificationStatusOrder(
-                orderId: orderDetail.id!));
-      },
+      onTap: onTap ??
+          () {
+            FocusScope.of(context).unfocus();
+            Navigator.pushNamed(context, Routes.orderScreen,
+                arguments: orderDetail);
+            context
+                .read<NotificationBloc>()
+                .add(const NotificationEvent.getNotifications(reset: true));
+            context.read<OrdersBloc>().add(
+                OrdersEvent.changeNotificationStatusOrder(
+                    orderId: orderDetail.id!));
+          },
       child: ClipRRect(
         borderRadius: kRadius5,
         child: ColoredBox(

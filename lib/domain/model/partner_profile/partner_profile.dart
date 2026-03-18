@@ -20,6 +20,7 @@ class PartnerProfile {
   String? otp;
   dynamic otpExpiry;
   String? status;
+  String? partnerId;
 
   PartnerProfile({
     this.id,
@@ -35,6 +36,7 @@ class PartnerProfile {
     this.otp,
     this.otpExpiry,
     this.status,
+    this.partnerId,
   });
 
   factory PartnerProfile.fromJson(Map<String, dynamic> json) {

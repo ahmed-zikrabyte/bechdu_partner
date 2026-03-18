@@ -16,6 +16,8 @@ import 'package:bechdu_partner/application/presentation/screens/settings/setting
 import 'package:bechdu_partner/application/presentation/screens/settings/support_details.dart';
 import 'package:bechdu_partner/application/presentation/screens/splash/splash_screen.dart';
 import 'package:bechdu_partner/application/presentation/screens/transcations/transcations_screen.dart';
+import 'package:bechdu_partner/application/presentation/screens/qc_reports/qc_reports_screen.dart';
+import 'package:bechdu_partner/application/presentation/screens/qc_reports/qc_order_detail_screen.dart';
 import 'package:bechdu_partner/application/presentation/utils/pdf/pdf_preview.dart';
 import 'package:bechdu_partner/domain/model/order/get_partner_order_response_model/order_detail.dart';
 import 'package:flutter/material.dart';
@@ -44,6 +46,13 @@ class RouteGenerator {
       case Routes.partnersList:
         return MaterialPageRoute(
             builder: (ctx) => const ScreenPickUpPartnersList());
+      case Routes.qcReportsPage:
+        return MaterialPageRoute(builder: (ctx) => const ScreenQcReports());
+      case Routes.qcReportDetail:
+        return arguments is String
+            ? MaterialPageRoute(
+                builder: (ctx) => ScreenQcOrderDetail(reportId: arguments))
+            : _errorScreen();
       case Routes.settingsPage:
         return MaterialPageRoute(builder: (ctx) => const ScreenSettings());
       case Routes.pointsPage:

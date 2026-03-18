@@ -12,10 +12,12 @@ class OrdersListTileHome extends StatelessWidget {
     super.key,
     required this.orderDetail,
     required this.showExpansion,
+    this.onTap,
   });
 
   final OrderDetail orderDetail;
   final bool showExpansion;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,7 @@ class OrdersListTileHome extends StatelessWidget {
           color: kBluelight,
           border: Border.all(color: kBlack)),
       child: CustomExpansionTile(
+        onTap: onTap,
         isExpandable: !showExpansion,
         title: Row(
           children: [
@@ -58,7 +61,7 @@ class OrdersListTileHome extends StatelessWidget {
               children: List.generate(30, (index) => const Text('_')),
             ),
             kHeight5,
-            PhoneDetailTile(orderDetail: orderDetail),
+            PhoneDetailTile(orderDetail: orderDetail, onTap: onTap),
           ],
         ),
         children: showExpansion

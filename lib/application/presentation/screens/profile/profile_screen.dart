@@ -56,6 +56,10 @@ class ScreenProfile extends StatelessWidget {
                   kHeight40,
                   UserDetailTile(
                       controller: TextEditingController(),
+                      headline: 'Partner Unique ID',
+                      text: state.partnerProfile?.partnerId ?? ''),
+                  UserDetailTile(
+                      controller: TextEditingController(),
                       headline: 'Username',
                       text: state.partnerProfile?.name ?? ''),
                   partner

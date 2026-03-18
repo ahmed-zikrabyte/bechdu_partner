@@ -58,6 +58,12 @@ class CustomBottomBar extends StatelessWidget {
                     Navigator.pushNamed(context, Routes.partnersList);
                   }),
               BottomIconMaker(
+                icon: Icons.fact_check_outlined,
+                ontap: () {
+                  Navigator.pushNamed(context, Routes.qcReportsPage);
+                },
+              ),
+              BottomIconMaker(
                 image: iconSettings,
                 ontap: () => Navigator.pushNamed(context, Routes.settingsPage),
               ),

@@ -21,6 +21,8 @@ import 'package:bechdu_partner/application/business_logic/pickup_partner/pickup_
     as _i113;
 import 'package:bechdu_partner/application/business_logic/points/points_bloc.dart'
     as _i268;
+import 'package:bechdu_partner/application/business_logic/qc/qc_bloc.dart'
+    as _i1058;
 import 'package:bechdu_partner/application/business_logic/role/role_bloc.dart'
     as _i542;
 import 'package:bechdu_partner/application/business_logic/transcation/transcation_bloc.dart'
@@ -98,6 +100,7 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i800.NotificationService(gh<_i363.ApiService>()));
     gh.factory<_i511.RequoteBloc>(
         () => _i511.RequoteBloc(gh<_i0.RequoteRepo>()));
+    gh.factory<_i1058.QcBloc>(() => _i1058.QcBloc(gh<_i632.OrderRepo>()));
     gh.factory<_i113.PickupPartnerBloc>(
         () => _i113.PickupPartnerBloc(gh<_i887.PickupPartnerRepo>()));
     gh.factory<_i355.OrdersBloc>(() => _i355.OrdersBloc(
