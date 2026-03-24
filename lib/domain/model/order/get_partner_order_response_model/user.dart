@@ -10,6 +10,7 @@ class User {
   String? addPhone;
   String? address;
   String? orderpincode;
+  String? ordercity;
 
   User({
     this.name,
@@ -18,6 +19,7 @@ class User {
     this.addPhone,
     this.address,
     this.orderpincode,
+    this.ordercity,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
@@ -31,6 +33,7 @@ class User {
     String? addPhone,
     String? address,
     String? orderpincode,
+    String? ordercity,
   }) {
     return User(
       name: name ?? this.name,
@@ -39,6 +42,7 @@ class User {
       addPhone: addPhone ?? this.addPhone,
       address: address ?? this.address,
       orderpincode: orderpincode ?? this.orderpincode,
+      ordercity: ordercity ?? this.ordercity,
     );
   }
 }

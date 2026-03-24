@@ -42,7 +42,6 @@ double sWidth = 400;
 
 // for entire app conversion from partner to pickup guy
 late bool partner;
-
 const kEmpty = SizedBox();
 
 const kHeight5 = SizedBox(height: 5);
@@ -144,6 +143,8 @@ IconData getNotificationIcon(String status) {
       return Icons.restore;
     case "rescheduled":
       return Icons.restore;
+    case "Announcement":
+      return Icons.campaign;
     default:
       return Icons.circle;
   }

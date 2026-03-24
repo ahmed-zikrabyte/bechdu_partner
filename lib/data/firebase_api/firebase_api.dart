@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -17,7 +18,7 @@ class NotificationServices {
   void initLocalNotifications(
       BuildContext context, RemoteMessage message) async {
     var androidInitializationSettings =
-        const AndroidInitializationSettings('@mipmap/ic_launcher');
+        const AndroidInitializationSettings('@mipmap/launcher_icon');
     var iosInitializationSettings = const DarwinInitializationSettings();
 
     var initializationSetting = InitializationSettings(
@@ -102,10 +103,8 @@ class NotificationServices {
             priority: Priority.high,
             playSound: true,
             ticker: 'ticker',
-            sound: channel.sound
-            //     sound: RawResourceAndroidNotificationSound('jetsons_doorbell')
-            //  icon: largeIconPath
-            );
+            sound: channel.sound,
+            icon: '@mipmap/launcher_icon');
 
     const DarwinNotificationDetails darwinNotificationDetails =
         DarwinNotificationDetails(
@@ -113,6 +112,13 @@ class NotificationServices {
 
     NotificationDetails notificationDetails = NotificationDetails(
         android: androidNotificationDetails, iOS: darwinNotificationDetails);
+
+    if (Platform.isAndroid) {
+      await _flutterLocalNotificationsPlugin
+          .resolvePlatformSpecificImplementation<
+              AndroidFlutterLocalNotificationsPlugin>()
+          ?.createNotificationChannel(channel);
+    }
 
     Future.delayed(Duration.zero, () {
       print("in delay show.====");
@@ -128,14 +134,15 @@ class NotificationServices {
   //function to get device token on which we will send the notifications
   Future<String> getDeviceToken() async {
     String? token = await messaging.getToken();
+    print("NEW FCM TOKEN: $token");
     return token!;
   }
 
   void isTokenRefresh() async {
     messaging.onTokenRefresh.listen((event) {
-      event.toString();
+      log('FCM Token Refreshed: $event');
       if (kDebugMode) {
-        print('refresh');
+        print('refresh token: $event');
       }
     });
   }

@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,46 +9,203 @@ part of 'requote_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$RequoteEvent {
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is RequoteEvent);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'RequoteEvent()';
+  }
+}
+
+/// @nodoc
+class $RequoteEventCopyWith<$Res> {
+  $RequoteEventCopyWith(RequoteEvent _, $Res Function(RequoteEvent) __);
+}
+
+/// Adds pattern-matching-related methods to [RequoteEvent].
+extension RequoteEventPatterns on RequoteEvent {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String category, String slug) getQuestions,
-    required TResult Function() getDateAndTime,
-    required TResult Function(ResheduleModel resheduleModel, String orderId)
-        resheduleOrder,
-    required TResult Function(int index) changeIndex,
-    required TResult Function(int index) goBackIndex,
-    required TResult Function(SelectedOption selectedOption) markYesOrNo,
-    required TResult Function(SelectedOption selectedOption) markAnswer,
-    required TResult Function() getPrice,
-    required TResult Function(
-            String orderId, RequotePriceModel requotePriceModel)
-        requotePrice,
-    required TResult Function() reset,
-  }) =>
-      throw _privateConstructorUsedError;
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetQuestions value)? getQuestions,
+    TResult Function(GetDateAndTime value)? getDateAndTime,
+    TResult Function(ResheduleOrder value)? resheduleOrder,
+    TResult Function(ChangeIndex value)? changeIndex,
+    TResult Function(GoBackIndex value)? goBackIndex,
+    TResult Function(MarkYesOrNo value)? markYesOrNo,
+    TResult Function(MarkAnswer value)? markAnswer,
+    TResult Function(GetPrice value)? getPrice,
+    TResult Function(RequotePrice value)? requotePrice,
+    TResult Function(Reset value)? reset,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case GetQuestions() when getQuestions != null:
+        return getQuestions(_that);
+      case GetDateAndTime() when getDateAndTime != null:
+        return getDateAndTime(_that);
+      case ResheduleOrder() when resheduleOrder != null:
+        return resheduleOrder(_that);
+      case ChangeIndex() when changeIndex != null:
+        return changeIndex(_that);
+      case GoBackIndex() when goBackIndex != null:
+        return goBackIndex(_that);
+      case MarkYesOrNo() when markYesOrNo != null:
+        return markYesOrNo(_that);
+      case MarkAnswer() when markAnswer != null:
+        return markAnswer(_that);
+      case GetPrice() when getPrice != null:
+        return getPrice(_that);
+      case RequotePrice() when requotePrice != null:
+        return requotePrice(_that);
+      case Reset() when reset != null:
+        return reset(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String category, String slug)? getQuestions,
-    TResult? Function()? getDateAndTime,
-    TResult? Function(ResheduleModel resheduleModel, String orderId)?
-        resheduleOrder,
-    TResult? Function(int index)? changeIndex,
-    TResult? Function(int index)? goBackIndex,
-    TResult? Function(SelectedOption selectedOption)? markYesOrNo,
-    TResult? Function(SelectedOption selectedOption)? markAnswer,
-    TResult? Function()? getPrice,
-    TResult? Function(String orderId, RequotePriceModel requotePriceModel)?
-        requotePrice,
-    TResult? Function()? reset,
-  }) =>
-      throw _privateConstructorUsedError;
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetQuestions value) getQuestions,
+    required TResult Function(GetDateAndTime value) getDateAndTime,
+    required TResult Function(ResheduleOrder value) resheduleOrder,
+    required TResult Function(ChangeIndex value) changeIndex,
+    required TResult Function(GoBackIndex value) goBackIndex,
+    required TResult Function(MarkYesOrNo value) markYesOrNo,
+    required TResult Function(MarkAnswer value) markAnswer,
+    required TResult Function(GetPrice value) getPrice,
+    required TResult Function(RequotePrice value) requotePrice,
+    required TResult Function(Reset value) reset,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case GetQuestions():
+        return getQuestions(_that);
+      case GetDateAndTime():
+        return getDateAndTime(_that);
+      case ResheduleOrder():
+        return resheduleOrder(_that);
+      case ChangeIndex():
+        return changeIndex(_that);
+      case GoBackIndex():
+        return goBackIndex(_that);
+      case MarkYesOrNo():
+        return markYesOrNo(_that);
+      case MarkAnswer():
+        return markAnswer(_that);
+      case GetPrice():
+        return getPrice(_that);
+      case RequotePrice():
+        return requotePrice(_that);
+      case Reset():
+        return reset(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetQuestions value)? getQuestions,
+    TResult? Function(GetDateAndTime value)? getDateAndTime,
+    TResult? Function(ResheduleOrder value)? resheduleOrder,
+    TResult? Function(ChangeIndex value)? changeIndex,
+    TResult? Function(GoBackIndex value)? goBackIndex,
+    TResult? Function(MarkYesOrNo value)? markYesOrNo,
+    TResult? Function(MarkAnswer value)? markAnswer,
+    TResult? Function(GetPrice value)? getPrice,
+    TResult? Function(RequotePrice value)? requotePrice,
+    TResult? Function(Reset value)? reset,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case GetQuestions() when getQuestions != null:
+        return getQuestions(_that);
+      case GetDateAndTime() when getDateAndTime != null:
+        return getDateAndTime(_that);
+      case ResheduleOrder() when resheduleOrder != null:
+        return resheduleOrder(_that);
+      case ChangeIndex() when changeIndex != null:
+        return changeIndex(_that);
+      case GoBackIndex() when goBackIndex != null:
+        return goBackIndex(_that);
+      case MarkYesOrNo() when markYesOrNo != null:
+        return markYesOrNo(_that);
+      case MarkAnswer() when markAnswer != null:
+        return markAnswer(_that);
+      case GetPrice() when getPrice != null:
+        return getPrice(_that);
+      case RequotePrice() when requotePrice != null:
+        return requotePrice(_that);
+      case Reset() when reset != null:
+        return reset(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String category, String slug)? getQuestions,
@@ -64,127 +221,165 @@ mixin _$RequoteEvent {
         requotePrice,
     TResult Function()? reset,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetQuestions value) getQuestions,
-    required TResult Function(GetDateAndTime value) getDateAndTime,
-    required TResult Function(ResheduleOrder value) resheduleOrder,
-    required TResult Function(ChangeIndex value) changeIndex,
-    required TResult Function(GoBackIndex value) goBackIndex,
-    required TResult Function(MarkYesOrNo value) markYesOrNo,
-    required TResult Function(MarkAnswer value) markAnswer,
-    required TResult Function(GetPrice value) getPrice,
-    required TResult Function(RequotePrice value) requotePrice,
-    required TResult Function(Reset value) reset,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(GetQuestions value)? getQuestions,
-    TResult? Function(GetDateAndTime value)? getDateAndTime,
-    TResult? Function(ResheduleOrder value)? resheduleOrder,
-    TResult? Function(ChangeIndex value)? changeIndex,
-    TResult? Function(GoBackIndex value)? goBackIndex,
-    TResult? Function(MarkYesOrNo value)? markYesOrNo,
-    TResult? Function(MarkAnswer value)? markAnswer,
-    TResult? Function(GetPrice value)? getPrice,
-    TResult? Function(RequotePrice value)? requotePrice,
-    TResult? Function(Reset value)? reset,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetQuestions value)? getQuestions,
-    TResult Function(GetDateAndTime value)? getDateAndTime,
-    TResult Function(ResheduleOrder value)? resheduleOrder,
-    TResult Function(ChangeIndex value)? changeIndex,
-    TResult Function(GoBackIndex value)? goBackIndex,
-    TResult Function(MarkYesOrNo value)? markYesOrNo,
-    TResult Function(MarkAnswer value)? markAnswer,
-    TResult Function(GetPrice value)? getPrice,
-    TResult Function(RequotePrice value)? requotePrice,
-    TResult Function(Reset value)? reset,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $RequoteEventCopyWith<$Res> {
-  factory $RequoteEventCopyWith(
-          RequoteEvent value, $Res Function(RequoteEvent) then) =
-      _$RequoteEventCopyWithImpl<$Res, RequoteEvent>;
-}
-
-/// @nodoc
-class _$RequoteEventCopyWithImpl<$Res, $Val extends RequoteEvent>
-    implements $RequoteEventCopyWith<$Res> {
-  _$RequoteEventCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$GetQuestionsImplCopyWith<$Res> {
-  factory _$$GetQuestionsImplCopyWith(
-          _$GetQuestionsImpl value, $Res Function(_$GetQuestionsImpl) then) =
-      __$$GetQuestionsImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String category, String slug});
-}
-
-/// @nodoc
-class __$$GetQuestionsImplCopyWithImpl<$Res>
-    extends _$RequoteEventCopyWithImpl<$Res, _$GetQuestionsImpl>
-    implements _$$GetQuestionsImplCopyWith<$Res> {
-  __$$GetQuestionsImplCopyWithImpl(
-      _$GetQuestionsImpl _value, $Res Function(_$GetQuestionsImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? category = null,
-    Object? slug = null,
   }) {
-    return _then(_$GetQuestionsImpl(
-      category: null == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as String,
-      slug: null == slug
-          ? _value.slug
-          : slug // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    final _that = this;
+    switch (_that) {
+      case GetQuestions() when getQuestions != null:
+        return getQuestions(_that.category, _that.slug);
+      case GetDateAndTime() when getDateAndTime != null:
+        return getDateAndTime();
+      case ResheduleOrder() when resheduleOrder != null:
+        return resheduleOrder(_that.resheduleModel, _that.orderId);
+      case ChangeIndex() when changeIndex != null:
+        return changeIndex(_that.index);
+      case GoBackIndex() when goBackIndex != null:
+        return goBackIndex(_that.index);
+      case MarkYesOrNo() when markYesOrNo != null:
+        return markYesOrNo(_that.selectedOption);
+      case MarkAnswer() when markAnswer != null:
+        return markAnswer(_that.selectedOption);
+      case GetPrice() when getPrice != null:
+        return getPrice();
+      case RequotePrice() when requotePrice != null:
+        return requotePrice(_that.orderId, _that.requotePriceModel);
+      case Reset() when reset != null:
+        return reset();
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String category, String slug) getQuestions,
+    required TResult Function() getDateAndTime,
+    required TResult Function(ResheduleModel resheduleModel, String orderId)
+        resheduleOrder,
+    required TResult Function(int index) changeIndex,
+    required TResult Function(int index) goBackIndex,
+    required TResult Function(SelectedOption selectedOption) markYesOrNo,
+    required TResult Function(SelectedOption selectedOption) markAnswer,
+    required TResult Function() getPrice,
+    required TResult Function(
+            String orderId, RequotePriceModel requotePriceModel)
+        requotePrice,
+    required TResult Function() reset,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case GetQuestions():
+        return getQuestions(_that.category, _that.slug);
+      case GetDateAndTime():
+        return getDateAndTime();
+      case ResheduleOrder():
+        return resheduleOrder(_that.resheduleModel, _that.orderId);
+      case ChangeIndex():
+        return changeIndex(_that.index);
+      case GoBackIndex():
+        return goBackIndex(_that.index);
+      case MarkYesOrNo():
+        return markYesOrNo(_that.selectedOption);
+      case MarkAnswer():
+        return markAnswer(_that.selectedOption);
+      case GetPrice():
+        return getPrice();
+      case RequotePrice():
+        return requotePrice(_that.orderId, _that.requotePriceModel);
+      case Reset():
+        return reset();
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String category, String slug)? getQuestions,
+    TResult? Function()? getDateAndTime,
+    TResult? Function(ResheduleModel resheduleModel, String orderId)?
+        resheduleOrder,
+    TResult? Function(int index)? changeIndex,
+    TResult? Function(int index)? goBackIndex,
+    TResult? Function(SelectedOption selectedOption)? markYesOrNo,
+    TResult? Function(SelectedOption selectedOption)? markAnswer,
+    TResult? Function()? getPrice,
+    TResult? Function(String orderId, RequotePriceModel requotePriceModel)?
+        requotePrice,
+    TResult? Function()? reset,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case GetQuestions() when getQuestions != null:
+        return getQuestions(_that.category, _that.slug);
+      case GetDateAndTime() when getDateAndTime != null:
+        return getDateAndTime();
+      case ResheduleOrder() when resheduleOrder != null:
+        return resheduleOrder(_that.resheduleModel, _that.orderId);
+      case ChangeIndex() when changeIndex != null:
+        return changeIndex(_that.index);
+      case GoBackIndex() when goBackIndex != null:
+        return goBackIndex(_that.index);
+      case MarkYesOrNo() when markYesOrNo != null:
+        return markYesOrNo(_that.selectedOption);
+      case MarkAnswer() when markAnswer != null:
+        return markAnswer(_that.selectedOption);
+      case GetPrice() when getPrice != null:
+        return getPrice();
+      case RequotePrice() when requotePrice != null:
+        return requotePrice(_that.orderId, _that.requotePriceModel);
+      case Reset() when reset != null:
+        return reset();
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 
-class _$GetQuestionsImpl implements GetQuestions {
-  const _$GetQuestionsImpl({required this.category, required this.slug});
+class GetQuestions implements RequoteEvent {
+  const GetQuestions({required this.category, required this.slug});
 
-  @override
   final String category;
-  @override
   final String slug;
 
-  @override
-  String toString() {
-    return 'RequoteEvent.getQuestions(category: $category, slug: $slug)';
-  }
+  /// Create a copy of RequoteEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $GetQuestionsCopyWith<GetQuestions> get copyWith =>
+      _$GetQuestionsCopyWithImpl<GetQuestions>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GetQuestionsImpl &&
+            other is GetQuestions &&
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.slug, slug) || other.slug == slug));
@@ -193,330 +388,44 @@ class _$GetQuestionsImpl implements GetQuestions {
   @override
   int get hashCode => Object.hash(runtimeType, category, slug);
 
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$GetQuestionsImplCopyWith<_$GetQuestionsImpl> get copyWith =>
-      __$$GetQuestionsImplCopyWithImpl<_$GetQuestionsImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String category, String slug) getQuestions,
-    required TResult Function() getDateAndTime,
-    required TResult Function(ResheduleModel resheduleModel, String orderId)
-        resheduleOrder,
-    required TResult Function(int index) changeIndex,
-    required TResult Function(int index) goBackIndex,
-    required TResult Function(SelectedOption selectedOption) markYesOrNo,
-    required TResult Function(SelectedOption selectedOption) markAnswer,
-    required TResult Function() getPrice,
-    required TResult Function(
-            String orderId, RequotePriceModel requotePriceModel)
-        requotePrice,
-    required TResult Function() reset,
-  }) {
-    return getQuestions(category, slug);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String category, String slug)? getQuestions,
-    TResult? Function()? getDateAndTime,
-    TResult? Function(ResheduleModel resheduleModel, String orderId)?
-        resheduleOrder,
-    TResult? Function(int index)? changeIndex,
-    TResult? Function(int index)? goBackIndex,
-    TResult? Function(SelectedOption selectedOption)? markYesOrNo,
-    TResult? Function(SelectedOption selectedOption)? markAnswer,
-    TResult? Function()? getPrice,
-    TResult? Function(String orderId, RequotePriceModel requotePriceModel)?
-        requotePrice,
-    TResult? Function()? reset,
-  }) {
-    return getQuestions?.call(category, slug);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String category, String slug)? getQuestions,
-    TResult Function()? getDateAndTime,
-    TResult Function(ResheduleModel resheduleModel, String orderId)?
-        resheduleOrder,
-    TResult Function(int index)? changeIndex,
-    TResult Function(int index)? goBackIndex,
-    TResult Function(SelectedOption selectedOption)? markYesOrNo,
-    TResult Function(SelectedOption selectedOption)? markAnswer,
-    TResult Function()? getPrice,
-    TResult Function(String orderId, RequotePriceModel requotePriceModel)?
-        requotePrice,
-    TResult Function()? reset,
-    required TResult orElse(),
-  }) {
-    if (getQuestions != null) {
-      return getQuestions(category, slug);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetQuestions value) getQuestions,
-    required TResult Function(GetDateAndTime value) getDateAndTime,
-    required TResult Function(ResheduleOrder value) resheduleOrder,
-    required TResult Function(ChangeIndex value) changeIndex,
-    required TResult Function(GoBackIndex value) goBackIndex,
-    required TResult Function(MarkYesOrNo value) markYesOrNo,
-    required TResult Function(MarkAnswer value) markAnswer,
-    required TResult Function(GetPrice value) getPrice,
-    required TResult Function(RequotePrice value) requotePrice,
-    required TResult Function(Reset value) reset,
-  }) {
-    return getQuestions(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(GetQuestions value)? getQuestions,
-    TResult? Function(GetDateAndTime value)? getDateAndTime,
-    TResult? Function(ResheduleOrder value)? resheduleOrder,
-    TResult? Function(ChangeIndex value)? changeIndex,
-    TResult? Function(GoBackIndex value)? goBackIndex,
-    TResult? Function(MarkYesOrNo value)? markYesOrNo,
-    TResult? Function(MarkAnswer value)? markAnswer,
-    TResult? Function(GetPrice value)? getPrice,
-    TResult? Function(RequotePrice value)? requotePrice,
-    TResult? Function(Reset value)? reset,
-  }) {
-    return getQuestions?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetQuestions value)? getQuestions,
-    TResult Function(GetDateAndTime value)? getDateAndTime,
-    TResult Function(ResheduleOrder value)? resheduleOrder,
-    TResult Function(ChangeIndex value)? changeIndex,
-    TResult Function(GoBackIndex value)? goBackIndex,
-    TResult Function(MarkYesOrNo value)? markYesOrNo,
-    TResult Function(MarkAnswer value)? markAnswer,
-    TResult Function(GetPrice value)? getPrice,
-    TResult Function(RequotePrice value)? requotePrice,
-    TResult Function(Reset value)? reset,
-    required TResult orElse(),
-  }) {
-    if (getQuestions != null) {
-      return getQuestions(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class GetQuestions implements RequoteEvent {
-  const factory GetQuestions(
-      {required final String category,
-      required final String slug}) = _$GetQuestionsImpl;
-
-  String get category;
-  String get slug;
-  @JsonKey(ignore: true)
-  _$$GetQuestionsImplCopyWith<_$GetQuestionsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$GetDateAndTimeImplCopyWith<$Res> {
-  factory _$$GetDateAndTimeImplCopyWith(_$GetDateAndTimeImpl value,
-          $Res Function(_$GetDateAndTimeImpl) then) =
-      __$$GetDateAndTimeImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$GetDateAndTimeImplCopyWithImpl<$Res>
-    extends _$RequoteEventCopyWithImpl<$Res, _$GetDateAndTimeImpl>
-    implements _$$GetDateAndTimeImplCopyWith<$Res> {
-  __$$GetDateAndTimeImplCopyWithImpl(
-      _$GetDateAndTimeImpl _value, $Res Function(_$GetDateAndTimeImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$GetDateAndTimeImpl implements GetDateAndTime {
-  const _$GetDateAndTimeImpl();
-
   @override
   String toString() {
-    return 'RequoteEvent.getDateAndTime()';
+    return 'RequoteEvent.getQuestions(category: $category, slug: $slug)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GetDateAndTimeImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String category, String slug) getQuestions,
-    required TResult Function() getDateAndTime,
-    required TResult Function(ResheduleModel resheduleModel, String orderId)
-        resheduleOrder,
-    required TResult Function(int index) changeIndex,
-    required TResult Function(int index) goBackIndex,
-    required TResult Function(SelectedOption selectedOption) markYesOrNo,
-    required TResult Function(SelectedOption selectedOption) markAnswer,
-    required TResult Function() getPrice,
-    required TResult Function(
-            String orderId, RequotePriceModel requotePriceModel)
-        requotePrice,
-    required TResult Function() reset,
-  }) {
-    return getDateAndTime();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String category, String slug)? getQuestions,
-    TResult? Function()? getDateAndTime,
-    TResult? Function(ResheduleModel resheduleModel, String orderId)?
-        resheduleOrder,
-    TResult? Function(int index)? changeIndex,
-    TResult? Function(int index)? goBackIndex,
-    TResult? Function(SelectedOption selectedOption)? markYesOrNo,
-    TResult? Function(SelectedOption selectedOption)? markAnswer,
-    TResult? Function()? getPrice,
-    TResult? Function(String orderId, RequotePriceModel requotePriceModel)?
-        requotePrice,
-    TResult? Function()? reset,
-  }) {
-    return getDateAndTime?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String category, String slug)? getQuestions,
-    TResult Function()? getDateAndTime,
-    TResult Function(ResheduleModel resheduleModel, String orderId)?
-        resheduleOrder,
-    TResult Function(int index)? changeIndex,
-    TResult Function(int index)? goBackIndex,
-    TResult Function(SelectedOption selectedOption)? markYesOrNo,
-    TResult Function(SelectedOption selectedOption)? markAnswer,
-    TResult Function()? getPrice,
-    TResult Function(String orderId, RequotePriceModel requotePriceModel)?
-        requotePrice,
-    TResult Function()? reset,
-    required TResult orElse(),
-  }) {
-    if (getDateAndTime != null) {
-      return getDateAndTime();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetQuestions value) getQuestions,
-    required TResult Function(GetDateAndTime value) getDateAndTime,
-    required TResult Function(ResheduleOrder value) resheduleOrder,
-    required TResult Function(ChangeIndex value) changeIndex,
-    required TResult Function(GoBackIndex value) goBackIndex,
-    required TResult Function(MarkYesOrNo value) markYesOrNo,
-    required TResult Function(MarkAnswer value) markAnswer,
-    required TResult Function(GetPrice value) getPrice,
-    required TResult Function(RequotePrice value) requotePrice,
-    required TResult Function(Reset value) reset,
-  }) {
-    return getDateAndTime(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(GetQuestions value)? getQuestions,
-    TResult? Function(GetDateAndTime value)? getDateAndTime,
-    TResult? Function(ResheduleOrder value)? resheduleOrder,
-    TResult? Function(ChangeIndex value)? changeIndex,
-    TResult? Function(GoBackIndex value)? goBackIndex,
-    TResult? Function(MarkYesOrNo value)? markYesOrNo,
-    TResult? Function(MarkAnswer value)? markAnswer,
-    TResult? Function(GetPrice value)? getPrice,
-    TResult? Function(RequotePrice value)? requotePrice,
-    TResult? Function(Reset value)? reset,
-  }) {
-    return getDateAndTime?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetQuestions value)? getQuestions,
-    TResult Function(GetDateAndTime value)? getDateAndTime,
-    TResult Function(ResheduleOrder value)? resheduleOrder,
-    TResult Function(ChangeIndex value)? changeIndex,
-    TResult Function(GoBackIndex value)? goBackIndex,
-    TResult Function(MarkYesOrNo value)? markYesOrNo,
-    TResult Function(MarkAnswer value)? markAnswer,
-    TResult Function(GetPrice value)? getPrice,
-    TResult Function(RequotePrice value)? requotePrice,
-    TResult Function(Reset value)? reset,
-    required TResult orElse(),
-  }) {
-    if (getDateAndTime != null) {
-      return getDateAndTime(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class GetDateAndTime implements RequoteEvent {
-  const factory GetDateAndTime() = _$GetDateAndTimeImpl;
 }
 
 /// @nodoc
-abstract class _$$ResheduleOrderImplCopyWith<$Res> {
-  factory _$$ResheduleOrderImplCopyWith(_$ResheduleOrderImpl value,
-          $Res Function(_$ResheduleOrderImpl) then) =
-      __$$ResheduleOrderImplCopyWithImpl<$Res>;
+abstract mixin class $GetQuestionsCopyWith<$Res>
+    implements $RequoteEventCopyWith<$Res> {
+  factory $GetQuestionsCopyWith(
+          GetQuestions value, $Res Function(GetQuestions) _then) =
+      _$GetQuestionsCopyWithImpl;
   @useResult
-  $Res call({ResheduleModel resheduleModel, String orderId});
+  $Res call({String category, String slug});
 }
 
 /// @nodoc
-class __$$ResheduleOrderImplCopyWithImpl<$Res>
-    extends _$RequoteEventCopyWithImpl<$Res, _$ResheduleOrderImpl>
-    implements _$$ResheduleOrderImplCopyWith<$Res> {
-  __$$ResheduleOrderImplCopyWithImpl(
-      _$ResheduleOrderImpl _value, $Res Function(_$ResheduleOrderImpl) _then)
-      : super(_value, _then);
+class _$GetQuestionsCopyWithImpl<$Res> implements $GetQuestionsCopyWith<$Res> {
+  _$GetQuestionsCopyWithImpl(this._self, this._then);
 
+  final GetQuestions _self;
+  final $Res Function(GetQuestions) _then;
+
+  /// Create a copy of RequoteEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
-    Object? resheduleModel = null,
-    Object? orderId = null,
+    Object? category = null,
+    Object? slug = null,
   }) {
-    return _then(_$ResheduleOrderImpl(
-      resheduleModel: null == resheduleModel
-          ? _value.resheduleModel
-          : resheduleModel // ignore: cast_nullable_to_non_nullable
-              as ResheduleModel,
-      orderId: null == orderId
-          ? _value.orderId
-          : orderId // ignore: cast_nullable_to_non_nullable
+    return _then(GetQuestions(
+      category: null == category
+          ? _self.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      slug: null == slug
+          ? _self.slug
+          : slug // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -524,25 +433,44 @@ class __$$ResheduleOrderImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ResheduleOrderImpl implements ResheduleOrder {
-  const _$ResheduleOrderImpl(
-      {required this.resheduleModel, required this.orderId});
+class GetDateAndTime implements RequoteEvent {
+  const GetDateAndTime();
 
   @override
-  final ResheduleModel resheduleModel;
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is GetDateAndTime);
+  }
+
   @override
-  final String orderId;
+  int get hashCode => runtimeType.hashCode;
 
   @override
   String toString() {
-    return 'RequoteEvent.resheduleOrder(resheduleModel: $resheduleModel, orderId: $orderId)';
+    return 'RequoteEvent.getDateAndTime()';
   }
+}
+
+/// @nodoc
+
+class ResheduleOrder implements RequoteEvent {
+  const ResheduleOrder({required this.resheduleModel, required this.orderId});
+
+  final ResheduleModel resheduleModel;
+  final String orderId;
+
+  /// Create a copy of RequoteEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ResheduleOrderCopyWith<ResheduleOrder> get copyWith =>
+      _$ResheduleOrderCopyWithImpl<ResheduleOrder>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ResheduleOrderImpl &&
+            other is ResheduleOrder &&
             (identical(other.resheduleModel, resheduleModel) ||
                 other.resheduleModel == resheduleModel) &&
             (identical(other.orderId, orderId) || other.orderId == orderId));
@@ -551,356 +479,107 @@ class _$ResheduleOrderImpl implements ResheduleOrder {
   @override
   int get hashCode => Object.hash(runtimeType, resheduleModel, orderId);
 
-  @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ResheduleOrderImplCopyWith<_$ResheduleOrderImpl> get copyWith =>
-      __$$ResheduleOrderImplCopyWithImpl<_$ResheduleOrderImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String category, String slug) getQuestions,
-    required TResult Function() getDateAndTime,
-    required TResult Function(ResheduleModel resheduleModel, String orderId)
-        resheduleOrder,
-    required TResult Function(int index) changeIndex,
-    required TResult Function(int index) goBackIndex,
-    required TResult Function(SelectedOption selectedOption) markYesOrNo,
-    required TResult Function(SelectedOption selectedOption) markAnswer,
-    required TResult Function() getPrice,
-    required TResult Function(
-            String orderId, RequotePriceModel requotePriceModel)
-        requotePrice,
-    required TResult Function() reset,
-  }) {
-    return resheduleOrder(resheduleModel, orderId);
+  String toString() {
+    return 'RequoteEvent.resheduleOrder(resheduleModel: $resheduleModel, orderId: $orderId)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String category, String slug)? getQuestions,
-    TResult? Function()? getDateAndTime,
-    TResult? Function(ResheduleModel resheduleModel, String orderId)?
-        resheduleOrder,
-    TResult? Function(int index)? changeIndex,
-    TResult? Function(int index)? goBackIndex,
-    TResult? Function(SelectedOption selectedOption)? markYesOrNo,
-    TResult? Function(SelectedOption selectedOption)? markAnswer,
-    TResult? Function()? getPrice,
-    TResult? Function(String orderId, RequotePriceModel requotePriceModel)?
-        requotePrice,
-    TResult? Function()? reset,
-  }) {
-    return resheduleOrder?.call(resheduleModel, orderId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String category, String slug)? getQuestions,
-    TResult Function()? getDateAndTime,
-    TResult Function(ResheduleModel resheduleModel, String orderId)?
-        resheduleOrder,
-    TResult Function(int index)? changeIndex,
-    TResult Function(int index)? goBackIndex,
-    TResult Function(SelectedOption selectedOption)? markYesOrNo,
-    TResult Function(SelectedOption selectedOption)? markAnswer,
-    TResult Function()? getPrice,
-    TResult Function(String orderId, RequotePriceModel requotePriceModel)?
-        requotePrice,
-    TResult Function()? reset,
-    required TResult orElse(),
-  }) {
-    if (resheduleOrder != null) {
-      return resheduleOrder(resheduleModel, orderId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetQuestions value) getQuestions,
-    required TResult Function(GetDateAndTime value) getDateAndTime,
-    required TResult Function(ResheduleOrder value) resheduleOrder,
-    required TResult Function(ChangeIndex value) changeIndex,
-    required TResult Function(GoBackIndex value) goBackIndex,
-    required TResult Function(MarkYesOrNo value) markYesOrNo,
-    required TResult Function(MarkAnswer value) markAnswer,
-    required TResult Function(GetPrice value) getPrice,
-    required TResult Function(RequotePrice value) requotePrice,
-    required TResult Function(Reset value) reset,
-  }) {
-    return resheduleOrder(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(GetQuestions value)? getQuestions,
-    TResult? Function(GetDateAndTime value)? getDateAndTime,
-    TResult? Function(ResheduleOrder value)? resheduleOrder,
-    TResult? Function(ChangeIndex value)? changeIndex,
-    TResult? Function(GoBackIndex value)? goBackIndex,
-    TResult? Function(MarkYesOrNo value)? markYesOrNo,
-    TResult? Function(MarkAnswer value)? markAnswer,
-    TResult? Function(GetPrice value)? getPrice,
-    TResult? Function(RequotePrice value)? requotePrice,
-    TResult? Function(Reset value)? reset,
-  }) {
-    return resheduleOrder?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetQuestions value)? getQuestions,
-    TResult Function(GetDateAndTime value)? getDateAndTime,
-    TResult Function(ResheduleOrder value)? resheduleOrder,
-    TResult Function(ChangeIndex value)? changeIndex,
-    TResult Function(GoBackIndex value)? goBackIndex,
-    TResult Function(MarkYesOrNo value)? markYesOrNo,
-    TResult Function(MarkAnswer value)? markAnswer,
-    TResult Function(GetPrice value)? getPrice,
-    TResult Function(RequotePrice value)? requotePrice,
-    TResult Function(Reset value)? reset,
-    required TResult orElse(),
-  }) {
-    if (resheduleOrder != null) {
-      return resheduleOrder(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ResheduleOrder implements RequoteEvent {
-  const factory ResheduleOrder(
-      {required final ResheduleModel resheduleModel,
-      required final String orderId}) = _$ResheduleOrderImpl;
-
-  ResheduleModel get resheduleModel;
-  String get orderId;
-  @JsonKey(ignore: true)
-  _$$ResheduleOrderImplCopyWith<_$ResheduleOrderImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ChangeIndexImplCopyWith<$Res> {
-  factory _$$ChangeIndexImplCopyWith(
-          _$ChangeIndexImpl value, $Res Function(_$ChangeIndexImpl) then) =
-      __$$ChangeIndexImplCopyWithImpl<$Res>;
+abstract mixin class $ResheduleOrderCopyWith<$Res>
+    implements $RequoteEventCopyWith<$Res> {
+  factory $ResheduleOrderCopyWith(
+          ResheduleOrder value, $Res Function(ResheduleOrder) _then) =
+      _$ResheduleOrderCopyWithImpl;
   @useResult
-  $Res call({int index});
+  $Res call({ResheduleModel resheduleModel, String orderId});
 }
 
 /// @nodoc
-class __$$ChangeIndexImplCopyWithImpl<$Res>
-    extends _$RequoteEventCopyWithImpl<$Res, _$ChangeIndexImpl>
-    implements _$$ChangeIndexImplCopyWith<$Res> {
-  __$$ChangeIndexImplCopyWithImpl(
-      _$ChangeIndexImpl _value, $Res Function(_$ChangeIndexImpl) _then)
-      : super(_value, _then);
+class _$ResheduleOrderCopyWithImpl<$Res>
+    implements $ResheduleOrderCopyWith<$Res> {
+  _$ResheduleOrderCopyWithImpl(this._self, this._then);
 
+  final ResheduleOrder _self;
+  final $Res Function(ResheduleOrder) _then;
+
+  /// Create a copy of RequoteEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
-    Object? index = null,
+    Object? resheduleModel = null,
+    Object? orderId = null,
   }) {
-    return _then(_$ChangeIndexImpl(
-      index: null == index
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as int,
+    return _then(ResheduleOrder(
+      resheduleModel: null == resheduleModel
+          ? _self.resheduleModel
+          : resheduleModel // ignore: cast_nullable_to_non_nullable
+              as ResheduleModel,
+      orderId: null == orderId
+          ? _self.orderId
+          : orderId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
 
-class _$ChangeIndexImpl implements ChangeIndex {
-  const _$ChangeIndexImpl({required this.index});
+class ChangeIndex implements RequoteEvent {
+  const ChangeIndex({required this.index});
+
+  final int index;
+
+  /// Create a copy of RequoteEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChangeIndexCopyWith<ChangeIndex> get copyWith =>
+      _$ChangeIndexCopyWithImpl<ChangeIndex>(this, _$identity);
 
   @override
-  final int index;
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ChangeIndex &&
+            (identical(other.index, index) || other.index == index));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, index);
 
   @override
   String toString() {
     return 'RequoteEvent.changeIndex(index: $index)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ChangeIndexImpl &&
-            (identical(other.index, index) || other.index == index));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, index);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ChangeIndexImplCopyWith<_$ChangeIndexImpl> get copyWith =>
-      __$$ChangeIndexImplCopyWithImpl<_$ChangeIndexImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String category, String slug) getQuestions,
-    required TResult Function() getDateAndTime,
-    required TResult Function(ResheduleModel resheduleModel, String orderId)
-        resheduleOrder,
-    required TResult Function(int index) changeIndex,
-    required TResult Function(int index) goBackIndex,
-    required TResult Function(SelectedOption selectedOption) markYesOrNo,
-    required TResult Function(SelectedOption selectedOption) markAnswer,
-    required TResult Function() getPrice,
-    required TResult Function(
-            String orderId, RequotePriceModel requotePriceModel)
-        requotePrice,
-    required TResult Function() reset,
-  }) {
-    return changeIndex(index);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String category, String slug)? getQuestions,
-    TResult? Function()? getDateAndTime,
-    TResult? Function(ResheduleModel resheduleModel, String orderId)?
-        resheduleOrder,
-    TResult? Function(int index)? changeIndex,
-    TResult? Function(int index)? goBackIndex,
-    TResult? Function(SelectedOption selectedOption)? markYesOrNo,
-    TResult? Function(SelectedOption selectedOption)? markAnswer,
-    TResult? Function()? getPrice,
-    TResult? Function(String orderId, RequotePriceModel requotePriceModel)?
-        requotePrice,
-    TResult? Function()? reset,
-  }) {
-    return changeIndex?.call(index);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String category, String slug)? getQuestions,
-    TResult Function()? getDateAndTime,
-    TResult Function(ResheduleModel resheduleModel, String orderId)?
-        resheduleOrder,
-    TResult Function(int index)? changeIndex,
-    TResult Function(int index)? goBackIndex,
-    TResult Function(SelectedOption selectedOption)? markYesOrNo,
-    TResult Function(SelectedOption selectedOption)? markAnswer,
-    TResult Function()? getPrice,
-    TResult Function(String orderId, RequotePriceModel requotePriceModel)?
-        requotePrice,
-    TResult Function()? reset,
-    required TResult orElse(),
-  }) {
-    if (changeIndex != null) {
-      return changeIndex(index);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetQuestions value) getQuestions,
-    required TResult Function(GetDateAndTime value) getDateAndTime,
-    required TResult Function(ResheduleOrder value) resheduleOrder,
-    required TResult Function(ChangeIndex value) changeIndex,
-    required TResult Function(GoBackIndex value) goBackIndex,
-    required TResult Function(MarkYesOrNo value) markYesOrNo,
-    required TResult Function(MarkAnswer value) markAnswer,
-    required TResult Function(GetPrice value) getPrice,
-    required TResult Function(RequotePrice value) requotePrice,
-    required TResult Function(Reset value) reset,
-  }) {
-    return changeIndex(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(GetQuestions value)? getQuestions,
-    TResult? Function(GetDateAndTime value)? getDateAndTime,
-    TResult? Function(ResheduleOrder value)? resheduleOrder,
-    TResult? Function(ChangeIndex value)? changeIndex,
-    TResult? Function(GoBackIndex value)? goBackIndex,
-    TResult? Function(MarkYesOrNo value)? markYesOrNo,
-    TResult? Function(MarkAnswer value)? markAnswer,
-    TResult? Function(GetPrice value)? getPrice,
-    TResult? Function(RequotePrice value)? requotePrice,
-    TResult? Function(Reset value)? reset,
-  }) {
-    return changeIndex?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetQuestions value)? getQuestions,
-    TResult Function(GetDateAndTime value)? getDateAndTime,
-    TResult Function(ResheduleOrder value)? resheduleOrder,
-    TResult Function(ChangeIndex value)? changeIndex,
-    TResult Function(GoBackIndex value)? goBackIndex,
-    TResult Function(MarkYesOrNo value)? markYesOrNo,
-    TResult Function(MarkAnswer value)? markAnswer,
-    TResult Function(GetPrice value)? getPrice,
-    TResult Function(RequotePrice value)? requotePrice,
-    TResult Function(Reset value)? reset,
-    required TResult orElse(),
-  }) {
-    if (changeIndex != null) {
-      return changeIndex(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ChangeIndex implements RequoteEvent {
-  const factory ChangeIndex({required final int index}) = _$ChangeIndexImpl;
-
-  int get index;
-  @JsonKey(ignore: true)
-  _$$ChangeIndexImplCopyWith<_$ChangeIndexImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$GoBackIndexImplCopyWith<$Res> {
-  factory _$$GoBackIndexImplCopyWith(
-          _$GoBackIndexImpl value, $Res Function(_$GoBackIndexImpl) then) =
-      __$$GoBackIndexImplCopyWithImpl<$Res>;
+abstract mixin class $ChangeIndexCopyWith<$Res>
+    implements $RequoteEventCopyWith<$Res> {
+  factory $ChangeIndexCopyWith(
+          ChangeIndex value, $Res Function(ChangeIndex) _then) =
+      _$ChangeIndexCopyWithImpl;
   @useResult
   $Res call({int index});
 }
 
 /// @nodoc
-class __$$GoBackIndexImplCopyWithImpl<$Res>
-    extends _$RequoteEventCopyWithImpl<$Res, _$GoBackIndexImpl>
-    implements _$$GoBackIndexImplCopyWith<$Res> {
-  __$$GoBackIndexImplCopyWithImpl(
-      _$GoBackIndexImpl _value, $Res Function(_$GoBackIndexImpl) _then)
-      : super(_value, _then);
+class _$ChangeIndexCopyWithImpl<$Res> implements $ChangeIndexCopyWith<$Res> {
+  _$ChangeIndexCopyWithImpl(this._self, this._then);
 
+  final ChangeIndex _self;
+  final $Res Function(ChangeIndex) _then;
+
+  /// Create a copy of RequoteEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? index = null,
   }) {
-    return _then(_$GoBackIndexImpl(
+    return _then(ChangeIndex(
       index: null == index
-          ? _value.index
+          ? _self.index
           : index // ignore: cast_nullable_to_non_nullable
               as int,
     ));
@@ -909,376 +588,125 @@ class __$$GoBackIndexImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GoBackIndexImpl implements GoBackIndex {
-  const _$GoBackIndexImpl({required this.index});
+class GoBackIndex implements RequoteEvent {
+  const GoBackIndex({required this.index});
 
-  @override
   final int index;
 
-  @override
-  String toString() {
-    return 'RequoteEvent.goBackIndex(index: $index)';
-  }
+  /// Create a copy of RequoteEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $GoBackIndexCopyWith<GoBackIndex> get copyWith =>
+      _$GoBackIndexCopyWithImpl<GoBackIndex>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GoBackIndexImpl &&
+            other is GoBackIndex &&
             (identical(other.index, index) || other.index == index));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, index);
 
-  @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
-  _$$GoBackIndexImplCopyWith<_$GoBackIndexImpl> get copyWith =>
-      __$$GoBackIndexImplCopyWithImpl<_$GoBackIndexImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String category, String slug) getQuestions,
-    required TResult Function() getDateAndTime,
-    required TResult Function(ResheduleModel resheduleModel, String orderId)
-        resheduleOrder,
-    required TResult Function(int index) changeIndex,
-    required TResult Function(int index) goBackIndex,
-    required TResult Function(SelectedOption selectedOption) markYesOrNo,
-    required TResult Function(SelectedOption selectedOption) markAnswer,
-    required TResult Function() getPrice,
-    required TResult Function(
-            String orderId, RequotePriceModel requotePriceModel)
-        requotePrice,
-    required TResult Function() reset,
-  }) {
-    return goBackIndex(index);
+  String toString() {
+    return 'RequoteEvent.goBackIndex(index: $index)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String category, String slug)? getQuestions,
-    TResult? Function()? getDateAndTime,
-    TResult? Function(ResheduleModel resheduleModel, String orderId)?
-        resheduleOrder,
-    TResult? Function(int index)? changeIndex,
-    TResult? Function(int index)? goBackIndex,
-    TResult? Function(SelectedOption selectedOption)? markYesOrNo,
-    TResult? Function(SelectedOption selectedOption)? markAnswer,
-    TResult? Function()? getPrice,
-    TResult? Function(String orderId, RequotePriceModel requotePriceModel)?
-        requotePrice,
-    TResult? Function()? reset,
-  }) {
-    return goBackIndex?.call(index);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String category, String slug)? getQuestions,
-    TResult Function()? getDateAndTime,
-    TResult Function(ResheduleModel resheduleModel, String orderId)?
-        resheduleOrder,
-    TResult Function(int index)? changeIndex,
-    TResult Function(int index)? goBackIndex,
-    TResult Function(SelectedOption selectedOption)? markYesOrNo,
-    TResult Function(SelectedOption selectedOption)? markAnswer,
-    TResult Function()? getPrice,
-    TResult Function(String orderId, RequotePriceModel requotePriceModel)?
-        requotePrice,
-    TResult Function()? reset,
-    required TResult orElse(),
-  }) {
-    if (goBackIndex != null) {
-      return goBackIndex(index);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetQuestions value) getQuestions,
-    required TResult Function(GetDateAndTime value) getDateAndTime,
-    required TResult Function(ResheduleOrder value) resheduleOrder,
-    required TResult Function(ChangeIndex value) changeIndex,
-    required TResult Function(GoBackIndex value) goBackIndex,
-    required TResult Function(MarkYesOrNo value) markYesOrNo,
-    required TResult Function(MarkAnswer value) markAnswer,
-    required TResult Function(GetPrice value) getPrice,
-    required TResult Function(RequotePrice value) requotePrice,
-    required TResult Function(Reset value) reset,
-  }) {
-    return goBackIndex(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(GetQuestions value)? getQuestions,
-    TResult? Function(GetDateAndTime value)? getDateAndTime,
-    TResult? Function(ResheduleOrder value)? resheduleOrder,
-    TResult? Function(ChangeIndex value)? changeIndex,
-    TResult? Function(GoBackIndex value)? goBackIndex,
-    TResult? Function(MarkYesOrNo value)? markYesOrNo,
-    TResult? Function(MarkAnswer value)? markAnswer,
-    TResult? Function(GetPrice value)? getPrice,
-    TResult? Function(RequotePrice value)? requotePrice,
-    TResult? Function(Reset value)? reset,
-  }) {
-    return goBackIndex?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetQuestions value)? getQuestions,
-    TResult Function(GetDateAndTime value)? getDateAndTime,
-    TResult Function(ResheduleOrder value)? resheduleOrder,
-    TResult Function(ChangeIndex value)? changeIndex,
-    TResult Function(GoBackIndex value)? goBackIndex,
-    TResult Function(MarkYesOrNo value)? markYesOrNo,
-    TResult Function(MarkAnswer value)? markAnswer,
-    TResult Function(GetPrice value)? getPrice,
-    TResult Function(RequotePrice value)? requotePrice,
-    TResult Function(Reset value)? reset,
-    required TResult orElse(),
-  }) {
-    if (goBackIndex != null) {
-      return goBackIndex(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class GoBackIndex implements RequoteEvent {
-  const factory GoBackIndex({required final int index}) = _$GoBackIndexImpl;
-
-  int get index;
-  @JsonKey(ignore: true)
-  _$$GoBackIndexImplCopyWith<_$GoBackIndexImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$MarkYesOrNoImplCopyWith<$Res> {
-  factory _$$MarkYesOrNoImplCopyWith(
-          _$MarkYesOrNoImpl value, $Res Function(_$MarkYesOrNoImpl) then) =
-      __$$MarkYesOrNoImplCopyWithImpl<$Res>;
+abstract mixin class $GoBackIndexCopyWith<$Res>
+    implements $RequoteEventCopyWith<$Res> {
+  factory $GoBackIndexCopyWith(
+          GoBackIndex value, $Res Function(GoBackIndex) _then) =
+      _$GoBackIndexCopyWithImpl;
   @useResult
-  $Res call({SelectedOption selectedOption});
+  $Res call({int index});
 }
 
 /// @nodoc
-class __$$MarkYesOrNoImplCopyWithImpl<$Res>
-    extends _$RequoteEventCopyWithImpl<$Res, _$MarkYesOrNoImpl>
-    implements _$$MarkYesOrNoImplCopyWith<$Res> {
-  __$$MarkYesOrNoImplCopyWithImpl(
-      _$MarkYesOrNoImpl _value, $Res Function(_$MarkYesOrNoImpl) _then)
-      : super(_value, _then);
+class _$GoBackIndexCopyWithImpl<$Res> implements $GoBackIndexCopyWith<$Res> {
+  _$GoBackIndexCopyWithImpl(this._self, this._then);
 
+  final GoBackIndex _self;
+  final $Res Function(GoBackIndex) _then;
+
+  /// Create a copy of RequoteEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
-    Object? selectedOption = null,
+    Object? index = null,
   }) {
-    return _then(_$MarkYesOrNoImpl(
-      selectedOption: null == selectedOption
-          ? _value.selectedOption
-          : selectedOption // ignore: cast_nullable_to_non_nullable
-              as SelectedOption,
+    return _then(GoBackIndex(
+      index: null == index
+          ? _self.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
 
 /// @nodoc
 
-class _$MarkYesOrNoImpl implements MarkYesOrNo {
-  const _$MarkYesOrNoImpl({required this.selectedOption});
+class MarkYesOrNo implements RequoteEvent {
+  const MarkYesOrNo({required this.selectedOption});
+
+  final SelectedOption selectedOption;
+
+  /// Create a copy of RequoteEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $MarkYesOrNoCopyWith<MarkYesOrNo> get copyWith =>
+      _$MarkYesOrNoCopyWithImpl<MarkYesOrNo>(this, _$identity);
 
   @override
-  final SelectedOption selectedOption;
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is MarkYesOrNo &&
+            (identical(other.selectedOption, selectedOption) ||
+                other.selectedOption == selectedOption));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, selectedOption);
 
   @override
   String toString() {
     return 'RequoteEvent.markYesOrNo(selectedOption: $selectedOption)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$MarkYesOrNoImpl &&
-            (identical(other.selectedOption, selectedOption) ||
-                other.selectedOption == selectedOption));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, selectedOption);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$MarkYesOrNoImplCopyWith<_$MarkYesOrNoImpl> get copyWith =>
-      __$$MarkYesOrNoImplCopyWithImpl<_$MarkYesOrNoImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String category, String slug) getQuestions,
-    required TResult Function() getDateAndTime,
-    required TResult Function(ResheduleModel resheduleModel, String orderId)
-        resheduleOrder,
-    required TResult Function(int index) changeIndex,
-    required TResult Function(int index) goBackIndex,
-    required TResult Function(SelectedOption selectedOption) markYesOrNo,
-    required TResult Function(SelectedOption selectedOption) markAnswer,
-    required TResult Function() getPrice,
-    required TResult Function(
-            String orderId, RequotePriceModel requotePriceModel)
-        requotePrice,
-    required TResult Function() reset,
-  }) {
-    return markYesOrNo(selectedOption);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String category, String slug)? getQuestions,
-    TResult? Function()? getDateAndTime,
-    TResult? Function(ResheduleModel resheduleModel, String orderId)?
-        resheduleOrder,
-    TResult? Function(int index)? changeIndex,
-    TResult? Function(int index)? goBackIndex,
-    TResult? Function(SelectedOption selectedOption)? markYesOrNo,
-    TResult? Function(SelectedOption selectedOption)? markAnswer,
-    TResult? Function()? getPrice,
-    TResult? Function(String orderId, RequotePriceModel requotePriceModel)?
-        requotePrice,
-    TResult? Function()? reset,
-  }) {
-    return markYesOrNo?.call(selectedOption);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String category, String slug)? getQuestions,
-    TResult Function()? getDateAndTime,
-    TResult Function(ResheduleModel resheduleModel, String orderId)?
-        resheduleOrder,
-    TResult Function(int index)? changeIndex,
-    TResult Function(int index)? goBackIndex,
-    TResult Function(SelectedOption selectedOption)? markYesOrNo,
-    TResult Function(SelectedOption selectedOption)? markAnswer,
-    TResult Function()? getPrice,
-    TResult Function(String orderId, RequotePriceModel requotePriceModel)?
-        requotePrice,
-    TResult Function()? reset,
-    required TResult orElse(),
-  }) {
-    if (markYesOrNo != null) {
-      return markYesOrNo(selectedOption);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetQuestions value) getQuestions,
-    required TResult Function(GetDateAndTime value) getDateAndTime,
-    required TResult Function(ResheduleOrder value) resheduleOrder,
-    required TResult Function(ChangeIndex value) changeIndex,
-    required TResult Function(GoBackIndex value) goBackIndex,
-    required TResult Function(MarkYesOrNo value) markYesOrNo,
-    required TResult Function(MarkAnswer value) markAnswer,
-    required TResult Function(GetPrice value) getPrice,
-    required TResult Function(RequotePrice value) requotePrice,
-    required TResult Function(Reset value) reset,
-  }) {
-    return markYesOrNo(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(GetQuestions value)? getQuestions,
-    TResult? Function(GetDateAndTime value)? getDateAndTime,
-    TResult? Function(ResheduleOrder value)? resheduleOrder,
-    TResult? Function(ChangeIndex value)? changeIndex,
-    TResult? Function(GoBackIndex value)? goBackIndex,
-    TResult? Function(MarkYesOrNo value)? markYesOrNo,
-    TResult? Function(MarkAnswer value)? markAnswer,
-    TResult? Function(GetPrice value)? getPrice,
-    TResult? Function(RequotePrice value)? requotePrice,
-    TResult? Function(Reset value)? reset,
-  }) {
-    return markYesOrNo?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetQuestions value)? getQuestions,
-    TResult Function(GetDateAndTime value)? getDateAndTime,
-    TResult Function(ResheduleOrder value)? resheduleOrder,
-    TResult Function(ChangeIndex value)? changeIndex,
-    TResult Function(GoBackIndex value)? goBackIndex,
-    TResult Function(MarkYesOrNo value)? markYesOrNo,
-    TResult Function(MarkAnswer value)? markAnswer,
-    TResult Function(GetPrice value)? getPrice,
-    TResult Function(RequotePrice value)? requotePrice,
-    TResult Function(Reset value)? reset,
-    required TResult orElse(),
-  }) {
-    if (markYesOrNo != null) {
-      return markYesOrNo(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class MarkYesOrNo implements RequoteEvent {
-  const factory MarkYesOrNo({required final SelectedOption selectedOption}) =
-      _$MarkYesOrNoImpl;
-
-  SelectedOption get selectedOption;
-  @JsonKey(ignore: true)
-  _$$MarkYesOrNoImplCopyWith<_$MarkYesOrNoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$MarkAnswerImplCopyWith<$Res> {
-  factory _$$MarkAnswerImplCopyWith(
-          _$MarkAnswerImpl value, $Res Function(_$MarkAnswerImpl) then) =
-      __$$MarkAnswerImplCopyWithImpl<$Res>;
+abstract mixin class $MarkYesOrNoCopyWith<$Res>
+    implements $RequoteEventCopyWith<$Res> {
+  factory $MarkYesOrNoCopyWith(
+          MarkYesOrNo value, $Res Function(MarkYesOrNo) _then) =
+      _$MarkYesOrNoCopyWithImpl;
   @useResult
   $Res call({SelectedOption selectedOption});
 }
 
 /// @nodoc
-class __$$MarkAnswerImplCopyWithImpl<$Res>
-    extends _$RequoteEventCopyWithImpl<$Res, _$MarkAnswerImpl>
-    implements _$$MarkAnswerImplCopyWith<$Res> {
-  __$$MarkAnswerImplCopyWithImpl(
-      _$MarkAnswerImpl _value, $Res Function(_$MarkAnswerImpl) _then)
-      : super(_value, _then);
+class _$MarkYesOrNoCopyWithImpl<$Res> implements $MarkYesOrNoCopyWith<$Res> {
+  _$MarkYesOrNoCopyWithImpl(this._self, this._then);
 
+  final MarkYesOrNo _self;
+  final $Res Function(MarkYesOrNo) _then;
+
+  /// Create a copy of RequoteEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? selectedOption = null,
   }) {
-    return _then(_$MarkAnswerImpl(
+    return _then(MarkYesOrNo(
       selectedOption: null == selectedOption
-          ? _value.selectedOption
+          ? _self.selectedOption
           : selectedOption // ignore: cast_nullable_to_non_nullable
               as SelectedOption,
     ));
@@ -1287,22 +715,23 @@ class __$$MarkAnswerImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$MarkAnswerImpl implements MarkAnswer {
-  const _$MarkAnswerImpl({required this.selectedOption});
+class MarkAnswer implements RequoteEvent {
+  const MarkAnswer({required this.selectedOption});
 
-  @override
   final SelectedOption selectedOption;
 
-  @override
-  String toString() {
-    return 'RequoteEvent.markAnswer(selectedOption: $selectedOption)';
-  }
+  /// Create a copy of RequoteEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $MarkAnswerCopyWith<MarkAnswer> get copyWith =>
+      _$MarkAnswerCopyWithImpl<MarkAnswer>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MarkAnswerImpl &&
+            other is MarkAnswer &&
             (identical(other.selectedOption, selectedOption) ||
                 other.selectedOption == selectedOption));
   }
@@ -1310,354 +739,84 @@ class _$MarkAnswerImpl implements MarkAnswer {
   @override
   int get hashCode => Object.hash(runtimeType, selectedOption);
 
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$MarkAnswerImplCopyWith<_$MarkAnswerImpl> get copyWith =>
-      __$$MarkAnswerImplCopyWithImpl<_$MarkAnswerImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String category, String slug) getQuestions,
-    required TResult Function() getDateAndTime,
-    required TResult Function(ResheduleModel resheduleModel, String orderId)
-        resheduleOrder,
-    required TResult Function(int index) changeIndex,
-    required TResult Function(int index) goBackIndex,
-    required TResult Function(SelectedOption selectedOption) markYesOrNo,
-    required TResult Function(SelectedOption selectedOption) markAnswer,
-    required TResult Function() getPrice,
-    required TResult Function(
-            String orderId, RequotePriceModel requotePriceModel)
-        requotePrice,
-    required TResult Function() reset,
-  }) {
-    return markAnswer(selectedOption);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String category, String slug)? getQuestions,
-    TResult? Function()? getDateAndTime,
-    TResult? Function(ResheduleModel resheduleModel, String orderId)?
-        resheduleOrder,
-    TResult? Function(int index)? changeIndex,
-    TResult? Function(int index)? goBackIndex,
-    TResult? Function(SelectedOption selectedOption)? markYesOrNo,
-    TResult? Function(SelectedOption selectedOption)? markAnswer,
-    TResult? Function()? getPrice,
-    TResult? Function(String orderId, RequotePriceModel requotePriceModel)?
-        requotePrice,
-    TResult? Function()? reset,
-  }) {
-    return markAnswer?.call(selectedOption);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String category, String slug)? getQuestions,
-    TResult Function()? getDateAndTime,
-    TResult Function(ResheduleModel resheduleModel, String orderId)?
-        resheduleOrder,
-    TResult Function(int index)? changeIndex,
-    TResult Function(int index)? goBackIndex,
-    TResult Function(SelectedOption selectedOption)? markYesOrNo,
-    TResult Function(SelectedOption selectedOption)? markAnswer,
-    TResult Function()? getPrice,
-    TResult Function(String orderId, RequotePriceModel requotePriceModel)?
-        requotePrice,
-    TResult Function()? reset,
-    required TResult orElse(),
-  }) {
-    if (markAnswer != null) {
-      return markAnswer(selectedOption);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetQuestions value) getQuestions,
-    required TResult Function(GetDateAndTime value) getDateAndTime,
-    required TResult Function(ResheduleOrder value) resheduleOrder,
-    required TResult Function(ChangeIndex value) changeIndex,
-    required TResult Function(GoBackIndex value) goBackIndex,
-    required TResult Function(MarkYesOrNo value) markYesOrNo,
-    required TResult Function(MarkAnswer value) markAnswer,
-    required TResult Function(GetPrice value) getPrice,
-    required TResult Function(RequotePrice value) requotePrice,
-    required TResult Function(Reset value) reset,
-  }) {
-    return markAnswer(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(GetQuestions value)? getQuestions,
-    TResult? Function(GetDateAndTime value)? getDateAndTime,
-    TResult? Function(ResheduleOrder value)? resheduleOrder,
-    TResult? Function(ChangeIndex value)? changeIndex,
-    TResult? Function(GoBackIndex value)? goBackIndex,
-    TResult? Function(MarkYesOrNo value)? markYesOrNo,
-    TResult? Function(MarkAnswer value)? markAnswer,
-    TResult? Function(GetPrice value)? getPrice,
-    TResult? Function(RequotePrice value)? requotePrice,
-    TResult? Function(Reset value)? reset,
-  }) {
-    return markAnswer?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetQuestions value)? getQuestions,
-    TResult Function(GetDateAndTime value)? getDateAndTime,
-    TResult Function(ResheduleOrder value)? resheduleOrder,
-    TResult Function(ChangeIndex value)? changeIndex,
-    TResult Function(GoBackIndex value)? goBackIndex,
-    TResult Function(MarkYesOrNo value)? markYesOrNo,
-    TResult Function(MarkAnswer value)? markAnswer,
-    TResult Function(GetPrice value)? getPrice,
-    TResult Function(RequotePrice value)? requotePrice,
-    TResult Function(Reset value)? reset,
-    required TResult orElse(),
-  }) {
-    if (markAnswer != null) {
-      return markAnswer(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class MarkAnswer implements RequoteEvent {
-  const factory MarkAnswer({required final SelectedOption selectedOption}) =
-      _$MarkAnswerImpl;
-
-  SelectedOption get selectedOption;
-  @JsonKey(ignore: true)
-  _$$MarkAnswerImplCopyWith<_$MarkAnswerImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$GetPriceImplCopyWith<$Res> {
-  factory _$$GetPriceImplCopyWith(
-          _$GetPriceImpl value, $Res Function(_$GetPriceImpl) then) =
-      __$$GetPriceImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$GetPriceImplCopyWithImpl<$Res>
-    extends _$RequoteEventCopyWithImpl<$Res, _$GetPriceImpl>
-    implements _$$GetPriceImplCopyWith<$Res> {
-  __$$GetPriceImplCopyWithImpl(
-      _$GetPriceImpl _value, $Res Function(_$GetPriceImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$GetPriceImpl implements GetPrice {
-  const _$GetPriceImpl();
-
   @override
   String toString() {
-    return 'RequoteEvent.getPrice()';
+    return 'RequoteEvent.markAnswer(selectedOption: $selectedOption)';
   }
+}
+
+/// @nodoc
+abstract mixin class $MarkAnswerCopyWith<$Res>
+    implements $RequoteEventCopyWith<$Res> {
+  factory $MarkAnswerCopyWith(
+          MarkAnswer value, $Res Function(MarkAnswer) _then) =
+      _$MarkAnswerCopyWithImpl;
+  @useResult
+  $Res call({SelectedOption selectedOption});
+}
+
+/// @nodoc
+class _$MarkAnswerCopyWithImpl<$Res> implements $MarkAnswerCopyWith<$Res> {
+  _$MarkAnswerCopyWithImpl(this._self, this._then);
+
+  final MarkAnswer _self;
+  final $Res Function(MarkAnswer) _then;
+
+  /// Create a copy of RequoteEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? selectedOption = null,
+  }) {
+    return _then(MarkAnswer(
+      selectedOption: null == selectedOption
+          ? _self.selectedOption
+          : selectedOption // ignore: cast_nullable_to_non_nullable
+              as SelectedOption,
+    ));
+  }
+}
+
+/// @nodoc
+
+class GetPrice implements RequoteEvent {
+  const GetPrice();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GetPriceImpl);
+        (other.runtimeType == runtimeType && other is GetPrice);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String category, String slug) getQuestions,
-    required TResult Function() getDateAndTime,
-    required TResult Function(ResheduleModel resheduleModel, String orderId)
-        resheduleOrder,
-    required TResult Function(int index) changeIndex,
-    required TResult Function(int index) goBackIndex,
-    required TResult Function(SelectedOption selectedOption) markYesOrNo,
-    required TResult Function(SelectedOption selectedOption) markAnswer,
-    required TResult Function() getPrice,
-    required TResult Function(
-            String orderId, RequotePriceModel requotePriceModel)
-        requotePrice,
-    required TResult Function() reset,
-  }) {
-    return getPrice();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String category, String slug)? getQuestions,
-    TResult? Function()? getDateAndTime,
-    TResult? Function(ResheduleModel resheduleModel, String orderId)?
-        resheduleOrder,
-    TResult? Function(int index)? changeIndex,
-    TResult? Function(int index)? goBackIndex,
-    TResult? Function(SelectedOption selectedOption)? markYesOrNo,
-    TResult? Function(SelectedOption selectedOption)? markAnswer,
-    TResult? Function()? getPrice,
-    TResult? Function(String orderId, RequotePriceModel requotePriceModel)?
-        requotePrice,
-    TResult? Function()? reset,
-  }) {
-    return getPrice?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String category, String slug)? getQuestions,
-    TResult Function()? getDateAndTime,
-    TResult Function(ResheduleModel resheduleModel, String orderId)?
-        resheduleOrder,
-    TResult Function(int index)? changeIndex,
-    TResult Function(int index)? goBackIndex,
-    TResult Function(SelectedOption selectedOption)? markYesOrNo,
-    TResult Function(SelectedOption selectedOption)? markAnswer,
-    TResult Function()? getPrice,
-    TResult Function(String orderId, RequotePriceModel requotePriceModel)?
-        requotePrice,
-    TResult Function()? reset,
-    required TResult orElse(),
-  }) {
-    if (getPrice != null) {
-      return getPrice();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetQuestions value) getQuestions,
-    required TResult Function(GetDateAndTime value) getDateAndTime,
-    required TResult Function(ResheduleOrder value) resheduleOrder,
-    required TResult Function(ChangeIndex value) changeIndex,
-    required TResult Function(GoBackIndex value) goBackIndex,
-    required TResult Function(MarkYesOrNo value) markYesOrNo,
-    required TResult Function(MarkAnswer value) markAnswer,
-    required TResult Function(GetPrice value) getPrice,
-    required TResult Function(RequotePrice value) requotePrice,
-    required TResult Function(Reset value) reset,
-  }) {
-    return getPrice(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(GetQuestions value)? getQuestions,
-    TResult? Function(GetDateAndTime value)? getDateAndTime,
-    TResult? Function(ResheduleOrder value)? resheduleOrder,
-    TResult? Function(ChangeIndex value)? changeIndex,
-    TResult? Function(GoBackIndex value)? goBackIndex,
-    TResult? Function(MarkYesOrNo value)? markYesOrNo,
-    TResult? Function(MarkAnswer value)? markAnswer,
-    TResult? Function(GetPrice value)? getPrice,
-    TResult? Function(RequotePrice value)? requotePrice,
-    TResult? Function(Reset value)? reset,
-  }) {
-    return getPrice?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetQuestions value)? getQuestions,
-    TResult Function(GetDateAndTime value)? getDateAndTime,
-    TResult Function(ResheduleOrder value)? resheduleOrder,
-    TResult Function(ChangeIndex value)? changeIndex,
-    TResult Function(GoBackIndex value)? goBackIndex,
-    TResult Function(MarkYesOrNo value)? markYesOrNo,
-    TResult Function(MarkAnswer value)? markAnswer,
-    TResult Function(GetPrice value)? getPrice,
-    TResult Function(RequotePrice value)? requotePrice,
-    TResult Function(Reset value)? reset,
-    required TResult orElse(),
-  }) {
-    if (getPrice != null) {
-      return getPrice(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class GetPrice implements RequoteEvent {
-  const factory GetPrice() = _$GetPriceImpl;
-}
-
-/// @nodoc
-abstract class _$$RequotePriceImplCopyWith<$Res> {
-  factory _$$RequotePriceImplCopyWith(
-          _$RequotePriceImpl value, $Res Function(_$RequotePriceImpl) then) =
-      __$$RequotePriceImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String orderId, RequotePriceModel requotePriceModel});
-}
-
-/// @nodoc
-class __$$RequotePriceImplCopyWithImpl<$Res>
-    extends _$RequoteEventCopyWithImpl<$Res, _$RequotePriceImpl>
-    implements _$$RequotePriceImplCopyWith<$Res> {
-  __$$RequotePriceImplCopyWithImpl(
-      _$RequotePriceImpl _value, $Res Function(_$RequotePriceImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? orderId = null,
-    Object? requotePriceModel = null,
-  }) {
-    return _then(_$RequotePriceImpl(
-      orderId: null == orderId
-          ? _value.orderId
-          : orderId // ignore: cast_nullable_to_non_nullable
-              as String,
-      requotePriceModel: null == requotePriceModel
-          ? _value.requotePriceModel
-          : requotePriceModel // ignore: cast_nullable_to_non_nullable
-              as RequotePriceModel,
-    ));
+  String toString() {
+    return 'RequoteEvent.getPrice()';
   }
 }
 
 /// @nodoc
 
-class _$RequotePriceImpl implements RequotePrice {
-  const _$RequotePriceImpl(
-      {required this.orderId, required this.requotePriceModel});
+class RequotePrice implements RequoteEvent {
+  const RequotePrice({required this.orderId, required this.requotePriceModel});
 
-  @override
   final String orderId;
-  @override
   final RequotePriceModel requotePriceModel;
 
-  @override
-  String toString() {
-    return 'RequoteEvent.requotePrice(orderId: $orderId, requotePriceModel: $requotePriceModel)';
-  }
+  /// Create a copy of RequoteEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $RequotePriceCopyWith<RequotePrice> get copyWith =>
+      _$RequotePriceCopyWithImpl<RequotePrice>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RequotePriceImpl &&
+            other is RequotePrice &&
             (identical(other.orderId, orderId) || other.orderId == orderId) &&
             (identical(other.requotePriceModel, requotePriceModel) ||
                 other.requotePriceModel == requotePriceModel));
@@ -1666,615 +825,589 @@ class _$RequotePriceImpl implements RequotePrice {
   @override
   int get hashCode => Object.hash(runtimeType, orderId, requotePriceModel);
 
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$RequotePriceImplCopyWith<_$RequotePriceImpl> get copyWith =>
-      __$$RequotePriceImplCopyWithImpl<_$RequotePriceImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String category, String slug) getQuestions,
-    required TResult Function() getDateAndTime,
-    required TResult Function(ResheduleModel resheduleModel, String orderId)
-        resheduleOrder,
-    required TResult Function(int index) changeIndex,
-    required TResult Function(int index) goBackIndex,
-    required TResult Function(SelectedOption selectedOption) markYesOrNo,
-    required TResult Function(SelectedOption selectedOption) markAnswer,
-    required TResult Function() getPrice,
-    required TResult Function(
-            String orderId, RequotePriceModel requotePriceModel)
-        requotePrice,
-    required TResult Function() reset,
-  }) {
-    return requotePrice(orderId, requotePriceModel);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String category, String slug)? getQuestions,
-    TResult? Function()? getDateAndTime,
-    TResult? Function(ResheduleModel resheduleModel, String orderId)?
-        resheduleOrder,
-    TResult? Function(int index)? changeIndex,
-    TResult? Function(int index)? goBackIndex,
-    TResult? Function(SelectedOption selectedOption)? markYesOrNo,
-    TResult? Function(SelectedOption selectedOption)? markAnswer,
-    TResult? Function()? getPrice,
-    TResult? Function(String orderId, RequotePriceModel requotePriceModel)?
-        requotePrice,
-    TResult? Function()? reset,
-  }) {
-    return requotePrice?.call(orderId, requotePriceModel);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String category, String slug)? getQuestions,
-    TResult Function()? getDateAndTime,
-    TResult Function(ResheduleModel resheduleModel, String orderId)?
-        resheduleOrder,
-    TResult Function(int index)? changeIndex,
-    TResult Function(int index)? goBackIndex,
-    TResult Function(SelectedOption selectedOption)? markYesOrNo,
-    TResult Function(SelectedOption selectedOption)? markAnswer,
-    TResult Function()? getPrice,
-    TResult Function(String orderId, RequotePriceModel requotePriceModel)?
-        requotePrice,
-    TResult Function()? reset,
-    required TResult orElse(),
-  }) {
-    if (requotePrice != null) {
-      return requotePrice(orderId, requotePriceModel);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetQuestions value) getQuestions,
-    required TResult Function(GetDateAndTime value) getDateAndTime,
-    required TResult Function(ResheduleOrder value) resheduleOrder,
-    required TResult Function(ChangeIndex value) changeIndex,
-    required TResult Function(GoBackIndex value) goBackIndex,
-    required TResult Function(MarkYesOrNo value) markYesOrNo,
-    required TResult Function(MarkAnswer value) markAnswer,
-    required TResult Function(GetPrice value) getPrice,
-    required TResult Function(RequotePrice value) requotePrice,
-    required TResult Function(Reset value) reset,
-  }) {
-    return requotePrice(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(GetQuestions value)? getQuestions,
-    TResult? Function(GetDateAndTime value)? getDateAndTime,
-    TResult? Function(ResheduleOrder value)? resheduleOrder,
-    TResult? Function(ChangeIndex value)? changeIndex,
-    TResult? Function(GoBackIndex value)? goBackIndex,
-    TResult? Function(MarkYesOrNo value)? markYesOrNo,
-    TResult? Function(MarkAnswer value)? markAnswer,
-    TResult? Function(GetPrice value)? getPrice,
-    TResult? Function(RequotePrice value)? requotePrice,
-    TResult? Function(Reset value)? reset,
-  }) {
-    return requotePrice?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetQuestions value)? getQuestions,
-    TResult Function(GetDateAndTime value)? getDateAndTime,
-    TResult Function(ResheduleOrder value)? resheduleOrder,
-    TResult Function(ChangeIndex value)? changeIndex,
-    TResult Function(GoBackIndex value)? goBackIndex,
-    TResult Function(MarkYesOrNo value)? markYesOrNo,
-    TResult Function(MarkAnswer value)? markAnswer,
-    TResult Function(GetPrice value)? getPrice,
-    TResult Function(RequotePrice value)? requotePrice,
-    TResult Function(Reset value)? reset,
-    required TResult orElse(),
-  }) {
-    if (requotePrice != null) {
-      return requotePrice(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class RequotePrice implements RequoteEvent {
-  const factory RequotePrice(
-      {required final String orderId,
-      required final RequotePriceModel requotePriceModel}) = _$RequotePriceImpl;
-
-  String get orderId;
-  RequotePriceModel get requotePriceModel;
-  @JsonKey(ignore: true)
-  _$$RequotePriceImplCopyWith<_$RequotePriceImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ResetImplCopyWith<$Res> {
-  factory _$$ResetImplCopyWith(
-          _$ResetImpl value, $Res Function(_$ResetImpl) then) =
-      __$$ResetImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ResetImplCopyWithImpl<$Res>
-    extends _$RequoteEventCopyWithImpl<$Res, _$ResetImpl>
-    implements _$$ResetImplCopyWith<$Res> {
-  __$$ResetImplCopyWithImpl(
-      _$ResetImpl _value, $Res Function(_$ResetImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$ResetImpl implements Reset {
-  const _$ResetImpl();
-
   @override
   String toString() {
-    return 'RequoteEvent.reset()';
+    return 'RequoteEvent.requotePrice(orderId: $orderId, requotePriceModel: $requotePriceModel)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ResetImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String category, String slug) getQuestions,
-    required TResult Function() getDateAndTime,
-    required TResult Function(ResheduleModel resheduleModel, String orderId)
-        resheduleOrder,
-    required TResult Function(int index) changeIndex,
-    required TResult Function(int index) goBackIndex,
-    required TResult Function(SelectedOption selectedOption) markYesOrNo,
-    required TResult Function(SelectedOption selectedOption) markAnswer,
-    required TResult Function() getPrice,
-    required TResult Function(
-            String orderId, RequotePriceModel requotePriceModel)
-        requotePrice,
-    required TResult Function() reset,
-  }) {
-    return reset();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String category, String slug)? getQuestions,
-    TResult? Function()? getDateAndTime,
-    TResult? Function(ResheduleModel resheduleModel, String orderId)?
-        resheduleOrder,
-    TResult? Function(int index)? changeIndex,
-    TResult? Function(int index)? goBackIndex,
-    TResult? Function(SelectedOption selectedOption)? markYesOrNo,
-    TResult? Function(SelectedOption selectedOption)? markAnswer,
-    TResult? Function()? getPrice,
-    TResult? Function(String orderId, RequotePriceModel requotePriceModel)?
-        requotePrice,
-    TResult? Function()? reset,
-  }) {
-    return reset?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String category, String slug)? getQuestions,
-    TResult Function()? getDateAndTime,
-    TResult Function(ResheduleModel resheduleModel, String orderId)?
-        resheduleOrder,
-    TResult Function(int index)? changeIndex,
-    TResult Function(int index)? goBackIndex,
-    TResult Function(SelectedOption selectedOption)? markYesOrNo,
-    TResult Function(SelectedOption selectedOption)? markAnswer,
-    TResult Function()? getPrice,
-    TResult Function(String orderId, RequotePriceModel requotePriceModel)?
-        requotePrice,
-    TResult Function()? reset,
-    required TResult orElse(),
-  }) {
-    if (reset != null) {
-      return reset();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetQuestions value) getQuestions,
-    required TResult Function(GetDateAndTime value) getDateAndTime,
-    required TResult Function(ResheduleOrder value) resheduleOrder,
-    required TResult Function(ChangeIndex value) changeIndex,
-    required TResult Function(GoBackIndex value) goBackIndex,
-    required TResult Function(MarkYesOrNo value) markYesOrNo,
-    required TResult Function(MarkAnswer value) markAnswer,
-    required TResult Function(GetPrice value) getPrice,
-    required TResult Function(RequotePrice value) requotePrice,
-    required TResult Function(Reset value) reset,
-  }) {
-    return reset(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(GetQuestions value)? getQuestions,
-    TResult? Function(GetDateAndTime value)? getDateAndTime,
-    TResult? Function(ResheduleOrder value)? resheduleOrder,
-    TResult? Function(ChangeIndex value)? changeIndex,
-    TResult? Function(GoBackIndex value)? goBackIndex,
-    TResult? Function(MarkYesOrNo value)? markYesOrNo,
-    TResult? Function(MarkAnswer value)? markAnswer,
-    TResult? Function(GetPrice value)? getPrice,
-    TResult? Function(RequotePrice value)? requotePrice,
-    TResult? Function(Reset value)? reset,
-  }) {
-    return reset?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetQuestions value)? getQuestions,
-    TResult Function(GetDateAndTime value)? getDateAndTime,
-    TResult Function(ResheduleOrder value)? resheduleOrder,
-    TResult Function(ChangeIndex value)? changeIndex,
-    TResult Function(GoBackIndex value)? goBackIndex,
-    TResult Function(MarkYesOrNo value)? markYesOrNo,
-    TResult Function(MarkAnswer value)? markAnswer,
-    TResult Function(GetPrice value)? getPrice,
-    TResult Function(RequotePrice value)? requotePrice,
-    TResult Function(Reset value)? reset,
-    required TResult orElse(),
-  }) {
-    if (reset != null) {
-      return reset(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class Reset implements RequoteEvent {
-  const factory Reset() = _$ResetImpl;
 }
 
 /// @nodoc
-mixin _$RequoteState {
-  bool get isLoading => throw _privateConstructorUsedError;
-  bool get hasError => throw _privateConstructorUsedError;
-  String? get message => throw _privateConstructorUsedError;
-  String? get basePrice => throw _privateConstructorUsedError;
-  String? get category => throw _privateConstructorUsedError;
-  String? get slug => throw _privateConstructorUsedError;
-  List<String> get dates => throw _privateConstructorUsedError;
-  List<String> get time => throw _privateConstructorUsedError;
-  bool get questionLoading => throw _privateConstructorUsedError;
-  bool get resheduleLoading => throw _privateConstructorUsedError;
-  bool get priceCalculationLoading => throw _privateConstructorUsedError;
-  bool get priceCalculationError => throw _privateConstructorUsedError;
-  bool get requoteLoading => throw _privateConstructorUsedError;
-  bool get requoteError => throw _privateConstructorUsedError;
-  bool get requoteDone => throw _privateConstructorUsedError;
-  bool get resheduleDone => throw _privateConstructorUsedError;
-  int get requoteIndex => throw _privateConstructorUsedError;
-  List<Section>? get sections => throw _privateConstructorUsedError;
-  Map<String, List<SelectedOption>> get selectedAnswers =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $RequoteStateCopyWith<RequoteState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $RequoteStateCopyWith<$Res> {
-  factory $RequoteStateCopyWith(
-          RequoteState value, $Res Function(RequoteState) then) =
-      _$RequoteStateCopyWithImpl<$Res, RequoteState>;
+abstract mixin class $RequotePriceCopyWith<$Res>
+    implements $RequoteEventCopyWith<$Res> {
+  factory $RequotePriceCopyWith(
+          RequotePrice value, $Res Function(RequotePrice) _then) =
+      _$RequotePriceCopyWithImpl;
   @useResult
-  $Res call(
-      {bool isLoading,
-      bool hasError,
-      String? message,
-      String? basePrice,
-      String? category,
-      String? slug,
-      List<String> dates,
-      List<String> time,
-      bool questionLoading,
-      bool resheduleLoading,
-      bool priceCalculationLoading,
-      bool priceCalculationError,
-      bool requoteLoading,
-      bool requoteError,
-      bool requoteDone,
-      bool resheduleDone,
-      int requoteIndex,
-      List<Section>? sections,
-      Map<String, List<SelectedOption>> selectedAnswers});
+  $Res call({String orderId, RequotePriceModel requotePriceModel});
 }
 
 /// @nodoc
-class _$RequoteStateCopyWithImpl<$Res, $Val extends RequoteState>
-    implements $RequoteStateCopyWith<$Res> {
-  _$RequoteStateCopyWithImpl(this._value, this._then);
+class _$RequotePriceCopyWithImpl<$Res> implements $RequotePriceCopyWith<$Res> {
+  _$RequotePriceCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final RequotePrice _self;
+  final $Res Function(RequotePrice) _then;
 
+  /// Create a copy of RequoteEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
-    Object? isLoading = null,
-    Object? hasError = null,
-    Object? message = freezed,
-    Object? basePrice = freezed,
-    Object? category = freezed,
-    Object? slug = freezed,
-    Object? dates = null,
-    Object? time = null,
-    Object? questionLoading = null,
-    Object? resheduleLoading = null,
-    Object? priceCalculationLoading = null,
-    Object? priceCalculationError = null,
-    Object? requoteLoading = null,
-    Object? requoteError = null,
-    Object? requoteDone = null,
-    Object? resheduleDone = null,
-    Object? requoteIndex = null,
-    Object? sections = freezed,
-    Object? selectedAnswers = null,
+    Object? orderId = null,
+    Object? requotePriceModel = null,
   }) {
-    return _then(_value.copyWith(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      hasError: null == hasError
-          ? _value.hasError
-          : hasError // ignore: cast_nullable_to_non_nullable
-              as bool,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      basePrice: freezed == basePrice
-          ? _value.basePrice
-          : basePrice // ignore: cast_nullable_to_non_nullable
-              as String?,
-      category: freezed == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as String?,
-      slug: freezed == slug
-          ? _value.slug
-          : slug // ignore: cast_nullable_to_non_nullable
-              as String?,
-      dates: null == dates
-          ? _value.dates
-          : dates // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      time: null == time
-          ? _value.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      questionLoading: null == questionLoading
-          ? _value.questionLoading
-          : questionLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      resheduleLoading: null == resheduleLoading
-          ? _value.resheduleLoading
-          : resheduleLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      priceCalculationLoading: null == priceCalculationLoading
-          ? _value.priceCalculationLoading
-          : priceCalculationLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      priceCalculationError: null == priceCalculationError
-          ? _value.priceCalculationError
-          : priceCalculationError // ignore: cast_nullable_to_non_nullable
-              as bool,
-      requoteLoading: null == requoteLoading
-          ? _value.requoteLoading
-          : requoteLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      requoteError: null == requoteError
-          ? _value.requoteError
-          : requoteError // ignore: cast_nullable_to_non_nullable
-              as bool,
-      requoteDone: null == requoteDone
-          ? _value.requoteDone
-          : requoteDone // ignore: cast_nullable_to_non_nullable
-              as bool,
-      resheduleDone: null == resheduleDone
-          ? _value.resheduleDone
-          : resheduleDone // ignore: cast_nullable_to_non_nullable
-              as bool,
-      requoteIndex: null == requoteIndex
-          ? _value.requoteIndex
-          : requoteIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-      sections: freezed == sections
-          ? _value.sections
-          : sections // ignore: cast_nullable_to_non_nullable
-              as List<Section>?,
-      selectedAnswers: null == selectedAnswers
-          ? _value.selectedAnswers
-          : selectedAnswers // ignore: cast_nullable_to_non_nullable
-              as Map<String, List<SelectedOption>>,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$InitialImplCopyWith<$Res>
-    implements $RequoteStateCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {bool isLoading,
-      bool hasError,
-      String? message,
-      String? basePrice,
-      String? category,
-      String? slug,
-      List<String> dates,
-      List<String> time,
-      bool questionLoading,
-      bool resheduleLoading,
-      bool priceCalculationLoading,
-      bool priceCalculationError,
-      bool requoteLoading,
-      bool requoteError,
-      bool requoteDone,
-      bool resheduleDone,
-      int requoteIndex,
-      List<Section>? sections,
-      Map<String, List<SelectedOption>> selectedAnswers});
-}
-
-/// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$RequoteStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? isLoading = null,
-    Object? hasError = null,
-    Object? message = freezed,
-    Object? basePrice = freezed,
-    Object? category = freezed,
-    Object? slug = freezed,
-    Object? dates = null,
-    Object? time = null,
-    Object? questionLoading = null,
-    Object? resheduleLoading = null,
-    Object? priceCalculationLoading = null,
-    Object? priceCalculationError = null,
-    Object? requoteLoading = null,
-    Object? requoteError = null,
-    Object? requoteDone = null,
-    Object? resheduleDone = null,
-    Object? requoteIndex = null,
-    Object? sections = freezed,
-    Object? selectedAnswers = null,
-  }) {
-    return _then(_$InitialImpl(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      hasError: null == hasError
-          ? _value.hasError
-          : hasError // ignore: cast_nullable_to_non_nullable
-              as bool,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      basePrice: freezed == basePrice
-          ? _value.basePrice
-          : basePrice // ignore: cast_nullable_to_non_nullable
-              as String?,
-      category: freezed == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as String?,
-      slug: freezed == slug
-          ? _value.slug
-          : slug // ignore: cast_nullable_to_non_nullable
-              as String?,
-      dates: null == dates
-          ? _value._dates
-          : dates // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      time: null == time
-          ? _value._time
-          : time // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      questionLoading: null == questionLoading
-          ? _value.questionLoading
-          : questionLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      resheduleLoading: null == resheduleLoading
-          ? _value.resheduleLoading
-          : resheduleLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      priceCalculationLoading: null == priceCalculationLoading
-          ? _value.priceCalculationLoading
-          : priceCalculationLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      priceCalculationError: null == priceCalculationError
-          ? _value.priceCalculationError
-          : priceCalculationError // ignore: cast_nullable_to_non_nullable
-              as bool,
-      requoteLoading: null == requoteLoading
-          ? _value.requoteLoading
-          : requoteLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      requoteError: null == requoteError
-          ? _value.requoteError
-          : requoteError // ignore: cast_nullable_to_non_nullable
-              as bool,
-      requoteDone: null == requoteDone
-          ? _value.requoteDone
-          : requoteDone // ignore: cast_nullable_to_non_nullable
-              as bool,
-      resheduleDone: null == resheduleDone
-          ? _value.resheduleDone
-          : resheduleDone // ignore: cast_nullable_to_non_nullable
-              as bool,
-      requoteIndex: null == requoteIndex
-          ? _value.requoteIndex
-          : requoteIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-      sections: freezed == sections
-          ? _value._sections
-          : sections // ignore: cast_nullable_to_non_nullable
-              as List<Section>?,
-      selectedAnswers: null == selectedAnswers
-          ? _value._selectedAnswers
-          : selectedAnswers // ignore: cast_nullable_to_non_nullable
-              as Map<String, List<SelectedOption>>,
+    return _then(RequotePrice(
+      orderId: null == orderId
+          ? _self.orderId
+          : orderId // ignore: cast_nullable_to_non_nullable
+              as String,
+      requotePriceModel: null == requotePriceModel
+          ? _self.requotePriceModel
+          : requotePriceModel // ignore: cast_nullable_to_non_nullable
+              as RequotePriceModel,
     ));
   }
 }
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl(
+class Reset implements RequoteEvent {
+  const Reset();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Reset);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'RequoteEvent.reset()';
+  }
+}
+
+/// @nodoc
+mixin _$RequoteState {
+  bool get isLoading;
+  bool get hasError;
+  String? get message;
+  String? get basePrice;
+  String? get category;
+  String? get slug;
+  List<String> get dates;
+  List<String> get time;
+  bool get questionLoading;
+  bool get resheduleLoading;
+  bool get priceCalculationLoading;
+  bool get priceCalculationError;
+  bool get requoteLoading;
+  bool get requoteError;
+  bool get requoteDone;
+  bool get resheduleDone;
+  int get requoteIndex;
+  List<Section>? get sections;
+  Map<String, List<SelectedOption>> get selectedAnswers;
+
+  /// Create a copy of RequoteState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $RequoteStateCopyWith<RequoteState> get copyWith =>
+      _$RequoteStateCopyWithImpl<RequoteState>(
+          this as RequoteState, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is RequoteState &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
+            (identical(other.hasError, hasError) ||
+                other.hasError == hasError) &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.basePrice, basePrice) ||
+                other.basePrice == basePrice) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.slug, slug) || other.slug == slug) &&
+            const DeepCollectionEquality().equals(other.dates, dates) &&
+            const DeepCollectionEquality().equals(other.time, time) &&
+            (identical(other.questionLoading, questionLoading) ||
+                other.questionLoading == questionLoading) &&
+            (identical(other.resheduleLoading, resheduleLoading) ||
+                other.resheduleLoading == resheduleLoading) &&
+            (identical(
+                    other.priceCalculationLoading, priceCalculationLoading) ||
+                other.priceCalculationLoading == priceCalculationLoading) &&
+            (identical(other.priceCalculationError, priceCalculationError) ||
+                other.priceCalculationError == priceCalculationError) &&
+            (identical(other.requoteLoading, requoteLoading) ||
+                other.requoteLoading == requoteLoading) &&
+            (identical(other.requoteError, requoteError) ||
+                other.requoteError == requoteError) &&
+            (identical(other.requoteDone, requoteDone) ||
+                other.requoteDone == requoteDone) &&
+            (identical(other.resheduleDone, resheduleDone) ||
+                other.resheduleDone == resheduleDone) &&
+            (identical(other.requoteIndex, requoteIndex) ||
+                other.requoteIndex == requoteIndex) &&
+            const DeepCollectionEquality().equals(other.sections, sections) &&
+            const DeepCollectionEquality()
+                .equals(other.selectedAnswers, selectedAnswers));
+  }
+
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        isLoading,
+        hasError,
+        message,
+        basePrice,
+        category,
+        slug,
+        const DeepCollectionEquality().hash(dates),
+        const DeepCollectionEquality().hash(time),
+        questionLoading,
+        resheduleLoading,
+        priceCalculationLoading,
+        priceCalculationError,
+        requoteLoading,
+        requoteError,
+        requoteDone,
+        resheduleDone,
+        requoteIndex,
+        const DeepCollectionEquality().hash(sections),
+        const DeepCollectionEquality().hash(selectedAnswers)
+      ]);
+
+  @override
+  String toString() {
+    return 'RequoteState(isLoading: $isLoading, hasError: $hasError, message: $message, basePrice: $basePrice, category: $category, slug: $slug, dates: $dates, time: $time, questionLoading: $questionLoading, resheduleLoading: $resheduleLoading, priceCalculationLoading: $priceCalculationLoading, priceCalculationError: $priceCalculationError, requoteLoading: $requoteLoading, requoteError: $requoteError, requoteDone: $requoteDone, resheduleDone: $resheduleDone, requoteIndex: $requoteIndex, sections: $sections, selectedAnswers: $selectedAnswers)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $RequoteStateCopyWith<$Res> {
+  factory $RequoteStateCopyWith(
+          RequoteState value, $Res Function(RequoteState) _then) =
+      _$RequoteStateCopyWithImpl;
+  @useResult
+  $Res call(
+      {bool isLoading,
+      bool hasError,
+      String? message,
+      String? basePrice,
+      String? category,
+      String? slug,
+      List<String> dates,
+      List<String> time,
+      bool questionLoading,
+      bool resheduleLoading,
+      bool priceCalculationLoading,
+      bool priceCalculationError,
+      bool requoteLoading,
+      bool requoteError,
+      bool requoteDone,
+      bool resheduleDone,
+      int requoteIndex,
+      List<Section>? sections,
+      Map<String, List<SelectedOption>> selectedAnswers});
+}
+
+/// @nodoc
+class _$RequoteStateCopyWithImpl<$Res> implements $RequoteStateCopyWith<$Res> {
+  _$RequoteStateCopyWithImpl(this._self, this._then);
+
+  final RequoteState _self;
+  final $Res Function(RequoteState) _then;
+
+  /// Create a copy of RequoteState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+    Object? hasError = null,
+    Object? message = freezed,
+    Object? basePrice = freezed,
+    Object? category = freezed,
+    Object? slug = freezed,
+    Object? dates = null,
+    Object? time = null,
+    Object? questionLoading = null,
+    Object? resheduleLoading = null,
+    Object? priceCalculationLoading = null,
+    Object? priceCalculationError = null,
+    Object? requoteLoading = null,
+    Object? requoteError = null,
+    Object? requoteDone = null,
+    Object? resheduleDone = null,
+    Object? requoteIndex = null,
+    Object? sections = freezed,
+    Object? selectedAnswers = null,
+  }) {
+    return _then(_self.copyWith(
+      isLoading: null == isLoading
+          ? _self.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasError: null == hasError
+          ? _self.hasError
+          : hasError // ignore: cast_nullable_to_non_nullable
+              as bool,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      basePrice: freezed == basePrice
+          ? _self.basePrice
+          : basePrice // ignore: cast_nullable_to_non_nullable
+              as String?,
+      category: freezed == category
+          ? _self.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String?,
+      slug: freezed == slug
+          ? _self.slug
+          : slug // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dates: null == dates
+          ? _self.dates
+          : dates // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      time: null == time
+          ? _self.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      questionLoading: null == questionLoading
+          ? _self.questionLoading
+          : questionLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      resheduleLoading: null == resheduleLoading
+          ? _self.resheduleLoading
+          : resheduleLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      priceCalculationLoading: null == priceCalculationLoading
+          ? _self.priceCalculationLoading
+          : priceCalculationLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      priceCalculationError: null == priceCalculationError
+          ? _self.priceCalculationError
+          : priceCalculationError // ignore: cast_nullable_to_non_nullable
+              as bool,
+      requoteLoading: null == requoteLoading
+          ? _self.requoteLoading
+          : requoteLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      requoteError: null == requoteError
+          ? _self.requoteError
+          : requoteError // ignore: cast_nullable_to_non_nullable
+              as bool,
+      requoteDone: null == requoteDone
+          ? _self.requoteDone
+          : requoteDone // ignore: cast_nullable_to_non_nullable
+              as bool,
+      resheduleDone: null == resheduleDone
+          ? _self.resheduleDone
+          : resheduleDone // ignore: cast_nullable_to_non_nullable
+              as bool,
+      requoteIndex: null == requoteIndex
+          ? _self.requoteIndex
+          : requoteIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      sections: freezed == sections
+          ? _self.sections
+          : sections // ignore: cast_nullable_to_non_nullable
+              as List<Section>?,
+      selectedAnswers: null == selectedAnswers
+          ? _self.selectedAnswers
+          : selectedAnswers // ignore: cast_nullable_to_non_nullable
+              as Map<String, List<SelectedOption>>,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [RequoteState].
+extension RequoteStatePatterns on RequoteState {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Initial value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Initial() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Initial value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Initial():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Initial value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Initial() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            bool isLoading,
+            bool hasError,
+            String? message,
+            String? basePrice,
+            String? category,
+            String? slug,
+            List<String> dates,
+            List<String> time,
+            bool questionLoading,
+            bool resheduleLoading,
+            bool priceCalculationLoading,
+            bool priceCalculationError,
+            bool requoteLoading,
+            bool requoteError,
+            bool requoteDone,
+            bool resheduleDone,
+            int requoteIndex,
+            List<Section>? sections,
+            Map<String, List<SelectedOption>> selectedAnswers)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Initial() when $default != null:
+        return $default(
+            _that.isLoading,
+            _that.hasError,
+            _that.message,
+            _that.basePrice,
+            _that.category,
+            _that.slug,
+            _that.dates,
+            _that.time,
+            _that.questionLoading,
+            _that.resheduleLoading,
+            _that.priceCalculationLoading,
+            _that.priceCalculationError,
+            _that.requoteLoading,
+            _that.requoteError,
+            _that.requoteDone,
+            _that.resheduleDone,
+            _that.requoteIndex,
+            _that.sections,
+            _that.selectedAnswers);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            bool isLoading,
+            bool hasError,
+            String? message,
+            String? basePrice,
+            String? category,
+            String? slug,
+            List<String> dates,
+            List<String> time,
+            bool questionLoading,
+            bool resheduleLoading,
+            bool priceCalculationLoading,
+            bool priceCalculationError,
+            bool requoteLoading,
+            bool requoteError,
+            bool requoteDone,
+            bool resheduleDone,
+            int requoteIndex,
+            List<Section>? sections,
+            Map<String, List<SelectedOption>> selectedAnswers)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Initial():
+        return $default(
+            _that.isLoading,
+            _that.hasError,
+            _that.message,
+            _that.basePrice,
+            _that.category,
+            _that.slug,
+            _that.dates,
+            _that.time,
+            _that.questionLoading,
+            _that.resheduleLoading,
+            _that.priceCalculationLoading,
+            _that.priceCalculationError,
+            _that.requoteLoading,
+            _that.requoteError,
+            _that.requoteDone,
+            _that.resheduleDone,
+            _that.requoteIndex,
+            _that.sections,
+            _that.selectedAnswers);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            bool isLoading,
+            bool hasError,
+            String? message,
+            String? basePrice,
+            String? category,
+            String? slug,
+            List<String> dates,
+            List<String> time,
+            bool questionLoading,
+            bool resheduleLoading,
+            bool priceCalculationLoading,
+            bool priceCalculationError,
+            bool requoteLoading,
+            bool requoteError,
+            bool requoteDone,
+            bool resheduleDone,
+            int requoteIndex,
+            List<Section>? sections,
+            Map<String, List<SelectedOption>> selectedAnswers)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Initial() when $default != null:
+        return $default(
+            _that.isLoading,
+            _that.hasError,
+            _that.message,
+            _that.basePrice,
+            _that.category,
+            _that.slug,
+            _that.dates,
+            _that.time,
+            _that.questionLoading,
+            _that.resheduleLoading,
+            _that.priceCalculationLoading,
+            _that.priceCalculationError,
+            _that.requoteLoading,
+            _that.requoteError,
+            _that.requoteDone,
+            _that.resheduleDone,
+            _that.requoteIndex,
+            _that.sections,
+            _that.selectedAnswers);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+
+class _Initial implements RequoteState {
+  const _Initial(
       {required this.isLoading,
       required this.hasError,
       this.message,
@@ -2363,16 +1496,19 @@ class _$InitialImpl implements _Initial {
     return EqualUnmodifiableMapView(_selectedAnswers);
   }
 
+  /// Create a copy of RequoteState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'RequoteState(isLoading: $isLoading, hasError: $hasError, message: $message, basePrice: $basePrice, category: $category, slug: $slug, dates: $dates, time: $time, questionLoading: $questionLoading, resheduleLoading: $resheduleLoading, priceCalculationLoading: $priceCalculationLoading, priceCalculationError: $priceCalculationError, requoteLoading: $requoteLoading, requoteError: $requoteError, requoteDone: $requoteDone, resheduleDone: $resheduleDone, requoteIndex: $requoteIndex, sections: $sections, selectedAnswers: $selectedAnswers)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$InitialCopyWith<_Initial> get copyWith =>
+      __$InitialCopyWithImpl<_Initial>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$InitialImpl &&
+            other is _Initial &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.hasError, hasError) ||
@@ -2433,76 +1569,152 @@ class _$InitialImpl implements _Initial {
         const DeepCollectionEquality().hash(_selectedAnswers)
       ]);
 
-  @JsonKey(ignore: true)
+  @override
+  String toString() {
+    return 'RequoteState(isLoading: $isLoading, hasError: $hasError, message: $message, basePrice: $basePrice, category: $category, slug: $slug, dates: $dates, time: $time, questionLoading: $questionLoading, resheduleLoading: $resheduleLoading, priceCalculationLoading: $priceCalculationLoading, priceCalculationError: $priceCalculationError, requoteLoading: $requoteLoading, requoteError: $requoteError, requoteDone: $requoteDone, resheduleDone: $resheduleDone, requoteIndex: $requoteIndex, sections: $sections, selectedAnswers: $selectedAnswers)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$InitialCopyWith<$Res>
+    implements $RequoteStateCopyWith<$Res> {
+  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) _then) =
+      __$InitialCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {bool isLoading,
+      bool hasError,
+      String? message,
+      String? basePrice,
+      String? category,
+      String? slug,
+      List<String> dates,
+      List<String> time,
+      bool questionLoading,
+      bool resheduleLoading,
+      bool priceCalculationLoading,
+      bool priceCalculationError,
+      bool requoteLoading,
+      bool requoteError,
+      bool requoteDone,
+      bool resheduleDone,
+      int requoteIndex,
+      List<Section>? sections,
+      Map<String, List<SelectedOption>> selectedAnswers});
+}
+
+/// @nodoc
+class __$InitialCopyWithImpl<$Res> implements _$InitialCopyWith<$Res> {
+  __$InitialCopyWithImpl(this._self, this._then);
+
+  final _Initial _self;
+  final $Res Function(_Initial) _then;
+
+  /// Create a copy of RequoteState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
-      __$$InitialImplCopyWithImpl<_$InitialImpl>(this, _$identity);
+  $Res call({
+    Object? isLoading = null,
+    Object? hasError = null,
+    Object? message = freezed,
+    Object? basePrice = freezed,
+    Object? category = freezed,
+    Object? slug = freezed,
+    Object? dates = null,
+    Object? time = null,
+    Object? questionLoading = null,
+    Object? resheduleLoading = null,
+    Object? priceCalculationLoading = null,
+    Object? priceCalculationError = null,
+    Object? requoteLoading = null,
+    Object? requoteError = null,
+    Object? requoteDone = null,
+    Object? resheduleDone = null,
+    Object? requoteIndex = null,
+    Object? sections = freezed,
+    Object? selectedAnswers = null,
+  }) {
+    return _then(_Initial(
+      isLoading: null == isLoading
+          ? _self.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasError: null == hasError
+          ? _self.hasError
+          : hasError // ignore: cast_nullable_to_non_nullable
+              as bool,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      basePrice: freezed == basePrice
+          ? _self.basePrice
+          : basePrice // ignore: cast_nullable_to_non_nullable
+              as String?,
+      category: freezed == category
+          ? _self.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String?,
+      slug: freezed == slug
+          ? _self.slug
+          : slug // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dates: null == dates
+          ? _self._dates
+          : dates // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      time: null == time
+          ? _self._time
+          : time // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      questionLoading: null == questionLoading
+          ? _self.questionLoading
+          : questionLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      resheduleLoading: null == resheduleLoading
+          ? _self.resheduleLoading
+          : resheduleLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      priceCalculationLoading: null == priceCalculationLoading
+          ? _self.priceCalculationLoading
+          : priceCalculationLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      priceCalculationError: null == priceCalculationError
+          ? _self.priceCalculationError
+          : priceCalculationError // ignore: cast_nullable_to_non_nullable
+              as bool,
+      requoteLoading: null == requoteLoading
+          ? _self.requoteLoading
+          : requoteLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      requoteError: null == requoteError
+          ? _self.requoteError
+          : requoteError // ignore: cast_nullable_to_non_nullable
+              as bool,
+      requoteDone: null == requoteDone
+          ? _self.requoteDone
+          : requoteDone // ignore: cast_nullable_to_non_nullable
+              as bool,
+      resheduleDone: null == resheduleDone
+          ? _self.resheduleDone
+          : resheduleDone // ignore: cast_nullable_to_non_nullable
+              as bool,
+      requoteIndex: null == requoteIndex
+          ? _self.requoteIndex
+          : requoteIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      sections: freezed == sections
+          ? _self._sections
+          : sections // ignore: cast_nullable_to_non_nullable
+              as List<Section>?,
+      selectedAnswers: null == selectedAnswers
+          ? _self._selectedAnswers
+          : selectedAnswers // ignore: cast_nullable_to_non_nullable
+              as Map<String, List<SelectedOption>>,
+    ));
+  }
 }
 
-abstract class _Initial implements RequoteState {
-  const factory _Initial(
-          {required final bool isLoading,
-          required final bool hasError,
-          final String? message,
-          final String? basePrice,
-          final String? category,
-          final String? slug,
-          required final List<String> dates,
-          required final List<String> time,
-          required final bool questionLoading,
-          required final bool resheduleLoading,
-          required final bool priceCalculationLoading,
-          required final bool priceCalculationError,
-          required final bool requoteLoading,
-          required final bool requoteError,
-          required final bool requoteDone,
-          required final bool resheduleDone,
-          required final int requoteIndex,
-          final List<Section>? sections,
-          required final Map<String, List<SelectedOption>> selectedAnswers}) =
-      _$InitialImpl;
-
-  @override
-  bool get isLoading;
-  @override
-  bool get hasError;
-  @override
-  String? get message;
-  @override
-  String? get basePrice;
-  @override
-  String? get category;
-  @override
-  String? get slug;
-  @override
-  List<String> get dates;
-  @override
-  List<String> get time;
-  @override
-  bool get questionLoading;
-  @override
-  bool get resheduleLoading;
-  @override
-  bool get priceCalculationLoading;
-  @override
-  bool get priceCalculationError;
-  @override
-  bool get requoteLoading;
-  @override
-  bool get requoteError;
-  @override
-  bool get requoteDone;
-  @override
-  bool get resheduleDone;
-  @override
-  int get requoteIndex;
-  @override
-  List<Section>? get sections;
-  @override
-  Map<String, List<SelectedOption>> get selectedAnswers;
-  @override
-  @JsonKey(ignore: true)
-  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+// dart format on

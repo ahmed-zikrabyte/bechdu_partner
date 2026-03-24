@@ -3,9 +3,7 @@
            package="com.bechduapp.partner">
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-    android:maxSdkVersion="28" />
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <application
         android:label="Bechdu.in Partner"
         android:name="${applicationName}"
@@ -40,5 +38,8 @@
        <meta-data
            android:name="com.google.firebase.messaging.default_notification_channel_id"
            android:value="fcm_default_channel" />
+       <meta-data
+           android:name="com.google.firebase.messaging.default_notification_icon"
+           android:resource="@mipmap/launcher_icon" />
     </application>
 </manifest>

@@ -28,12 +28,14 @@ class OrderDetailWithoutBlur extends StatelessWidget {
               coin: orderDetail.coins ?? '--',
               deviceName: orderDetail.productDetails?.name ?? '----',
               image: orderDetail.productDetails?.image ?? '',
-              price: orderDetail.deviceInfo?.finalPrice ??orderDetail.productDetails?.price?? '--'),
+              price: orderDetail.deviceInfo?.finalPrice ??
+                  orderDetail.productDetails?.price ??
+                  '--'),
           orderDetail.status == 'cancelled' || orderDetail.status == 'Completed'
               ? kEmpty
               : OrderDetailTopPart(orderDetail: orderDetail),
           kHeight20,
-          partner
+          partner && orderDetail.status != 'Completed'
               ? BlocBuilder<PickupPartnerBloc, PickupPartnerState>(
                   builder: (context, state) {
                     if (state.assigningOrderLoader) {
@@ -53,7 +55,7 @@ class OrderDetailWithoutBlur extends StatelessWidget {
                   },
                 )
               : kEmpty,
-          partner ? kHeight20 : kEmpty,
+          partner && orderDetail.status != 'Completed' ? kHeight20 : kEmpty,
           partner && orderDetail.status == 'Completed'
               ? const OrderInvoiceDownload()
               : kEmpty,
@@ -66,10 +68,10 @@ class OrderDetailWithoutBlur extends StatelessWidget {
                 '${orderDetail.pickUpDetails?.time ?? '--,--'} ${orderDetail.pickUpDetails?.date ?? '--/--/--'}',
             address: orderDetail.user?.address ?? '----- ------- -------',
             phone: orderDetail.user?.phone ?? '',
+            addPhone: orderDetail.user?.addPhone,
           ),
           kHeight10,
           OrderDetailDiviceDetailsSession(
-              isBlurred: orderDetail.status == 'cancelled',
               productDetails: orderDetail.productDetails),
           kHeight20
         ],

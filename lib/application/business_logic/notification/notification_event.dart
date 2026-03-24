@@ -8,4 +8,5 @@ class NotificationEvent with _$NotificationEvent {
   const factory NotificationEvent.resetLength() = ResetLength;
   const factory NotificationEvent.sort(int index) = Sort;
   const factory NotificationEvent.markAsRead({required String id}) = MarkAsRead;
+  const factory NotificationEvent.getOffers() = GetOffers;
 }

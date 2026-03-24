@@ -50,6 +50,8 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
     on<RemoveDeviceImage>(removeDeviceImage);
     on<AddImeiImage>(addImeiImage);
     on<RemoveImeiImage>(removeImeiImage);
+    on<AddSignatureImage>(addSignatureImage);
+    on<RemoveSignatureImage>(removeSignatureImage);
     on<RemoveDiviceBill>(removeDiviceBill);
     on<RemoveIdCardImage>(removeIdCardImage);
     on<CheckErrorCompleteOrder>(checkErrorCompleteOrder);
@@ -199,6 +201,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
     if (state.deviceImages == null ||
         state.deviceImages == [] ||
         state.idCard == null ||
+        state.signatureImage == null ||
         state.deviceBill == null) {
       emit(state.copyWith(
         orderCompletionError: true,
@@ -268,6 +271,25 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
         downloaded: false,
         orderInvoice: null,
         imeiImage: null,
+        popOrderScreen: false,
+        orderDetailError: false));
+  }
+
+  FutureOr<void> addSignatureImage(AddSignatureImage event, emit) async {
+    return emit(state.copyWith(
+        signatureImage: event.signature,
+        downloaded: false,
+        orderInvoice: null,
+        popOrderScreen: false,
+        orderDetailError: false,
+        orderCompletionError: false));
+  }
+
+  FutureOr<void> removeSignatureImage(RemoveSignatureImage event, emit) async {
+    return emit(state.copyWith(
+        signatureImage: null,
+        downloaded: false,
+        orderInvoice: null,
         popOrderScreen: false,
         orderDetailError: false));
   }
@@ -347,6 +369,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
           idCard: null,
           imeiImage: null,
           deviceImages: [],
+          signatureImage: null,
           orderCompleted: true,
           message: r.message));
       imeiNumberController.text = '';

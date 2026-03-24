@@ -1,7 +1,7 @@
 part of 'pickup_partner_bloc.dart';
 
 @freezed
-class PickupPartnerState with _$PickupPartnerState {
+abstract class PickupPartnerState with _$PickupPartnerState {
   const factory PickupPartnerState(
       {required bool isLoading,
       required bool hasError,

@@ -35,10 +35,13 @@ class BlurredOrderDetails extends StatelessWidget {
                   '${orderDetail.pickUpDetails?.time ?? '--,--'} ${orderDetail.pickUpDetails?.date ?? '--/--/--'}',
               address: orderDetail.user?.address ?? '----- ------- -------',
               phone: orderDetail.user?.phone ?? '',
+              addPhone: orderDetail.user?.addPhone,
             ),
             kHeight10,
             OrderDetailDiviceDetailsSession(
-                isBlurred: true, productDetails: orderDetail.productDetails)
+                productDetails: orderDetail.productDetails),
+            const SizedBox(
+                height: 120), // Bottom padding to prevent overlap with slider
           ]),
         ),
         SliderOrderAccepting(

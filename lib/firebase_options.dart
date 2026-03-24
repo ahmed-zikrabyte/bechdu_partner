@@ -51,10 +51,10 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDwUL7XyYQpavUu5LO1VVL9c3APVlf68SA',
-    appId: '1:313232559854:android:358980f302cf5de786adff',
+    appId: '1:313232559854:android:9f39ebb63ac69bcd86adff',
     messagingSenderId: '313232559854',
     projectId: 'bechdu-9649a',
-    storageBucket: 'bechdu-9649a.appspot.com',
+    storageBucket: 'bechdu-9649a.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(

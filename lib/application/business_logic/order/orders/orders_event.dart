@@ -30,10 +30,14 @@ class OrdersEvent with _$OrdersEvent {
   const factory OrdersEvent.addImeiImage() = AddImeiImage;
   const factory OrdersEvent.removeImeiImage() = RemoveImeiImage;
   const factory OrdersEvent.addIdCardImage() = AddIdCardImage;
-  const factory OrdersEvent.removeIdCardImage({required int index}) = RemoveIdCardImage;
+  const factory OrdersEvent.removeIdCardImage({required int index}) =
+      RemoveIdCardImage;
   const factory OrdersEvent.addDeviceImages() = AddDeviceImages;
   const factory OrdersEvent.removeDeviceImage({required int index}) =
       RemoveDeviceImage;
+  const factory OrdersEvent.addSignatureImage({required ImageModel signature}) =
+      AddSignatureImage;
+  const factory OrdersEvent.removeSignatureImage() = RemoveSignatureImage;
   const factory OrdersEvent.downloadOrderInvoice({required String orderId}) =
       DownloadOrderInvoice;
   const factory OrdersEvent.changeNotificationStatusOrder(

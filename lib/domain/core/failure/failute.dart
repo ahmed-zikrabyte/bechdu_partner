@@ -3,3 +3,7 @@ class Failure {
   dynamic data;
   Failure({this.message, this.data});
 }
+
+
+
+

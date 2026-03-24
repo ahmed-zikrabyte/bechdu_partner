@@ -7,10 +7,10 @@ part of 'epay_model.dart';
 // **************************************************************************
 
 EpayModel _$EpayModelFromJson(Map<String, dynamic> json) => EpayModel(
-      coins: json['coins'] as int?,
+      coins: (json['coins'] as num?)?.toInt(),
       price: (json['price'] as num?)?.toDouble(),
       gstPrice: (json['gstPrice'] as num?)?.toDouble(),
-      gstPercentage: json['gstPercentage'] as int?,
+      gstPercentage: (json['gstPercentage'] as num?)?.toInt(),
       paymentId: json['paymentId'] as String?,
     );
 

@@ -1,7 +1,7 @@
 part of 'points_bloc.dart';
 
 @freezed
-class PointsState with _$PointsState {
+abstract class PointsState with _$PointsState {
   const factory PointsState({
     required bool hasError,
     required bool isLoading,

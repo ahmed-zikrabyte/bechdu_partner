@@ -25,6 +25,7 @@ PartnerProfile _$PartnerProfileFromJson(Map<String, dynamic> json) =>
       otp: json['otp'] as String?,
       otpExpiry: json['otpExpiry'],
       status: json['status'] as String?,
+      partnerId: json['partnerId'] as String?,
     );
 
 Map<String, dynamic> _$PartnerProfileToJson(PartnerProfile instance) =>
@@ -42,4 +43,5 @@ Map<String, dynamic> _$PartnerProfileToJson(PartnerProfile instance) =>
       'otp': instance.otp,
       'otpExpiry': instance.otpExpiry,
       'status': instance.status,
+      'partnerId': instance.partnerId,
     };

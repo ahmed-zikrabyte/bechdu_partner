@@ -13,6 +13,8 @@ class NotificationModel {
   String? id;
   DateTime? timestamp;
   bool? status;
+  DateTime? validTill;
+  DateTime? startDate;
 
   NotificationModel({
     this.type,
@@ -22,6 +24,8 @@ class NotificationModel {
     this.id,
     this.timestamp,
     this.status,
+    this.validTill,
+    this.startDate,
   });
 
   NotificationModel copyWith({
@@ -32,6 +36,8 @@ class NotificationModel {
     String? id,
     DateTime? timestamp,
     bool? status,
+    DateTime? validTill,
+    DateTime? startDate,
   }) {
     return NotificationModel(
       type: type ?? this.type,
@@ -41,6 +47,8 @@ class NotificationModel {
       id: id ?? this.id,
       timestamp: timestamp ?? this.timestamp,
       status: status ?? this.status,
+      validTill: validTill ?? this.validTill,
+      startDate: startDate ?? this.startDate,
     );
   }
 

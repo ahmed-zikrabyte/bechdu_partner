@@ -22,7 +22,7 @@ class OpenLauncherFeature {
   static Future<void> launchPhone({required String phone}) async {
     if (phone.isEmpty) return;
     try {
-      url_launcher.launchUrl(Uri.parse("tel://$phone"));
+      url_launcher.launchUrl(Uri.parse("tel:$phone"));
     } catch (e) {
       log('cannot launch url');
       log(e.toString());
@@ -38,7 +38,8 @@ class OpenLauncherFeature {
       log(e.toString());
     }
   }
-    static Future<void> launchEmail({required String email}) async {
+
+  static Future<void> launchEmail({required String email}) async {
     if (email.isEmpty) return;
     try {
       final Uri emailUri = Uri(
@@ -55,5 +56,4 @@ class OpenLauncherFeature {
       log(e.toString());
     }
   }
-  
 }

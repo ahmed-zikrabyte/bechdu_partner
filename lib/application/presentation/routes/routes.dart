@@ -18,4 +18,6 @@ class Routes {
   static const String imagePreviewPage = '/image_preview_page';
   static const String slidableImagePreviewPage = '/slidable_image_preview';
   static const String supportDetails = '/support_details';
+  static const String qcReportsPage = '/qc_reports';
+  static const String qcReportDetail = '/qc_report_detail';
 }

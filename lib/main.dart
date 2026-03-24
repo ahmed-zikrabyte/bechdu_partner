@@ -8,6 +8,7 @@ import 'package:bechdu_partner/application/business_logic/role/role_bloc.dart';
 import 'package:bechdu_partner/application/business_logic/transcation/transcation_bloc.dart';
 import 'package:bechdu_partner/application/presentation/routes/routes_generator.dart';
 import 'package:bechdu_partner/domain/core/di/dipendency_injection.dart';
+import 'package:bechdu_partner/application/business_logic/qc/qc_bloc.dart';
 import 'package:bechdu_partner/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -58,6 +59,7 @@ class Beachdu extends StatelessWidget {
           BlocProvider(create: (context) => getIt<TranscationBloc>()),
           BlocProvider(create: (context) => getIt<PickupPartnerBloc>()),
           BlocProvider(create: (context) => getIt<NotificationBloc>()),
+          BlocProvider(create: (context) => getIt<QcBloc>()),
         ],
         child: MaterialApp(
           navigatorKey: navigatorKey,

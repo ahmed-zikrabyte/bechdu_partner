@@ -1,8 +1,6 @@
 import 'dart:developer';
 
-import 'package:bechdu_partner/application/presentation/routes/routes.dart';
 import 'package:bechdu_partner/data/secure_storage/secure_storage.dart';
-import 'package:bechdu_partner/main.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
@@ -38,11 +36,7 @@ class ApiService {
           await _dio.get(url, data: data, queryParameters: queryParameters);
       return response;
     } on DioException catch (exception) {
-      log('Dio exception code => ${exception.response?.statusCode}');
-      log('Dio exception => ${exception.response}');
-      if (exception.response?.statusCode == 403) {
-        _logOut();
-      }
+      _handleDioError(exception);
       rethrow;
     } catch (e) {
       log('Exception => $e');
@@ -78,11 +72,7 @@ class ApiService {
       );
       return response;
     } on DioException catch (exception) {
-      log('Dio exception code => ${exception.response?.statusCode}');
-      log('Dio exception => ${exception.response?.statusCode}');
-      if (exception.response?.statusCode == 403) {
-        _logOut();
-      }
+      _handleDioError(exception);
       rethrow;
     } catch (e) {
       log('Exception => $e');
@@ -116,11 +106,7 @@ class ApiService {
           queryParameters: queryParameters);
       return response;
     } on DioException catch (exception) {
-      log('Dio exception code => ${exception.response?.statusCode}');
-      log('Dio exception => ${exception.response?.statusCode}');
-      if (exception.response?.statusCode == 403) {
-        _logOut();
-      }
+      _handleDioError(exception);
       rethrow;
     } catch (e) {
       log('Exception => $e');
@@ -153,11 +139,7 @@ class ApiService {
           await _dio.delete(url, data: data, queryParameters: queryParameters);
       return response;
     } on DioException catch (exception) {
-      log('Dio exception code => ${exception.response?.statusCode}');
-      log('Dio exception => ${exception.response?.statusCode}');
-      if (exception.response?.statusCode == 403) {
-        _logOut();
-      }
+      _handleDioError(exception);
       rethrow;
     } catch (e) {
       log('Exception => $e');
@@ -190,11 +172,7 @@ class ApiService {
           await _dio.patch(url, data: data, queryParameters: queryParameters);
       return response;
     } on DioException catch (exception) {
-      log('Dio exception code => ${exception.response?.statusCode}');
-      log('Dio exception => ${exception.response?.statusCode}');
-      if (exception.response?.statusCode == 403) {
-        _logOut();
-      }
+      _handleDioError(exception);
       rethrow;
     } catch (e) {
       log('Exception => $e');
@@ -202,9 +180,8 @@ class ApiService {
     }
   }
 
-  void _logOut() {
-    SharedPref.clearLogin();
-    navigatorKey.currentState!
-        .pushNamedAndRemoveUntil(Routes.signInPage, (route) => false);
+  void _handleDioError(DioException exception) {
+    log('Dio exception code => ${exception.response?.statusCode}');
+    log('Dio exception => ${exception.response}');
   }
 }

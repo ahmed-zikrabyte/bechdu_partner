@@ -3,6 +3,7 @@ import 'package:bechdu_partner/application/presentation/screens/complete_order/w
 import 'package:bechdu_partner/application/presentation/screens/complete_order/widgets/idcard_and_devicebill_session.dart';
 import 'package:bechdu_partner/application/presentation/screens/complete_order/widgets/imei_Image_session.dart';
 import 'package:bechdu_partner/application/presentation/screens/complete_order/widgets/price_and_imei_session.dart';
+import 'package:bechdu_partner/application/presentation/screens/complete_order/widgets/signature_session.dart';
 import 'package:bechdu_partner/application/presentation/utils/constant.dart';
 import 'package:bechdu_partner/domain/model/order/get_partner_order_response_model/order_detail.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +35,8 @@ class ScreenCompleteOrder extends StatelessWidget {
                 const IdCardAndDeviceBillSession(),
                 kHeight10,
                 const DeviceImagesSession(),
+                kHeight10,
+                const SignatureSession(),
                 kHeight20,
                 CompleteSubmitButton(orderDetail: orderDetail),
                 kHeight30,
