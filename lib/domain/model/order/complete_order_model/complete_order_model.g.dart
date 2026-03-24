@@ -11,9 +11,11 @@ CompleteOrderModel _$CompleteOrderModelFromJson(Map<String, dynamic> json) =>
       deviceInfo: json['deviceInfo'] == null
           ? null
           : DeviceInfo.fromJson(json['deviceInfo'] as Map<String, dynamic>),
+      customerSignature: json['customerSignature'] as String?,
     );
 
 Map<String, dynamic> _$CompleteOrderModelToJson(CompleteOrderModel instance) =>
     <String, dynamic>{
       'deviceInfo': instance.deviceInfo,
+      'customerSignature': instance.customerSignature,
     };

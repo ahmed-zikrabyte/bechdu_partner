@@ -11,10 +11,10 @@ TranscationCashModel _$TranscationCashModelFromJson(
     TranscationCashModel(
       id: json['_id'] as String?,
       partnerPhone: json['partnerPhone'] as String?,
-      coins: json['coins'] as int?,
+      coins: (json['coins'] as num?)?.toInt(),
       price: (json['price'] as num?)?.toDouble(),
       gstPrice: (json['gstPrice'] as num?)?.toDouble(),
-      gstPercentage: json['gstPercentage'] as int?,
+      gstPercentage: (json['gstPercentage'] as num?)?.toInt(),
       status: json['status'] as String?,
       partnerState: json['partnerState'] as String?,
       partnerName: json['partnerName'] as String?,
@@ -24,7 +24,7 @@ TranscationCashModel _$TranscationCashModelFromJson(
       updatedAt: json['updatedAt'] == null
           ? null
           : DateTime.parse(json['updatedAt'] as String),
-      v: json['__v'] as int?,
+      v: (json['__v'] as num?)?.toInt(),
       totalPrice: (json['totalPrice'] as num?)?.toDouble(),
     );
 

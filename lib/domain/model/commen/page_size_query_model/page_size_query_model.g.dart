@@ -8,8 +8,8 @@ part of 'page_size_query_model.dart';
 
 PageSizeQueryModel _$PageSizeQueryModelFromJson(Map<String, dynamic> json) =>
     PageSizeQueryModel(
-      page: json['page'] as int?,
-      pageSize: json['pageSize'] as int?,
+      page: (json['page'] as num?)?.toInt(),
+      pageSize: (json['pageSize'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$PageSizeQueryModelToJson(PageSizeQueryModel instance) =>

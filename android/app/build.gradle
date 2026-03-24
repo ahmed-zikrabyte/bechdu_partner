@@ -29,8 +29,8 @@ android {
         applicationId "com.bechduapp.partner"
         minSdkVersion flutter.minSdkVersion
         targetSdk 36
-        versionCode 11
-        versionName "1.1.1"
+        versionCode 18
+        versionName "1.1.4"
         multiDexEnabled true
 
         externalNativeBuild {
@@ -71,8 +71,9 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.release
-            minifyEnabled false
-            shrinkResources false
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 }

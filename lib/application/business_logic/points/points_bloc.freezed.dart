@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,54 +9,45 @@ part of 'points_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$PointsEvent {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() getGst,
-    required TResult Function() getCoinValue,
-    required TResult Function() reset,
-    required TResult Function(int coins) findPayableAmound,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getGst,
-    TResult? Function()? getCoinValue,
-    TResult? Function()? reset,
-    TResult? Function(int coins)? findPayableAmound,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getGst,
-    TResult Function()? getCoinValue,
-    TResult Function()? reset,
-    TResult Function(int coins)? findPayableAmound,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetGst value) getGst,
-    required TResult Function(GetCoinValue value) getCoinValue,
-    required TResult Function(Reset value) reset,
-    required TResult Function(FindPayableAmound value) findPayableAmound,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(GetGst value)? getGst,
-    TResult? Function(GetCoinValue value)? getCoinValue,
-    TResult? Function(Reset value)? reset,
-    TResult? Function(FindPayableAmound value)? findPayableAmound,
-  }) =>
-      throw _privateConstructorUsedError;
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is PointsEvent);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'PointsEvent()';
+  }
+}
+
+/// @nodoc
+class $PointsEventCopyWith<$Res> {
+  $PointsEventCopyWith(PointsEvent _, $Res Function(PointsEvent) __);
+}
+
+/// Adds pattern-matching-related methods to [PointsEvent].
+extension PointsEventPatterns on PointsEvent {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetGst value)? getGst,
@@ -64,395 +55,314 @@ mixin _$PointsEvent {
     TResult Function(Reset value)? reset,
     TResult Function(FindPayableAmound value)? findPayableAmound,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) {
+    final _that = this;
+    switch (_that) {
+      case GetGst() when getGst != null:
+        return getGst(_that);
+      case GetCoinValue() when getCoinValue != null:
+        return getCoinValue(_that);
+      case Reset() when reset != null:
+        return reset(_that);
+      case FindPayableAmound() when findPayableAmound != null:
+        return findPayableAmound(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetGst value) getGst,
+    required TResult Function(GetCoinValue value) getCoinValue,
+    required TResult Function(Reset value) reset,
+    required TResult Function(FindPayableAmound value) findPayableAmound,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case GetGst():
+        return getGst(_that);
+      case GetCoinValue():
+        return getCoinValue(_that);
+      case Reset():
+        return reset(_that);
+      case FindPayableAmound():
+        return findPayableAmound(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetGst value)? getGst,
+    TResult? Function(GetCoinValue value)? getCoinValue,
+    TResult? Function(Reset value)? reset,
+    TResult? Function(FindPayableAmound value)? findPayableAmound,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case GetGst() when getGst != null:
+        return getGst(_that);
+      case GetCoinValue() when getCoinValue != null:
+        return getCoinValue(_that);
+      case Reset() when reset != null:
+        return reset(_that);
+      case FindPayableAmound() when findPayableAmound != null:
+        return findPayableAmound(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getGst,
+    TResult Function()? getCoinValue,
+    TResult Function()? reset,
+    TResult Function(int coins)? findPayableAmound,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case GetGst() when getGst != null:
+        return getGst();
+      case GetCoinValue() when getCoinValue != null:
+        return getCoinValue();
+      case Reset() when reset != null:
+        return reset();
+      case FindPayableAmound() when findPayableAmound != null:
+        return findPayableAmound(_that.coins);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getGst,
+    required TResult Function() getCoinValue,
+    required TResult Function() reset,
+    required TResult Function(int coins) findPayableAmound,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case GetGst():
+        return getGst();
+      case GetCoinValue():
+        return getCoinValue();
+      case Reset():
+        return reset();
+      case FindPayableAmound():
+        return findPayableAmound(_that.coins);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getGst,
+    TResult? Function()? getCoinValue,
+    TResult? Function()? reset,
+    TResult? Function(int coins)? findPayableAmound,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case GetGst() when getGst != null:
+        return getGst();
+      case GetCoinValue() when getCoinValue != null:
+        return getCoinValue();
+      case Reset() when reset != null:
+        return reset();
+      case FindPayableAmound() when findPayableAmound != null:
+        return findPayableAmound(_that.coins);
+      case _:
+        return null;
+    }
+  }
 }
 
 /// @nodoc
-abstract class $PointsEventCopyWith<$Res> {
-  factory $PointsEventCopyWith(
-          PointsEvent value, $Res Function(PointsEvent) then) =
-      _$PointsEventCopyWithImpl<$Res, PointsEvent>;
-}
 
-/// @nodoc
-class _$PointsEventCopyWithImpl<$Res, $Val extends PointsEvent>
-    implements $PointsEventCopyWith<$Res> {
-  _$PointsEventCopyWithImpl(this._value, this._then);
+class GetGst implements PointsEvent {
+  const GetGst();
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-}
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is GetGst);
+  }
 
-/// @nodoc
-abstract class _$$GetGstImplCopyWith<$Res> {
-  factory _$$GetGstImplCopyWith(
-          _$GetGstImpl value, $Res Function(_$GetGstImpl) then) =
-      __$$GetGstImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$GetGstImplCopyWithImpl<$Res>
-    extends _$PointsEventCopyWithImpl<$Res, _$GetGstImpl>
-    implements _$$GetGstImplCopyWith<$Res> {
-  __$$GetGstImplCopyWithImpl(
-      _$GetGstImpl _value, $Res Function(_$GetGstImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$GetGstImpl implements GetGst {
-  const _$GetGstImpl();
+  @override
+  int get hashCode => runtimeType.hashCode;
 
   @override
   String toString() {
     return 'PointsEvent.getGst()';
   }
+}
+
+/// @nodoc
+
+class GetCoinValue implements PointsEvent {
+  const GetCoinValue();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GetGstImpl);
+        (other.runtimeType == runtimeType && other is GetCoinValue);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() getGst,
-    required TResult Function() getCoinValue,
-    required TResult Function() reset,
-    required TResult Function(int coins) findPayableAmound,
-  }) {
-    return getGst();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getGst,
-    TResult? Function()? getCoinValue,
-    TResult? Function()? reset,
-    TResult? Function(int coins)? findPayableAmound,
-  }) {
-    return getGst?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getGst,
-    TResult Function()? getCoinValue,
-    TResult Function()? reset,
-    TResult Function(int coins)? findPayableAmound,
-    required TResult orElse(),
-  }) {
-    if (getGst != null) {
-      return getGst();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetGst value) getGst,
-    required TResult Function(GetCoinValue value) getCoinValue,
-    required TResult Function(Reset value) reset,
-    required TResult Function(FindPayableAmound value) findPayableAmound,
-  }) {
-    return getGst(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(GetGst value)? getGst,
-    TResult? Function(GetCoinValue value)? getCoinValue,
-    TResult? Function(Reset value)? reset,
-    TResult? Function(FindPayableAmound value)? findPayableAmound,
-  }) {
-    return getGst?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetGst value)? getGst,
-    TResult Function(GetCoinValue value)? getCoinValue,
-    TResult Function(Reset value)? reset,
-    TResult Function(FindPayableAmound value)? findPayableAmound,
-    required TResult orElse(),
-  }) {
-    if (getGst != null) {
-      return getGst(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class GetGst implements PointsEvent {
-  const factory GetGst() = _$GetGstImpl;
-}
-
-/// @nodoc
-abstract class _$$GetCoinValueImplCopyWith<$Res> {
-  factory _$$GetCoinValueImplCopyWith(
-          _$GetCoinValueImpl value, $Res Function(_$GetCoinValueImpl) then) =
-      __$$GetCoinValueImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$GetCoinValueImplCopyWithImpl<$Res>
-    extends _$PointsEventCopyWithImpl<$Res, _$GetCoinValueImpl>
-    implements _$$GetCoinValueImplCopyWith<$Res> {
-  __$$GetCoinValueImplCopyWithImpl(
-      _$GetCoinValueImpl _value, $Res Function(_$GetCoinValueImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$GetCoinValueImpl implements GetCoinValue {
-  const _$GetCoinValueImpl();
 
   @override
   String toString() {
     return 'PointsEvent.getCoinValue()';
   }
+}
+
+/// @nodoc
+
+class Reset implements PointsEvent {
+  const Reset();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GetCoinValueImpl);
+        (other.runtimeType == runtimeType && other is Reset);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() getGst,
-    required TResult Function() getCoinValue,
-    required TResult Function() reset,
-    required TResult Function(int coins) findPayableAmound,
-  }) {
-    return getCoinValue();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getGst,
-    TResult? Function()? getCoinValue,
-    TResult? Function()? reset,
-    TResult? Function(int coins)? findPayableAmound,
-  }) {
-    return getCoinValue?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getGst,
-    TResult Function()? getCoinValue,
-    TResult Function()? reset,
-    TResult Function(int coins)? findPayableAmound,
-    required TResult orElse(),
-  }) {
-    if (getCoinValue != null) {
-      return getCoinValue();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetGst value) getGst,
-    required TResult Function(GetCoinValue value) getCoinValue,
-    required TResult Function(Reset value) reset,
-    required TResult Function(FindPayableAmound value) findPayableAmound,
-  }) {
-    return getCoinValue(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(GetGst value)? getGst,
-    TResult? Function(GetCoinValue value)? getCoinValue,
-    TResult? Function(Reset value)? reset,
-    TResult? Function(FindPayableAmound value)? findPayableAmound,
-  }) {
-    return getCoinValue?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetGst value)? getGst,
-    TResult Function(GetCoinValue value)? getCoinValue,
-    TResult Function(Reset value)? reset,
-    TResult Function(FindPayableAmound value)? findPayableAmound,
-    required TResult orElse(),
-  }) {
-    if (getCoinValue != null) {
-      return getCoinValue(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class GetCoinValue implements PointsEvent {
-  const factory GetCoinValue() = _$GetCoinValueImpl;
-}
-
-/// @nodoc
-abstract class _$$ResetImplCopyWith<$Res> {
-  factory _$$ResetImplCopyWith(
-          _$ResetImpl value, $Res Function(_$ResetImpl) then) =
-      __$$ResetImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ResetImplCopyWithImpl<$Res>
-    extends _$PointsEventCopyWithImpl<$Res, _$ResetImpl>
-    implements _$$ResetImplCopyWith<$Res> {
-  __$$ResetImplCopyWithImpl(
-      _$ResetImpl _value, $Res Function(_$ResetImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$ResetImpl implements Reset {
-  const _$ResetImpl();
 
   @override
   String toString() {
     return 'PointsEvent.reset()';
   }
+}
+
+/// @nodoc
+
+class FindPayableAmound implements PointsEvent {
+  const FindPayableAmound({required this.coins});
+
+  final int coins;
+
+  /// Create a copy of PointsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $FindPayableAmoundCopyWith<FindPayableAmound> get copyWith =>
+      _$FindPayableAmoundCopyWithImpl<FindPayableAmound>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ResetImpl);
+        (other.runtimeType == runtimeType &&
+            other is FindPayableAmound &&
+            (identical(other.coins, coins) || other.coins == coins));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, coins);
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() getGst,
-    required TResult Function() getCoinValue,
-    required TResult Function() reset,
-    required TResult Function(int coins) findPayableAmound,
-  }) {
-    return reset();
+  String toString() {
+    return 'PointsEvent.findPayableAmound(coins: $coins)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getGst,
-    TResult? Function()? getCoinValue,
-    TResult? Function()? reset,
-    TResult? Function(int coins)? findPayableAmound,
-  }) {
-    return reset?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getGst,
-    TResult Function()? getCoinValue,
-    TResult Function()? reset,
-    TResult Function(int coins)? findPayableAmound,
-    required TResult orElse(),
-  }) {
-    if (reset != null) {
-      return reset();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetGst value) getGst,
-    required TResult Function(GetCoinValue value) getCoinValue,
-    required TResult Function(Reset value) reset,
-    required TResult Function(FindPayableAmound value) findPayableAmound,
-  }) {
-    return reset(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(GetGst value)? getGst,
-    TResult? Function(GetCoinValue value)? getCoinValue,
-    TResult? Function(Reset value)? reset,
-    TResult? Function(FindPayableAmound value)? findPayableAmound,
-  }) {
-    return reset?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetGst value)? getGst,
-    TResult Function(GetCoinValue value)? getCoinValue,
-    TResult Function(Reset value)? reset,
-    TResult Function(FindPayableAmound value)? findPayableAmound,
-    required TResult orElse(),
-  }) {
-    if (reset != null) {
-      return reset(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class Reset implements PointsEvent {
-  const factory Reset() = _$ResetImpl;
 }
 
 /// @nodoc
-abstract class _$$FindPayableAmoundImplCopyWith<$Res> {
-  factory _$$FindPayableAmoundImplCopyWith(_$FindPayableAmoundImpl value,
-          $Res Function(_$FindPayableAmoundImpl) then) =
-      __$$FindPayableAmoundImplCopyWithImpl<$Res>;
+abstract mixin class $FindPayableAmoundCopyWith<$Res>
+    implements $PointsEventCopyWith<$Res> {
+  factory $FindPayableAmoundCopyWith(
+          FindPayableAmound value, $Res Function(FindPayableAmound) _then) =
+      _$FindPayableAmoundCopyWithImpl;
   @useResult
   $Res call({int coins});
 }
 
 /// @nodoc
-class __$$FindPayableAmoundImplCopyWithImpl<$Res>
-    extends _$PointsEventCopyWithImpl<$Res, _$FindPayableAmoundImpl>
-    implements _$$FindPayableAmoundImplCopyWith<$Res> {
-  __$$FindPayableAmoundImplCopyWithImpl(_$FindPayableAmoundImpl _value,
-      $Res Function(_$FindPayableAmoundImpl) _then)
-      : super(_value, _then);
+class _$FindPayableAmoundCopyWithImpl<$Res>
+    implements $FindPayableAmoundCopyWith<$Res> {
+  _$FindPayableAmoundCopyWithImpl(this._self, this._then);
 
+  final FindPayableAmound _self;
+  final $Res Function(FindPayableAmound) _then;
+
+  /// Create a copy of PointsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? coins = null,
   }) {
-    return _then(_$FindPayableAmoundImpl(
+    return _then(FindPayableAmound(
       coins: null == coins
-          ? _value.coins
+          ? _self.coins
           : coins // ignore: cast_nullable_to_non_nullable
               as int,
     ));
@@ -460,139 +370,50 @@ class __$$FindPayableAmoundImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
+mixin _$PointsState {
+  bool get hasError;
+  bool get isLoading;
+  int? get gst;
+  int? get coinValue;
+  String? get message;
 
-class _$FindPayableAmoundImpl implements FindPayableAmound {
-  const _$FindPayableAmoundImpl({required this.coins});
-
-  @override
-  final int coins;
-
-  @override
-  String toString() {
-    return 'PointsEvent.findPayableAmound(coins: $coins)';
-  }
+  /// Create a copy of PointsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $PointsStateCopyWith<PointsState> get copyWith =>
+      _$PointsStateCopyWithImpl<PointsState>(this as PointsState, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FindPayableAmoundImpl &&
-            (identical(other.coins, coins) || other.coins == coins));
+            other is PointsState &&
+            (identical(other.hasError, hasError) ||
+                other.hasError == hasError) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
+            (identical(other.gst, gst) || other.gst == gst) &&
+            (identical(other.coinValue, coinValue) ||
+                other.coinValue == coinValue) &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, coins);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$FindPayableAmoundImplCopyWith<_$FindPayableAmoundImpl> get copyWith =>
-      __$$FindPayableAmoundImplCopyWithImpl<_$FindPayableAmoundImpl>(
-          this, _$identity);
+  int get hashCode =>
+      Object.hash(runtimeType, hasError, isLoading, gst, coinValue, message);
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() getGst,
-    required TResult Function() getCoinValue,
-    required TResult Function() reset,
-    required TResult Function(int coins) findPayableAmound,
-  }) {
-    return findPayableAmound(coins);
+  String toString() {
+    return 'PointsState(hasError: $hasError, isLoading: $isLoading, gst: $gst, coinValue: $coinValue, message: $message)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getGst,
-    TResult? Function()? getCoinValue,
-    TResult? Function()? reset,
-    TResult? Function(int coins)? findPayableAmound,
-  }) {
-    return findPayableAmound?.call(coins);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getGst,
-    TResult Function()? getCoinValue,
-    TResult Function()? reset,
-    TResult Function(int coins)? findPayableAmound,
-    required TResult orElse(),
-  }) {
-    if (findPayableAmound != null) {
-      return findPayableAmound(coins);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetGst value) getGst,
-    required TResult Function(GetCoinValue value) getCoinValue,
-    required TResult Function(Reset value) reset,
-    required TResult Function(FindPayableAmound value) findPayableAmound,
-  }) {
-    return findPayableAmound(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(GetGst value)? getGst,
-    TResult? Function(GetCoinValue value)? getCoinValue,
-    TResult? Function(Reset value)? reset,
-    TResult? Function(FindPayableAmound value)? findPayableAmound,
-  }) {
-    return findPayableAmound?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetGst value)? getGst,
-    TResult Function(GetCoinValue value)? getCoinValue,
-    TResult Function(Reset value)? reset,
-    TResult Function(FindPayableAmound value)? findPayableAmound,
-    required TResult orElse(),
-  }) {
-    if (findPayableAmound != null) {
-      return findPayableAmound(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class FindPayableAmound implements PointsEvent {
-  const factory FindPayableAmound({required final int coins}) =
-      _$FindPayableAmoundImpl;
-
-  int get coins;
-  @JsonKey(ignore: true)
-  _$$FindPayableAmoundImplCopyWith<_$FindPayableAmoundImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$PointsState {
-  bool get hasError => throw _privateConstructorUsedError;
-  bool get isLoading => throw _privateConstructorUsedError;
-  int? get gst => throw _privateConstructorUsedError;
-  int? get coinValue => throw _privateConstructorUsedError;
-  String? get message => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $PointsStateCopyWith<PointsState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $PointsStateCopyWith<$Res> {
+abstract mixin class $PointsStateCopyWith<$Res> {
   factory $PointsStateCopyWith(
-          PointsState value, $Res Function(PointsState) then) =
-      _$PointsStateCopyWithImpl<$Res, PointsState>;
+          PointsState value, $Res Function(PointsState) _then) =
+      _$PointsStateCopyWithImpl;
   @useResult
   $Res call(
       {bool hasError,
@@ -603,15 +424,14 @@ abstract class $PointsStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PointsStateCopyWithImpl<$Res, $Val extends PointsState>
-    implements $PointsStateCopyWith<$Res> {
-  _$PointsStateCopyWithImpl(this._value, this._then);
+class _$PointsStateCopyWithImpl<$Res> implements $PointsStateCopyWith<$Res> {
+  _$PointsStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final PointsState _self;
+  final $Res Function(PointsState) _then;
 
+  /// Create a copy of PointsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -621,93 +441,201 @@ class _$PointsStateCopyWithImpl<$Res, $Val extends PointsState>
     Object? coinValue = freezed,
     Object? message = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       hasError: null == hasError
-          ? _value.hasError
+          ? _self.hasError
           : hasError // ignore: cast_nullable_to_non_nullable
               as bool,
       isLoading: null == isLoading
-          ? _value.isLoading
+          ? _self.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
       gst: freezed == gst
-          ? _value.gst
+          ? _self.gst
           : gst // ignore: cast_nullable_to_non_nullable
               as int?,
       coinValue: freezed == coinValue
-          ? _value.coinValue
+          ? _self.coinValue
           : coinValue // ignore: cast_nullable_to_non_nullable
               as int?,
       message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$InitialImplCopyWith<$Res>
-    implements $PointsStateCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {bool hasError,
-      bool isLoading,
-      int? gst,
-      int? coinValue,
-      String? message});
-}
-
-/// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$PointsStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? hasError = null,
-    Object? isLoading = null,
-    Object? gst = freezed,
-    Object? coinValue = freezed,
-    Object? message = freezed,
-  }) {
-    return _then(_$InitialImpl(
-      hasError: null == hasError
-          ? _value.hasError
-          : hasError // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      gst: freezed == gst
-          ? _value.gst
-          : gst // ignore: cast_nullable_to_non_nullable
-              as int?,
-      coinValue: freezed == coinValue
-          ? _value.coinValue
-          : coinValue // ignore: cast_nullable_to_non_nullable
-              as int?,
-      message: freezed == message
-          ? _value.message
+          ? _self.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
 }
 
+/// Adds pattern-matching-related methods to [PointsState].
+extension PointsStatePatterns on PointsState {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Initial value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Initial() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Initial value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Initial():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Initial value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Initial() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(bool hasError, bool isLoading, int? gst, int? coinValue,
+            String? message)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Initial() when $default != null:
+        return $default(_that.hasError, _that.isLoading, _that.gst,
+            _that.coinValue, _that.message);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(bool hasError, bool isLoading, int? gst, int? coinValue,
+            String? message)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Initial():
+        return $default(_that.hasError, _that.isLoading, _that.gst,
+            _that.coinValue, _that.message);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(bool hasError, bool isLoading, int? gst, int? coinValue,
+            String? message)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Initial() when $default != null:
+        return $default(_that.hasError, _that.isLoading, _that.gst,
+            _that.coinValue, _that.message);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl(
+class _Initial implements PointsState {
+  const _Initial(
       {required this.hasError,
       required this.isLoading,
       this.gst,
@@ -725,16 +653,19 @@ class _$InitialImpl implements _Initial {
   @override
   final String? message;
 
+  /// Create a copy of PointsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'PointsState(hasError: $hasError, isLoading: $isLoading, gst: $gst, coinValue: $coinValue, message: $message)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$InitialCopyWith<_Initial> get copyWith =>
+      __$InitialCopyWithImpl<_Initial>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$InitialImpl &&
+            other is _Initial &&
             (identical(other.hasError, hasError) ||
                 other.hasError == hasError) &&
             (identical(other.isLoading, isLoading) ||
@@ -749,33 +680,68 @@ class _$InitialImpl implements _Initial {
   int get hashCode =>
       Object.hash(runtimeType, hasError, isLoading, gst, coinValue, message);
 
-  @JsonKey(ignore: true)
+  @override
+  String toString() {
+    return 'PointsState(hasError: $hasError, isLoading: $isLoading, gst: $gst, coinValue: $coinValue, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$InitialCopyWith<$Res>
+    implements $PointsStateCopyWith<$Res> {
+  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) _then) =
+      __$InitialCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {bool hasError,
+      bool isLoading,
+      int? gst,
+      int? coinValue,
+      String? message});
+}
+
+/// @nodoc
+class __$InitialCopyWithImpl<$Res> implements _$InitialCopyWith<$Res> {
+  __$InitialCopyWithImpl(this._self, this._then);
+
+  final _Initial _self;
+  final $Res Function(_Initial) _then;
+
+  /// Create a copy of PointsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
-      __$$InitialImplCopyWithImpl<_$InitialImpl>(this, _$identity);
+  $Res call({
+    Object? hasError = null,
+    Object? isLoading = null,
+    Object? gst = freezed,
+    Object? coinValue = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(_Initial(
+      hasError: null == hasError
+          ? _self.hasError
+          : hasError // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isLoading: null == isLoading
+          ? _self.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      gst: freezed == gst
+          ? _self.gst
+          : gst // ignore: cast_nullable_to_non_nullable
+              as int?,
+      coinValue: freezed == coinValue
+          ? _self.coinValue
+          : coinValue // ignore: cast_nullable_to_non_nullable
+              as int?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
-abstract class _Initial implements PointsState {
-  const factory _Initial(
-      {required final bool hasError,
-      required final bool isLoading,
-      final int? gst,
-      final int? coinValue,
-      final String? message}) = _$InitialImpl;
-
-  @override
-  bool get hasError;
-  @override
-  bool get isLoading;
-  @override
-  int? get gst;
-  @override
-  int? get coinValue;
-  @override
-  String? get message;
-  @override
-  @JsonKey(ignore: true)
-  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+// dart format on

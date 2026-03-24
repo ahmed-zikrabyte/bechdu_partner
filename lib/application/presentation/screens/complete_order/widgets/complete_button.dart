@@ -42,22 +42,48 @@ class CompleteSubmitButton extends StatelessWidget {
                 !state.orderCompletionError) {
               if (state.idCard == null ||
                   state.deviceBill == null ||
+                  state.signatureImage == null ||
                   state.deviceImages == null) {
                 showSnackBar(
                     context: context,
                     message:
-                        'add ${state.idCard == null ? 'idcard, ' : ''}${state.deviceBill == null ? 'device bill, ' : ''}${state.deviceImages == null ? 'device images ' : ''}to continue',
+                        'add ${state.idCard == null ? 'idcard, ' : ''}${state.deviceBill == null ? 'device bill, ' : ''}${state.signatureImage == null ? 'signature, ' : ''}${state.deviceImages == null ? 'device images ' : ''}to continue',
                     color: kRed);
                 context
                     .read<OrdersBloc>()
                     .add(const OrdersEvent.checkErrorCompleteOrder());
               } else {
+                final options = orderDetail.productDetails?.options ?? [];
+                String getOptionValue(String heading) {
+                  try {
+                    return options
+                            .firstWhere((element) =>
+                                element.heading?.toLowerCase() ==
+                                heading.toLowerCase())
+                            .description ??
+                        '';
+                  } catch (e) {
+                    return '';
+                  }
+                }
+
                 context.read<OrdersBloc>().add(
                       OrdersEvent.completeOrder(
                         orderId: orderDetail.id!,
                         completeOrderModel: CompleteOrderModel(
+                          customerSignature: state.signatureImage!.base64Image,
                           deviceInfo: DeviceInfo(
+                            deviceName: orderDetail.productDetails?.name ?? '',
+                            imei: context
+                                .read<OrdersBloc>()
+                                .imeiNumberController
+                                .text
+                                .trim(),
+                            condition: getOptionValue('Condition'),
+                            storage: getOptionValue('Storage'),
+                            color: getOptionValue('Color'),
                             imeiImage: state.imeiImage?.base64Image ?? '',
+                            signatureImage: state.signatureImage!.base64Image,
                             deviceBill: state.deviceBill!.base64Image,
                             idCard: state.idCard!
                                 .map((e) => e.base64Image)

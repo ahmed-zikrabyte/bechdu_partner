@@ -9,8 +9,8 @@ part of 'notification_sort_query.dart';
 NotificationSortQuery _$NotificationSortQueryFromJson(
         Map<String, dynamic> json) =>
     NotificationSortQuery(
-      page: json['page'] as int?,
-      pageSize: json['pageSize'] as int?,
+      page: (json['page'] as num?)?.toInt(),
+      pageSize: (json['pageSize'] as num?)?.toInt(),
       type: json['type'] as String?,
       from: json['from'] as String?,
       to: json['to'] as String?,

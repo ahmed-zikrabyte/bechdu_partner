@@ -7,7 +7,7 @@ import 'package:bechdu_partner/domain/model/order/get_partner_order_response_mod
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class PriceAndImeiSession extends StatelessWidget {
+class PriceAndImeiSession extends StatefulWidget {
   const PriceAndImeiSession({
     super.key,
     required this.orderDetail,
@@ -16,19 +16,40 @@ class PriceAndImeiSession extends StatelessWidget {
   final OrderDetail orderDetail;
 
   @override
-  Widget build(BuildContext context) {
+  State<PriceAndImeiSession> createState() => _PriceAndImeiSessionState();
+}
+
+class _PriceAndImeiSessionState extends State<PriceAndImeiSession> {
+  /// The autofilled price that the user cannot go below.
+  late int _minPrice;
+
+  @override
+  void initState() {
+    super.initState();
+    // Compute the same floor price that will be autofilled into the controller.
+    int basePrice = int.tryParse(
+          context.read<RequoteBloc>().finalPrice != ''
+              ? context.read<RequoteBloc>().finalPrice
+              : widget.orderDetail.productDetails?.price ?? '0',
+        ) ??
+        0;
+
+    if (widget.orderDetail.promo?.price != '' &&
+        widget.orderDetail.promo?.price != null) {
+      _minPrice = basePrice +
+          (int.tryParse(widget.orderDetail.promo?.price ?? '0') ?? 0);
+    } else {
+      _minPrice = basePrice;
+    }
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<OrdersBloc>().finalPriceController.text = '';
-      int price = int.parse(context.read<RequoteBloc>().finalPrice != ''
-          ? context.read<RequoteBloc>().finalPrice
-          : orderDetail.productDetails?.price ?? '0');
-      if (orderDetail.promo?.price != '' && orderDetail.promo?.price != null) {
-        context.read<OrdersBloc>().finalPriceController.text =
-            (price + int.parse(orderDetail.promo?.price ?? '0')).toString();
-      } else {
-        context.read<OrdersBloc>().finalPriceController.text = price.toString();
-      }
+      context.read<OrdersBloc>().finalPriceController.text =
+          _minPrice.toString();
     });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -38,21 +59,24 @@ class PriceAndImeiSession extends StatelessWidget {
             radius: sWidth * 0.20,
             child: Padding(
               padding: const EdgeInsets.all(15.0),
-              child: Image.network(orderDetail.productDetails?.image ?? ''),
+              child:
+                  Image.network(widget.orderDetail.productDetails?.image ?? ''),
             ),
           ),
         ),
-        orderDetail.promo?.price != '' && orderDetail.promo?.price != null
+        widget.orderDetail.promo?.price != '' &&
+                widget.orderDetail.promo?.price != null
             ? kHeight10
             : kEmpty,
-        orderDetail.promo?.price != '' && orderDetail.promo?.price != null
+        widget.orderDetail.promo?.price != '' &&
+                widget.orderDetail.promo?.price != null
             ? Text.rich(
                 TextSpan(
                   text: 'The promo code ',
                   style: textHeadRegular2,
                   children: [
                     TextSpan(
-                      text: '${orderDetail.promo?.code}',
+                      text: '${widget.orderDetail.promo?.code}',
                       style: const TextStyle(
                           color: kGreenPrimary, fontWeight: FontWeight.w700),
                     ),
@@ -62,7 +86,7 @@ class PriceAndImeiSession extends StatelessWidget {
                       style: textHeadRegular2,
                     ),
                     TextSpan(
-                      text: '₹${orderDetail.promo?.price}',
+                      text: '₹${widget.orderDetail.promo?.price}',
                       style: const TextStyle(
                           color: kGreenPrimary, fontWeight: FontWeight.w700),
                     ),
@@ -81,6 +105,7 @@ class PriceAndImeiSession extends StatelessWidget {
           validate: Validate.notNull,
           controller: context.read<OrdersBloc>().finalPriceController,
           hintText: 'Final Price',
+          minValue: _minPrice,
         ),
         kHeight10,
         Text('IMEI Number', style: textHeadRegular2),

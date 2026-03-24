@@ -10,6 +10,7 @@ class CustomExpansionTile extends StatefulWidget {
       required this.title,
       this.expandLess = Icons.expand_less,
       this.expandMore = Icons.expand_more,
+      this.onTap,
       required this.subTitle});
   final List<Widget> children;
   final Widget title;
@@ -17,6 +18,7 @@ class CustomExpansionTile extends StatefulWidget {
   final bool isExpandable;
   final IconData expandLess;
   final IconData expandMore;
+  final VoidCallback? onTap;
 
   @override
   State<CustomExpansionTile> createState() => _CustomExpansionTileState();
@@ -30,11 +32,12 @@ class _CustomExpansionTileState extends State<CustomExpansionTile> {
     return Column(
       children: [
         InkWell(
-          onTap: () {
-            setState(() {
-              isExpanded = !isExpanded;
-            });
-          },
+          onTap: widget.onTap ??
+              () {
+                setState(() {
+                  isExpanded = !isExpanded;
+                });
+              },
           splashFactory: NoSplash.splashFactory,
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 300),

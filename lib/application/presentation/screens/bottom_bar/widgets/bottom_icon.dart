@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class BottomIconMaker extends StatelessWidget {
   const BottomIconMaker({
     super.key,
-    required this.image,
+    this.image,
+    this.icon,
     this.ontap,
   });
 
-  final String image;
+  final String? image;
+  final IconData? icon;
   final VoidCallback? ontap;
 
   @override
@@ -18,15 +20,20 @@ class BottomIconMaker extends StatelessWidget {
           ontap!();
         }
       },
-      child: Container(
-        height: 25,
-        width: 25,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(image),
-          ),
-        ),
-      ),
+      child: image != null
+          ? Container(
+              height: 25,
+              width: 25,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(image!),
+                ),
+              ),
+            )
+          : Icon(
+              icon ?? Icons.help_outline,
+              size: 25,
+            ),
     );
   }
 }

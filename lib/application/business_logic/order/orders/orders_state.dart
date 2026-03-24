@@ -1,7 +1,7 @@
 part of 'orders_bloc.dart';
 
 @freezed
-class OrdersState with _$OrdersState {
+abstract class OrdersState with _$OrdersState {
   const factory OrdersState(
       {required bool isLoading,
       required bool hasError,
@@ -24,6 +24,7 @@ class OrdersState with _$OrdersState {
       List<ImageModel>? idCard,
       ImageModel? imeiImage,
       List<ImageModel>? deviceImages,
+      ImageModel? signatureImage,
       List<OrderDetail>? partnerOrders,
       List<OrderDetail>? newOrders,
       OrderDetail? orderDetail,

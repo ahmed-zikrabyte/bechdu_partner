@@ -19,12 +19,14 @@ class SupportDetails extends StatelessWidget {
             const Text('Broangle Innovation Pvt Ltd '),
             const Text('CIN. U47740UP2025PTC224170 '),
             kHeight10,
-            const Text(
-                'Registered Address EWS P-50 Tajnagri Phase 2 TajGanj Agra-282001 (U.P.)'),
+            Text(
+                "Address : Business Square, 601 A, Sanjay Palace, Sanjay Place, Civil Lines, Agra, Uttar Pradesh 282002"),
+            // const Text(
+            //     'Registered Address EWS P-50 Tajnagri Phase 2 TajGanj Agra-282001 (U.P.)'),
             kHeight10,
-            const Text(
-                'Communication Address:- Rawat Market Near SBI ATM Rajpur Chungi Shamshabad Road'),
-            const Text('Agra-282001(U.P.)'),
+            // const Text(
+            //     'Communication Address:- Rawat Market Near SBI ATM Rajpur Chungi Shamshabad Road'),
+            // const Text('Agra-282001(U.P.)'),
             kHeight10,
             GestureDetector(
                 onTap: () {
