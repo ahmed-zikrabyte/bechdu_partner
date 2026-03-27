@@ -29,8 +29,8 @@ android {
         applicationId "com.bechduapp.partner"
         minSdkVersion flutter.minSdkVersion
         targetSdk 36
-        versionCode 18
-        versionName "1.1.4"
+        versionCode 19
+        versionName "1.1.5"
         multiDexEnabled true
 
         externalNativeBuild {

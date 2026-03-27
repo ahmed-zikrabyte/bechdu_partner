@@ -145,4 +145,5 @@ flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
   image_path: "assets/icon/512px bechdu.png"
+  remove_alpha_ios: true  # <--- Add this line here
   min_sdk_android: 21
