@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyDHTrmfOWwAxVYGd1ebMWprUmU-1NUu_xM</string>
+	<string>AIzaSyCLto9ZkpxhEXAg2m3xc260I8nuw4RvO60</string>
 	<key>GCM_SENDER_ID</key>
-	<string>638524143029</string>
+	<string>313232559854</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.bechduPartner</string>
+	<string>com.bechduapp.partner</string>
 	<key>PROJECT_ID</key>
-	<string>notify-dd676</string>
+	<string>bechdu-9649a</string>
 	<key>STORAGE_BUCKET</key>
-	<string>notify-dd676.appspot.com</string>
+	<string>bechdu-9649a.firebasestorage.app</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:638524143029:ios:6d7e9ae5c0b39a23d915fc</string>
+	<string>1:313232559854:ios:afe8baebc316781186adff</string>
 </dict>
 </plist>
