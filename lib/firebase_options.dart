@@ -59,10 +59,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCLto9ZkpxhEXAg2m3xc260I8nuw4RvO60',
-    appId: '1:313232559854:ios:9d009cbe2e80426986adff',
+    appId: '1:313232559854:ios:afe8baebc316781186adff',
     messagingSenderId: '313232559854',
     projectId: 'bechdu-9649a',
-    storageBucket: 'bechdu-9649a.appspot.com',
+    storageBucket: 'bechdu-9649a.firebasestorage.app',
     iosBundleId: 'com.bechduapp.partner',
   );
+
 }
