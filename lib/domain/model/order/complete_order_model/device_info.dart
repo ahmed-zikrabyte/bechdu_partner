@@ -15,7 +15,7 @@ class DeviceInfo {
   String? deviceBill;
   List<String>? idCard; // 🔄 Changed from String? to List<String>?
   List<String>? deviceImages;
-  String? signatureImage;
+  String? customerSignature;
 
   DeviceInfo({
     this.deviceName,
@@ -29,7 +29,7 @@ class DeviceInfo {
     this.idCard, // ✅ Updated here
     this.deviceImages,
     this.imeiImage,
-    this.signatureImage,
+    this.customerSignature,
   });
 
   factory DeviceInfo.fromJson(Map<String, dynamic> json) =>
