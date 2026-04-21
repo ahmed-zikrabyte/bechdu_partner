@@ -21,7 +21,7 @@ DeviceInfo _$DeviceInfoFromJson(Map<String, dynamic> json) => DeviceInfo(
           ?.map((e) => e as String)
           .toList(),
       imeiImage: json['imeiImage'] as String?,
-      signatureImage: json['signatureImage'] as String?,
+      customerSignature: json['customerSignature'] as String?,
     );
 
 Map<String, dynamic> _$DeviceInfoToJson(DeviceInfo instance) =>
@@ -37,5 +37,5 @@ Map<String, dynamic> _$DeviceInfoToJson(DeviceInfo instance) =>
       'deviceBill': instance.deviceBill,
       'idCard': instance.idCard,
       'deviceImages': instance.deviceImages,
-      'signatureImage': instance.signatureImage,
+      'customerSignature': instance.customerSignature,
     };

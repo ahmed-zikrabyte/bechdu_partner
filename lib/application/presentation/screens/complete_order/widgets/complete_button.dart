@@ -83,7 +83,7 @@ class CompleteSubmitButton extends StatelessWidget {
                             storage: getOptionValue('Storage'),
                             color: getOptionValue('Color'),
                             imeiImage: state.imeiImage?.base64Image ?? '',
-                            signatureImage: state.signatureImage!.base64Image,
+                            customerSignature: state.signatureImage!.base64Image,
                             deviceBill: state.deviceBill!.base64Image,
                             idCard: state.idCard!
                                 .map((e) => e.base64Image)

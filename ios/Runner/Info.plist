@@ -64,5 +64,11 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>This app requires access to the camera to take photos of devices for order completion and verification.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app requires access to the photo library to upload device and identification images.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app requires access to the microphone if you record videos during the verification process.</string>
 </dict>
 </plist>
