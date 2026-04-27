@@ -30,6 +30,7 @@ class _AddCoinsDialogeState extends State<AddCoinsDialoge> {
   String errorMsg = '';
   @override
   void initState() {
+    context.read<TranscationBloc>().add(const TranscationEvent.reset());
     context.read<TranscationBloc>().priceController.text = '';
     context.read<TranscationBloc>().add(const TranscationEvent.calculateAmount(
         coins: 0, coinValue: 0, gstValue: 0));
@@ -187,44 +188,48 @@ class _AddCoinsDialogeState extends State<AddCoinsDialoge> {
                                       Routes.bottomBar, (route) => false);
                                   Navigator.pushNamed(
                                       context, Routes.transcationPage);
+                                  return;
                                 }
-                                if (state.payuResponse != null) {
+                                if (state.manuelTranscationDone) {
+                                  Navigator.pushNamedAndRemoveUntil(context,
+                                      Routes.bottomBar, (route) => false);
+                                  Navigator.pushNamed(
+                                      context, Routes.transcationPage);
+                                  return;
+                                }
+                                if (state.payuResponse != null && !state.payuLoading) {
                                   final data = state.payuResponse!.toJson();
                                   final int coins = int.tryParse(context
                                           .read<TranscationBloc>()
                                           .priceController
                                           .text) ??
                                       0;
+                                  if (coins == 0) return;
+
                                   final double basePrice =
                                       coins * (point.coinValue ?? 0);
                                   final double gstAmount =
                                       basePrice * ((point.gst ?? 0) / 100);
 
+                                  // Fill missing data for PayU SDK/WebView
                                   data['amount'] =
                                       state.amountPayable!.toStringAsFixed(2);
                                   data['email'] =
-                                      partner.partnerProfile?.email ?? '';
+                                      partner.partnerProfile?.email ?? 'info@bechdu.in';
                                   data['phone'] =
                                       partner.partnerProfile?.phone ?? '';
                                   data['firstname'] =
                                       partner.partnerProfile?.name ?? 'Partner';
                                   data['productinfo'] =
-                                      'Purchase of ${context.read<TranscationBloc>().priceController.text} coins';
+                                      'Purchase of $coins coins';
                                   data['udf1'] =
                                       partner.partnerProfile?.phone ?? '';
-                                  data['udf2'] = context
-                                      .read<TranscationBloc>()
-                                      .priceController
-                                      .text;
-                                  data['udf3'] = (double.parse(context
-                                              .read<TranscationBloc>()
-                                              .priceController
-                                              .text) *
-                                          (point.coinValue ?? 0))
-                                      .toString();
+                                  data['udf2'] = coins.toString();
+                                  data['udf3'] = basePrice.toStringAsFixed(2);
                                   data['udf4'] = (point.gst ?? 0).toString();
+                                  data['udf5'] = '';
 
-                                  // Calculate hash on client side to ensure it matches the data being sent
+                                  // Ensure hash is calculated for the exact params being sent
                                   data['hash'] =
                                       PayUGateway.calculateInitiationHash(
                                     key: data['key'] ?? payUMerchantKey,
@@ -237,7 +242,7 @@ class _AddCoinsDialogeState extends State<AddCoinsDialoge> {
                                     udf2: data['udf2'],
                                     udf3: data['udf3'],
                                     udf4: data['udf4'],
-                                    udf5: '',
+                                    udf5: data['udf5'],
                                     salt: payUSalt,
                                   );
 
@@ -245,16 +250,19 @@ class _AddCoinsDialogeState extends State<AddCoinsDialoge> {
                                       .makePayment(payuData: data)
                                       .then((res) {
                                     if (res != null) {
-                                      if (res['success'] == true ||
-                                          res['type'] == 'success' ||
-                                          res['type'] == 'webviewCallback') {
+                                      final type = res['type'];
+                                      final isSuccess = type == 'success' || 
+                                          (type == 'webviewCallback' && res['success'] == true);
+
+                                      if (isSuccess) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(const SnackBar(
                                           content: Text('Payment Successful'),
                                           backgroundColor: Colors.green,
                                           behavior: SnackBarBehavior.floating,
                                         ));
-                                        if (res['type'] == 'webviewCallback') {
+                                        
+                                        if (type == 'webviewCallback') {
                                           context.read<TranscationBloc>().add(
                                               const TranscationEvent
                                                   .getCreditedTranscations(
@@ -268,6 +276,7 @@ class _AddCoinsDialogeState extends State<AddCoinsDialoge> {
                                           return;
                                         }
 
+                                        // Native SDK verification
                                         final verifyModel = EpayModel(
                                             coins: coins,
                                             price: basePrice,
@@ -275,15 +284,15 @@ class _AddCoinsDialogeState extends State<AddCoinsDialoge> {
                                             totalPrice: basePrice + gstAmount,
                                             gstPercentage: point.gst,
                                             action: "verify",
-                                            payuResponse:
-                                                res['response'] ?? res);
+                                            payuResponse: res['response'] ?? res);
+                                            
                                         context.read<TranscationBloc>().add(
                                             TranscationEvent.makeEpaymetns(
                                                 epayModel: verifyModel));
-                                      } else {
+                                      } else if (type != 'cancel') {
                                         ScaffoldMessenger.of(context)
-                                            .showSnackBar(const SnackBar(
-                                          content: Text('Payment Failed'),
+                                            .showSnackBar(SnackBar(
+                                          content: Text(res['message'] ?? 'Payment Failed'),
                                           backgroundColor: Colors.red,
                                           behavior: SnackBarBehavior.floating,
                                         ));

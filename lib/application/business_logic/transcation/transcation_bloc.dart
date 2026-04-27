@@ -57,6 +57,7 @@ class TranscationBloc extends Bloc<TranscationEvent, TranscationState> {
         hasError: false,
         paymentLoading: true,
         paymetnDone: false,
+        payuResponse: null,
         downloaded: false));
     final phone = await SharedPref.getPhone();
     final result = await transcationsRepo.makeEpayment(
@@ -113,6 +114,7 @@ class TranscationBloc extends Bloc<TranscationEvent, TranscationState> {
         manuelTranscationDone: false,
         gstError: false,
         hasError: false,
+        payuResponse: null,
         message: null));
     final coins = int.parse(priceController.text.trim());
     final persentage = (coins * event.coinValue) * (event.gst / 100);
