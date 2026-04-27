@@ -61,7 +61,8 @@ class DeviceImagesSession extends StatelessWidget {
                         child: ListView.separated(
                           scrollDirection: Axis.horizontal,
                           separatorBuilder: (_, __) => kWidth20,
-                          itemCount:state.deviceImages!.length + 1, // add button + all images
+                          itemCount: state.deviceImages!.length +
+                              1, // add button + all images
                           itemBuilder: (context, index) {
                             // 📸 Add button always at index 0
                             if (index == 0) {
@@ -92,7 +93,7 @@ class DeviceImagesSession extends StatelessWidget {
                                       MaterialPageRoute(
                                         builder: (context) =>
                                             ScreenSlidablePhotoGallery(
-                                          images:state. deviceImages!
+                                          images: state.deviceImages!
                                               .map((e) => e.base64Image)
                                               .toList(),
                                           initialIndex: actualIndex,
@@ -100,7 +101,8 @@ class DeviceImagesSession extends StatelessWidget {
                                       ),
                                     ),
                                     child: Image.file(
-                                     state.deviceImages![actualIndex].fileImage,
+                                      state
+                                          .deviceImages![actualIndex].fileImage,
                                       fit: BoxFit.cover,
                                     ),
                                   ),

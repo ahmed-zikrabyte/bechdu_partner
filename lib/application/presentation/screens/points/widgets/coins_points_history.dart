@@ -58,6 +58,9 @@ class CoinsPointsHistory extends StatelessWidget {
                       onRefresh: () async {
                         context.read<OrdersBloc>().add(
                             const OrdersEvent.getPartnerOrders(call: true));
+                        context
+                            .read<PickupPartnerBloc>()
+                            .add(const PickupPartnerEvent.getPartnerProfile());
                       },
                       child: ListView.builder(
                         itemCount: state.partnerOrders?.length ?? 0,

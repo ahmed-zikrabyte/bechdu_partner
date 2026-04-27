@@ -95,6 +95,53 @@ PODS:
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
+  - payu_checkoutpro_flutter (1.2.0):
+    - Flutter
+    - PayUIndia-CheckoutPro (~> 9.3)
+  - PayUIndia-Analytics (4.0.2):
+    - PayUIndia-NetworkReachability (~> 2.1)
+  - PayUIndia-AssetLibrary (4.0.1)
+  - PayUIndia-CardScanner (2.1.0)
+  - PayUIndia-CheckoutPro (9.3.1):
+    - PayUIndia-AssetLibrary (~> 4.0)
+    - PayUIndia-CardScanner (~> 2.1)
+    - PayUIndia-CheckoutProBase (~> 9.3)
+    - PayUIndia-CommonUI (~> 2.3)
+    - PayUIndia-CrashReporter (~> 4.0)
+    - PayUIndia-Custom-Browser (~> 11.3)
+    - PayUIndia-NativeOtpAssist (~> 5.0)
+    - PayUIndia-NetworkReachability (~> 2.0)
+    - PayUIndia-PayUParams (~> 7.2)
+    - PayUIndia-PG-SDK (~> 12.2)
+    - PayUIndia-UPICore (~> 11.2)
+  - PayUIndia-CheckoutProBase (9.3.0):
+    - PayUIndia-PayUParams (~> 7.2)
+    - PayUIndia-PG-SDK (~> 12.2)
+  - PayUIndia-CommonUI (2.3.3):
+    - PayUIndia-Analytics (~> 4.0)
+    - PayUIndia-CrashReporter (~> 4.0)
+  - PayUIndia-CrashReporter (4.0.3)
+  - PayUIndia-Custom-Browser (11.3.0):
+    - PayUIndia-CommonUI (~> 2.3)
+  - PayUIndia-Logger (5.0.1)
+  - PayUIndia-NativeOtpAssist (5.0.1):
+    - PayUIndia-Analytics (~> 4.0)
+    - PayUIndia-CommonUI (~> 2.3)
+    - PayUIndia-CrashReporter (~> 4.0)
+    - PayUIndia-NetworkReachability (~> 2.1)
+    - PayUIndia-PayUParams (~> 7.0)
+  - PayUIndia-Networking (5.0.1):
+    - PayUIndia-Logger (~> 5.0)
+  - PayUIndia-NetworkReachability (2.1.1)
+  - PayUIndia-PayUParams (7.2.0)
+  - PayUIndia-PG-SDK (12.2.1):
+    - PayUIndia-CrashReporter (~> 4.0)
+    - PayUIndia-NetworkReachability (~> 2.1)
+    - PayUIndia-PayUParams (~> 7.2)
+  - PayUIndia-UPICore (11.2.1):
+    - PayUIndia-CommonUI (~> 2.2)
+    - PayUIndia-Networking (~> 5.0)
+    - PayUIndia-PayUParams (~> 7.2)
   - permission_handler_apple (9.3.0):
     - Flutter
   - PromisesObjC (2.4.0)
@@ -124,6 +171,9 @@ PODS:
     - Flutter
   - url_launcher_ios (0.0.1):
     - Flutter
+  - webview_flutter_wkwebview (0.0.1):
+    - Flutter
+    - FlutterMacOS
 
 DEPENDENCIES:
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
@@ -135,6 +185,7 @@ DEPENDENCIES:
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
+  - payu_checkoutpro_flutter (from `.symlinks/plugins/payu_checkoutpro_flutter/ios`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - razorpay_flutter (from `.symlinks/plugins/razorpay_flutter/ios`)
   - secure_application (from `.symlinks/plugins/secure_application/ios`)
@@ -143,6 +194,7 @@ DEPENDENCIES:
   - sqflite_darwin (from `.symlinks/plugins/sqflite_darwin/darwin`)
   - syncfusion_flutter_pdfviewer (from `.symlinks/plugins/syncfusion_flutter_pdfviewer/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
+  - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/darwin`)
 
 SPEC REPOS:
   trunk:
@@ -156,6 +208,21 @@ SPEC REPOS:
     - libwebp
     - Mantle
     - nanopb
+    - PayUIndia-Analytics
+    - PayUIndia-AssetLibrary
+    - PayUIndia-CardScanner
+    - PayUIndia-CheckoutPro
+    - PayUIndia-CheckoutProBase
+    - PayUIndia-CommonUI
+    - PayUIndia-CrashReporter
+    - PayUIndia-Custom-Browser
+    - PayUIndia-Logger
+    - PayUIndia-NativeOtpAssist
+    - PayUIndia-Networking
+    - PayUIndia-NetworkReachability
+    - PayUIndia-PayUParams
+    - PayUIndia-PG-SDK
+    - PayUIndia-UPICore
     - PromisesObjC
     - razorpay-core-pod
     - razorpay-pod
@@ -181,6 +248,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/image_picker_ios/ios"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
+  payu_checkoutpro_flutter:
+    :path: ".symlinks/plugins/payu_checkoutpro_flutter/ios"
   permission_handler_apple:
     :path: ".symlinks/plugins/permission_handler_apple/ios"
   razorpay_flutter:
@@ -197,6 +266,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/syncfusion_flutter_pdfviewer/ios"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
+  webview_flutter_wkwebview:
+    :path: ".symlinks/plugins/webview_flutter_wkwebview/darwin"
 
 SPEC CHECKSUMS:
   device_info_plus: 21fcca2080fbcd348be798aa36c3e5ed849eefbe
@@ -218,6 +289,22 @@ SPEC CHECKSUMS:
   Mantle: c5aa8794a29a022dfbbfc9799af95f477a69b62d
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
+  payu_checkoutpro_flutter: 912291894ec1693419c6e4a8a1ed9bb64b410022
+  PayUIndia-Analytics: 90a4c1a9d3f7a79422a4f4b0c3d9f5a8362b89fb
+  PayUIndia-AssetLibrary: e40d7697c37aea55f184e29564e2f8b63a63b472
+  PayUIndia-CardScanner: d6d024645e7fab58326e0d00b22ed42ca0ad5dc1
+  PayUIndia-CheckoutPro: c50102a41ff8c09ee42ed5b6065eeb3cc17d0846
+  PayUIndia-CheckoutProBase: 5284b07b2d76abc80b6c9a9188351ac75a0dc76a
+  PayUIndia-CommonUI: d765a201b3f4d274ccff56a829eb61ededc826f7
+  PayUIndia-CrashReporter: f3dc6fe34a4f26d31107e508c4a9b17902c36b83
+  PayUIndia-Custom-Browser: cea86601cfea2f1878e2896d37c8ab31215adb45
+  PayUIndia-Logger: 50866e18a275b0726ed59afaea67b6529ab42774
+  PayUIndia-NativeOtpAssist: 3c8c60c9e1b7424f9befc6cb2e29bd0fb115bb5d
+  PayUIndia-Networking: 0709588fd96b6b42c1398d07471cf87ef2c0db71
+  PayUIndia-NetworkReachability: 581c04b9ea3a8aaa78faef179ad819759942f381
+  PayUIndia-PayUParams: 3a3ad19fc619eafd0b4b4c6192bc243aee15dd5e
+  PayUIndia-PG-SDK: 9a2b31c685585cb0def024ad7d67aff55a873420
+  PayUIndia-UPICore: 77aba52d103c02cb43e02bd8ae96aff45a832124
   permission_handler_apple: 4ed2196e43d0651e8ff7ca3483a069d469701f2d
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   razorpay-core-pod: 6da5fb4ed280279d665507fdb50e213d793a5fe2
@@ -231,6 +318,7 @@ SPEC CHECKSUMS:
   sqflite_darwin: 20b2a3a3b70e43edae938624ce550a3cbf66a3d0
   syncfusion_flutter_pdfviewer: 90dc48305d2e33d4aa20681d1e98ddeda891bc14
   url_launcher_ios: 694010445543906933d732453a59da0a173ae33d
+  webview_flutter_wkwebview: 8ebf4fded22593026f7dbff1fbff31ea98573c8d
 
 PODFILE CHECKSUM: 53a6aebc29ccee84c41f92f409fc20cd4ca011f1
 

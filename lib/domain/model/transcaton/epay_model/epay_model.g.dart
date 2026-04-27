@@ -13,6 +13,7 @@ EpayModel _$EpayModelFromJson(Map<String, dynamic> json) => EpayModel(
       gstPercentage: (json['gstPercentage'] as num?)?.toInt(),
       action: json['action'] as String?,
       paymentId: json['paymentId'] as String?,
+      totalPrice: (json['totalPrice'] as num?)?.toDouble(),
       payuResponse: json['payuResponse'] as Map<String, dynamic>?,
     );
 
@@ -23,5 +24,6 @@ Map<String, dynamic> _$EpayModelToJson(EpayModel instance) => <String, dynamic>{
       'gstPercentage': instance.gstPercentage,
       'action': instance.action,
       'paymentId': instance.paymentId,
+      'totalPrice': instance.totalPrice,
       'payuResponse': instance.payuResponse,
     };

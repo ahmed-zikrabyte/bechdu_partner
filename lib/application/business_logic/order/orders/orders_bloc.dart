@@ -363,6 +363,12 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
             completeOrderLoading: false,
             hasError: true,
             message: l.message)), (r) {
+      if (r.status == false) {
+        return emit(state.copyWith(
+            completeOrderLoading: false,
+            hasError: true,
+            message: r.message ?? 'Something went wrong'));
+      }
       emit(state.copyWith(
           completeOrderLoading: false,
           deviceBill: null,

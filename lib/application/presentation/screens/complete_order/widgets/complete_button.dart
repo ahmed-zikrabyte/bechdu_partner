@@ -22,14 +22,20 @@ class CompleteSubmitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<OrdersBloc, OrdersState>(
-      listenWhen: (previous, current) => current.orderCompleted,
+      listenWhen: (previous, current) =>
+          (current.orderCompleted != previous.orderCompleted) ||
+          (current.hasError != previous.hasError),
       listener: (context, state) {
         if (state.message != null) {
           showSnackBar(
-              context: context, message: state.message!, color: kGreenPrimary);
+              context: context,
+              message: state.message!,
+              color: state.orderCompleted ? kGreenPrimary : kRed);
         }
-        Navigator.pushNamedAndRemoveUntil(context,
-            partner ? Routes.bottomBar : Routes.homePage, (route) => false);
+        if (state.orderCompleted) {
+          Navigator.pushNamedAndRemoveUntil(context,
+              partner ? Routes.bottomBar : Routes.homePage, (route) => false);
+        }
       },
       builder: (context, state) {
         if (state.completeOrderLoading) {
@@ -83,7 +89,8 @@ class CompleteSubmitButton extends StatelessWidget {
                             storage: getOptionValue('Storage'),
                             color: getOptionValue('Color'),
                             imeiImage: state.imeiImage?.base64Image ?? '',
-                            customerSignature: state.signatureImage!.base64Image,
+                            customerSignature:
+                                state.signatureImage!.base64Image,
                             deviceBill: state.deviceBill!.base64Image,
                             idCard: state.idCard!
                                 .map((e) => e.base64Image)
