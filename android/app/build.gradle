@@ -1,6 +1,6 @@
 plugins {
     id 'com.android.application'
-    id "org.jetbrains.kotlin.android" version "2.1.0" // DO NOT add a version here
+    id "org.jetbrains.kotlin.android"
     id 'dev.flutter.flutter-gradle-plugin'
     id 'com.google.gms.google-services'
 }
@@ -83,7 +83,7 @@ flutter {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:2.1.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:2.2.0"
     implementation "com.google.android.material:material:1.10.0"
     implementation "com.razorpay:checkout:1.6.40"
     coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:2.1.5"

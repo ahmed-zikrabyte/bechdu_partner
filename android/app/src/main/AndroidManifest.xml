@@ -4,11 +4,30 @@
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+
+    <queries>
+        <package android:name="com.google.android.apps.nbu.paisa.inapp" />
+        <package android:name="com.phonepe.app" />
+        <package android:name="com.twitter.android" />
+        <package android:name="com.whatsapp" />
+        <package android:name="com.google.android.gm" />
+        <package android:name="com.freecharge.android" />
+        <package android:name="com.msf.kbank.mobile" />
+        <package android:name="in.org.npci.upiapp" />
+        <package android:name="com.snapwork.citrus" />
+        <package android:name="com.payu.testapp" />
+        <package android:name="com.paytm.app" />
+        <package android:name="com.google.android.apps.nbu.paisa.user" />
+        <package android:name="com.phonepe.app.preprod" />
+    </queries>
+
     <application
         android:label="Bechdu.in Partner"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon"
-        android:requestLegacyExternalStorage="true">
+        android:requestLegacyExternalStorage="true"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:label">
         <activity
             android:name=".MainActivity"
             android:exported="true"

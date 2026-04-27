@@ -31,6 +31,6 @@ class PointsBloc extends Bloc<PointsEvent, PointsState> {
     result.fold(
         (l) => null,
         (r) => emit(state.copyWith(
-            coinValue: r.coinValue != null ? int.parse(r.coinValue!) : null)));
+            coinValue: r.coinValue != null ? double.parse(r.coinValue!) : null)));
   }
 }

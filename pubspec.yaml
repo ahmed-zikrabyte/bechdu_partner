@@ -69,6 +69,9 @@ dependencies:
   signature: ^6.3.0
   cached_network_image: ^3.4.1
   freeze: ^1.0.0
+  payu_checkoutpro_flutter: ^1.4.3
+  webview_flutter: ^4.13.1
+  crypto: ^3.0.7
   # pdf_render_plus: ^1.4.16
   
 dev_dependencies:

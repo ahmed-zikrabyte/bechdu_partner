@@ -12,3 +12,16 @@
 -keep public class com.razorpay.** {*;}
 -keep class com.google.android.gms.wallet.** {*;}
 -dontwarn com.razorpay.**
+
+# PayU Proguard Rules
+-keep class com.payu.** { *; }
+-keep class com.payu.checkoutpro.** { *; }
+-dontwarn com.payu.**
+
+# Google Pay and Auth Rules (Missing classes detected by R8)
+-keep class com.google.android.apps.nbu.paisa.inapp.client.api.** { *; }
+-keep class com.google.android.gms.auth.api.credentials.** { *; }
+-dontwarn com.google.android.apps.nbu.paisa.inapp.client.api.**
+-dontwarn com.google.android.gms.auth.api.credentials.**
+-dontwarn com.google.android.gms.internal.**
+

@@ -12,6 +12,7 @@ import 'package:bechdu_partner/domain/model/transcaton/get_credited_transcations
 import 'package:bechdu_partner/domain/model/transcaton/invoice_response_model/invoice_response_model.dart';
 import 'package:bechdu_partner/domain/model/transcaton/manual_transcation_response_model/manual_transcation_response_model.dart';
 import 'package:bechdu_partner/domain/model/transcaton/manuel_transcation_model/manuel_transcation_model.dart';
+import 'package:bechdu_partner/domain/model/transcaton/payu_response_model/payu_response_model.dart';
 import 'package:bechdu_partner/domain/repository/service/transcations_repo.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -162,7 +163,7 @@ class TranscationService implements TranscationsRepo {
   Future<Either<Failure, SuccessResponseModel>> makeEpayment(
       {required String phone, required EpayModel epayModel}) async {
     try {
-      final response = await _apiService.put(
+      final response = await _apiService.post(
           ApiEndPoints.makeEpayment.replaceFirst('{phone}', phone),
           data: epayModel.toJson());
       log('makeEpayment success data=> ${response.data}');
@@ -179,6 +180,30 @@ class TranscationService implements TranscationsRepo {
       }
     } catch (e) {
       log('makeEpayment exception => $e');
+      return Left(Failure(message: errorMessage));
+    }
+  }
+  @override
+  Future<Either<Failure, PayUResponseModel>> initiateEpayment(
+      {required String phone, required EpayModel epayModel}) async {
+    try {
+      final response = await _apiService.post(
+          ApiEndPoints.makeEpayment.replaceFirst('{phone}', phone),
+          data: epayModel.toJson());
+      log('initiateEpayment success data=> ${response.data}');
+      return Right(PayUResponseModel.fromJson(response.data));
+    } on DioException catch (e) {
+      try {
+        log('initiateEpayment dio exception => $e');
+        log(e.response.toString());
+        ErrorResponseModel error =
+            ErrorResponseModel.fromJson(e.response?.data);
+        return Left(Failure(message: error.error ?? errorMessage));
+      } catch (e) {
+        return Left(Failure(message: errorMessage));
+      }
+    } catch (e) {
+      log('initiateEpayment exception => $e');
       return Left(Failure(message: errorMessage));
     }
   }

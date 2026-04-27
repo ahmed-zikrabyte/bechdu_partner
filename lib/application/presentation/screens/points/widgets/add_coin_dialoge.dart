@@ -6,8 +6,9 @@ import 'package:bechdu_partner/application/presentation/screens/points/widgets/a
 import 'package:bechdu_partner/application/presentation/utils/colors.dart';
 import 'package:bechdu_partner/application/presentation/utils/constant.dart';
 import 'package:bechdu_partner/application/presentation/utils/dialoge/dialoge.dart';
-import 'package:bechdu_partner/data/feature/razorpay.dart';
+import 'package:bechdu_partner/data/feature/payu_gateway.dart';
 import 'package:bechdu_partner/domain/model/transcaton/epay_model/epay_model.dart';
+import 'package:bechdu_partner/secret/secret_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -176,8 +177,120 @@ class _AddCoinsDialogeState extends State<AddCoinsDialoge> {
                                 TranscationState>(
                               listenWhen: (previous, current) =>
                                   current.gstError ||
-                                  current.manuelTranscationDone,
+                                  current.manuelTranscationDone ||
+                                  current.paymetnDone ||
+                                  (previous.payuResponse == null &&
+                                      current.payuResponse != null),
                               listener: (context, state) {
+                                if (state.paymetnDone) {
+                                  Navigator.pushNamedAndRemoveUntil(context,
+                                      Routes.bottomBar, (route) => false);
+                                  Navigator.pushNamed(
+                                      context, Routes.transcationPage);
+                                }
+                                if (state.payuResponse != null) {
+                                  final data = state.payuResponse!.toJson();
+                                  final int coins = int.tryParse(context
+                                          .read<TranscationBloc>()
+                                          .priceController
+                                          .text) ??
+                                      0;
+                                  final double basePrice =
+                                      coins * (point.coinValue ?? 0);
+                                  final double gstAmount =
+                                      basePrice * ((point.gst ?? 0) / 100);
+
+                                  data['amount'] =
+                                      state.amountPayable!.toStringAsFixed(2);
+                                  data['email'] =
+                                      partner.partnerProfile?.email ?? '';
+                                  data['phone'] =
+                                      partner.partnerProfile?.phone ?? '';
+                                  data['firstname'] =
+                                      partner.partnerProfile?.name ?? 'Partner';
+                                  data['productinfo'] =
+                                      'Purchase of ${context.read<TranscationBloc>().priceController.text} coins';
+                                  data['udf1'] =
+                                      partner.partnerProfile?.phone ?? '';
+                                  data['udf2'] = context
+                                      .read<TranscationBloc>()
+                                      .priceController
+                                      .text;
+                                  data['udf3'] = (double.parse(context
+                                              .read<TranscationBloc>()
+                                              .priceController
+                                              .text) *
+                                          (point.coinValue ?? 0))
+                                      .toString();
+                                  data['udf4'] = (point.gst ?? 0).toString();
+
+                                  // Calculate hash on client side to ensure it matches the data being sent
+                                  data['hash'] =
+                                      PayUGateway.calculateInitiationHash(
+                                    key: data['key'] ?? payUMerchantKey,
+                                    txnid: data['txnid'],
+                                    amount: data['amount'],
+                                    productInfo: data['productinfo'],
+                                    firstname: data['firstname'],
+                                    email: data['email'],
+                                    udf1: data['udf1'],
+                                    udf2: data['udf2'],
+                                    udf3: data['udf3'],
+                                    udf4: data['udf4'],
+                                    udf5: '',
+                                    salt: payUSalt,
+                                  );
+
+                                  PayUGateway(context)
+                                      .makePayment(payuData: data)
+                                      .then((res) {
+                                    if (res != null) {
+                                      if (res['success'] == true ||
+                                          res['type'] == 'success' ||
+                                          res['type'] == 'webviewCallback') {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(const SnackBar(
+                                          content: Text('Payment Successful'),
+                                          backgroundColor: Colors.green,
+                                          behavior: SnackBarBehavior.floating,
+                                        ));
+                                        if (res['type'] == 'webviewCallback') {
+                                          context.read<TranscationBloc>().add(
+                                              const TranscationEvent
+                                                  .getCreditedTranscations(
+                                                  call: true));
+                                          Navigator.pushNamedAndRemoveUntil(
+                                              context,
+                                              Routes.bottomBar,
+                                              (route) => false);
+                                          Navigator.pushNamed(
+                                              context, Routes.transcationPage);
+                                          return;
+                                        }
+
+                                        final verifyModel = EpayModel(
+                                            coins: coins,
+                                            price: basePrice,
+                                            gstPrice: gstAmount,
+                                            totalPrice: basePrice + gstAmount,
+                                            gstPercentage: point.gst,
+                                            action: "verify",
+                                            payuResponse:
+                                                res['response'] ?? res);
+                                        context.read<TranscationBloc>().add(
+                                            TranscationEvent.makeEpaymetns(
+                                                epayModel: verifyModel));
+                                      } else {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(const SnackBar(
+                                          content: Text('Payment Failed'),
+                                          backgroundColor: Colors.red,
+                                          behavior: SnackBarBehavior.floating,
+                                        ));
+                                      }
+                                    }
+                                  });
+                                }
                                 if (state.gstError) {
                                   context
                                       .read<PointsBloc>()
@@ -240,30 +353,27 @@ class _AddCoinsDialogeState extends State<AddCoinsDialoge> {
                                             .priceController
                                             .text
                                             .trim());
+                                        final basePrice =
+                                            coins * point.coinValue!;
+                                        final gstAmount =
+                                            basePrice * (point.gst! / 100);
+
                                         EpayModel epayModel = EpayModel(
+                                            action: "initiate",
                                             coins: coins,
                                             gstPercentage: point.gst,
-                                            gstPrice:
-                                                (coins * point.coinValue!) *
-                                                    (point.gst! / 100),
-                                            price: coins *
-                                                point.coinValue!
-                                                    .toDouble()
-                                                    .floorToDouble());
-                                        RazorpayGateway(context).makePayment(
-                                            epayModel: epayModel,
-                                            amount: state.amountPayable!,
-                                            description:
-                                                'payment for $coins coin',
-                                            email:
-                                                partner.partnerProfile?.email ??
-                                                    '',
-                                            phone:
-                                                partner.partnerProfile?.phone ??
-                                                    '');
+                                            gstPrice: gstAmount,
+                                            totalPrice: basePrice + gstAmount,
+                                            price: basePrice);
+
+                                        context.read<TranscationBloc>().add(
+                                            TranscationEvent
+                                                .initiatePayuPayment(
+                                                    epayModel: epayModel));
                                       }
                                     },
-                                    child: state.manuelTranscationsLoading
+                                    child: state.manuelTranscationsLoading ||
+                                            state.payuLoading
                                         ? const Center(
                                             child: CircularProgressIndicator(
                                                 color: kWhite),

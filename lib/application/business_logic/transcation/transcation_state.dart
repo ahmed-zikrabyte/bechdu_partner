@@ -22,6 +22,8 @@ abstract class TranscationState with _$TranscationState {
       String? invoice,
       ImageModel? reciept,
       double? amountPayable,
+      PayUResponseModel? payuResponse,
+      required bool payuLoading,
       required bool isCreditedTab}) = _Initial;
 
   factory TranscationState.initial() => const TranscationState(
@@ -36,6 +38,7 @@ abstract class TranscationState with _$TranscationState {
       downloaded: false,
       gstError: false,
       downloading: false,
+      payuLoading: false,
       creditedLoading: false,
       debitedLoading: false);
 }

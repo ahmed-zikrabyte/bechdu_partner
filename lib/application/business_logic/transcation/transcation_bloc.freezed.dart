@@ -69,6 +69,7 @@ extension TranscationEventPatterns on TranscationEvent {
     TResult Function(MakeManuelTranscationRequest value)?
         makeManuelTranscationRequest,
     TResult Function(MakeEpaymetns value)? makeEpaymetns,
+    TResult Function(InitiatePayuPayment value)? initiatePayuPayment,
     TResult Function(Reset value)? reset,
     required TResult orElse(),
   }) {
@@ -105,6 +106,8 @@ extension TranscationEventPatterns on TranscationEvent {
         return makeManuelTranscationRequest(_that);
       case MakeEpaymetns() when makeEpaymetns != null:
         return makeEpaymetns(_that);
+      case InitiatePayuPayment() when initiatePayuPayment != null:
+        return initiatePayuPayment(_that);
       case Reset() when reset != null:
         return reset(_that);
       case _:
@@ -148,6 +151,7 @@ extension TranscationEventPatterns on TranscationEvent {
     required TResult Function(MakeManuelTranscationRequest value)
         makeManuelTranscationRequest,
     required TResult Function(MakeEpaymetns value) makeEpaymetns,
+    required TResult Function(InitiatePayuPayment value) initiatePayuPayment,
     required TResult Function(Reset value) reset,
   }) {
     final _that = this;
@@ -180,6 +184,8 @@ extension TranscationEventPatterns on TranscationEvent {
         return makeManuelTranscationRequest(_that);
       case MakeEpaymetns():
         return makeEpaymetns(_that);
+      case InitiatePayuPayment():
+        return initiatePayuPayment(_that);
       case Reset():
         return reset(_that);
       case _:
@@ -219,6 +225,7 @@ extension TranscationEventPatterns on TranscationEvent {
     TResult? Function(MakeManuelTranscationRequest value)?
         makeManuelTranscationRequest,
     TResult? Function(MakeEpaymetns value)? makeEpaymetns,
+    TResult? Function(InitiatePayuPayment value)? initiatePayuPayment,
     TResult? Function(Reset value)? reset,
   }) {
     final _that = this;
@@ -254,6 +261,8 @@ extension TranscationEventPatterns on TranscationEvent {
         return makeManuelTranscationRequest(_that);
       case MakeEpaymetns() when makeEpaymetns != null:
         return makeEpaymetns(_that);
+      case InitiatePayuPayment() when initiatePayuPayment != null:
+        return initiatePayuPayment(_that);
       case Reset() when reset != null:
         return reset(_that);
       case _:
@@ -283,12 +292,14 @@ extension TranscationEventPatterns on TranscationEvent {
     TResult Function()? getDebitedTranscationsNextPage,
     TResult Function(String id)? downloadInvoice,
     TResult Function(String buffer)? makePdf,
-    TResult Function(int coins, int coinValue, int gstValue)? calculateAmount,
+    TResult Function(int coins, double coinValue, int gstValue)?
+        calculateAmount,
     TResult Function(bool call)? getManuelTransactions,
     TResult Function()? getManuelTransactionsNext,
     TResult Function(bool cam)? uploadReciept,
-    TResult Function(int gst, int coinValue)? makeManuelTranscationRequest,
+    TResult Function(int gst, double coinValue)? makeManuelTranscationRequest,
     TResult Function(EpayModel epayModel)? makeEpaymetns,
+    TResult Function(EpayModel epayModel)? initiatePayuPayment,
     TResult Function()? reset,
     required TResult orElse(),
   }) {
@@ -325,6 +336,8 @@ extension TranscationEventPatterns on TranscationEvent {
         return makeManuelTranscationRequest(_that.gst, _that.coinValue);
       case MakeEpaymetns() when makeEpaymetns != null:
         return makeEpaymetns(_that.epayModel);
+      case InitiatePayuPayment() when initiatePayuPayment != null:
+        return initiatePayuPayment(_that.epayModel);
       case Reset() when reset != null:
         return reset();
       case _:
@@ -355,14 +368,15 @@ extension TranscationEventPatterns on TranscationEvent {
     required TResult Function() getDebitedTranscationsNextPage,
     required TResult Function(String id) downloadInvoice,
     required TResult Function(String buffer) makePdf,
-    required TResult Function(int coins, int coinValue, int gstValue)
+    required TResult Function(int coins, double coinValue, int gstValue)
         calculateAmount,
     required TResult Function(bool call) getManuelTransactions,
     required TResult Function() getManuelTransactionsNext,
     required TResult Function(bool cam) uploadReciept,
-    required TResult Function(int gst, int coinValue)
+    required TResult Function(int gst, double coinValue)
         makeManuelTranscationRequest,
     required TResult Function(EpayModel epayModel) makeEpaymetns,
+    required TResult Function(EpayModel epayModel) initiatePayuPayment,
     required TResult Function() reset,
   }) {
     final _that = this;
@@ -395,6 +409,8 @@ extension TranscationEventPatterns on TranscationEvent {
         return makeManuelTranscationRequest(_that.gst, _that.coinValue);
       case MakeEpaymetns():
         return makeEpaymetns(_that.epayModel);
+      case InitiatePayuPayment():
+        return initiatePayuPayment(_that.epayModel);
       case Reset():
         return reset();
       case _:
@@ -424,12 +440,14 @@ extension TranscationEventPatterns on TranscationEvent {
     TResult? Function()? getDebitedTranscationsNextPage,
     TResult? Function(String id)? downloadInvoice,
     TResult? Function(String buffer)? makePdf,
-    TResult? Function(int coins, int coinValue, int gstValue)? calculateAmount,
+    TResult? Function(int coins, double coinValue, int gstValue)?
+        calculateAmount,
     TResult? Function(bool call)? getManuelTransactions,
     TResult? Function()? getManuelTransactionsNext,
     TResult? Function(bool cam)? uploadReciept,
-    TResult? Function(int gst, int coinValue)? makeManuelTranscationRequest,
+    TResult? Function(int gst, double coinValue)? makeManuelTranscationRequest,
     TResult? Function(EpayModel epayModel)? makeEpaymetns,
+    TResult? Function(EpayModel epayModel)? initiatePayuPayment,
     TResult? Function()? reset,
   }) {
     final _that = this;
@@ -465,6 +483,8 @@ extension TranscationEventPatterns on TranscationEvent {
         return makeManuelTranscationRequest(_that.gst, _that.coinValue);
       case MakeEpaymetns() when makeEpaymetns != null:
         return makeEpaymetns(_that.epayModel);
+      case InitiatePayuPayment() when initiatePayuPayment != null:
+        return initiatePayuPayment(_that.epayModel);
       case Reset() when reset != null:
         return reset();
       case _:
@@ -818,7 +838,7 @@ class CalculateAmount implements TranscationEvent {
       {required this.coins, required this.coinValue, required this.gstValue});
 
   final int coins;
-  final int coinValue;
+  final double coinValue;
   final int gstValue;
 
   /// Create a copy of TranscationEvent
@@ -856,7 +876,7 @@ abstract mixin class $CalculateAmountCopyWith<$Res>
           CalculateAmount value, $Res Function(CalculateAmount) _then) =
       _$CalculateAmountCopyWithImpl;
   @useResult
-  $Res call({int coins, int coinValue, int gstValue});
+  $Res call({int coins, double coinValue, int gstValue});
 }
 
 /// @nodoc
@@ -883,7 +903,7 @@ class _$CalculateAmountCopyWithImpl<$Res>
       coinValue: null == coinValue
           ? _self.coinValue
           : coinValue // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       gstValue: null == gstValue
           ? _self.gstValue
           : gstValue // ignore: cast_nullable_to_non_nullable
@@ -1049,7 +1069,7 @@ class MakeManuelTranscationRequest implements TranscationEvent {
       {required this.gst, required this.coinValue});
 
   final int gst;
-  final int coinValue;
+  final double coinValue;
 
   /// Create a copy of TranscationEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -1086,7 +1106,7 @@ abstract mixin class $MakeManuelTranscationRequestCopyWith<$Res>
           $Res Function(MakeManuelTranscationRequest) _then) =
       _$MakeManuelTranscationRequestCopyWithImpl;
   @useResult
-  $Res call({int gst, int coinValue});
+  $Res call({int gst, double coinValue});
 }
 
 /// @nodoc
@@ -1112,7 +1132,7 @@ class _$MakeManuelTranscationRequestCopyWithImpl<$Res>
       coinValue: null == coinValue
           ? _self.coinValue
           : coinValue // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
     ));
   }
 }
@@ -1184,6 +1204,71 @@ class _$MakeEpaymetnsCopyWithImpl<$Res>
 
 /// @nodoc
 
+class InitiatePayuPayment implements TranscationEvent {
+  const InitiatePayuPayment({required this.epayModel});
+
+  final EpayModel epayModel;
+
+  /// Create a copy of TranscationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $InitiatePayuPaymentCopyWith<InitiatePayuPayment> get copyWith =>
+      _$InitiatePayuPaymentCopyWithImpl<InitiatePayuPayment>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is InitiatePayuPayment &&
+            (identical(other.epayModel, epayModel) ||
+                other.epayModel == epayModel));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, epayModel);
+
+  @override
+  String toString() {
+    return 'TranscationEvent.initiatePayuPayment(epayModel: $epayModel)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $InitiatePayuPaymentCopyWith<$Res>
+    implements $TranscationEventCopyWith<$Res> {
+  factory $InitiatePayuPaymentCopyWith(
+          InitiatePayuPayment value, $Res Function(InitiatePayuPayment) _then) =
+      _$InitiatePayuPaymentCopyWithImpl;
+  @useResult
+  $Res call({EpayModel epayModel});
+}
+
+/// @nodoc
+class _$InitiatePayuPaymentCopyWithImpl<$Res>
+    implements $InitiatePayuPaymentCopyWith<$Res> {
+  _$InitiatePayuPaymentCopyWithImpl(this._self, this._then);
+
+  final InitiatePayuPayment _self;
+  final $Res Function(InitiatePayuPayment) _then;
+
+  /// Create a copy of TranscationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? epayModel = null,
+  }) {
+    return _then(InitiatePayuPayment(
+      epayModel: null == epayModel
+          ? _self.epayModel
+          : epayModel // ignore: cast_nullable_to_non_nullable
+              as EpayModel,
+    ));
+  }
+}
+
+/// @nodoc
+
 class Reset implements TranscationEvent {
   const Reset();
 
@@ -1223,6 +1308,8 @@ mixin _$TranscationState {
   String? get invoice;
   ImageModel? get reciept;
   double? get amountPayable;
+  PayUResponseModel? get payuResponse;
+  bool get payuLoading;
   bool get isCreditedTab;
 
   /// Create a copy of TranscationState
@@ -1274,6 +1361,10 @@ mixin _$TranscationState {
             (identical(other.reciept, reciept) || other.reciept == reciept) &&
             (identical(other.amountPayable, amountPayable) ||
                 other.amountPayable == amountPayable) &&
+            (identical(other.payuResponse, payuResponse) ||
+                other.payuResponse == payuResponse) &&
+            (identical(other.payuLoading, payuLoading) ||
+                other.payuLoading == payuLoading) &&
             (identical(other.isCreditedTab, isCreditedTab) ||
                 other.isCreditedTab == isCreditedTab));
   }
@@ -1300,12 +1391,14 @@ mixin _$TranscationState {
         invoice,
         reciept,
         amountPayable,
+        payuResponse,
+        payuLoading,
         isCreditedTab
       ]);
 
   @override
   String toString() {
-    return 'TranscationState(hasError: $hasError, isLoading: $isLoading, creditedLoading: $creditedLoading, manuelTranscationsLoading: $manuelTranscationsLoading, manuelTranscationDone: $manuelTranscationDone, debitedLoading: $debitedLoading, downloading: $downloading, downloaded: $downloaded, agreePolicys: $agreePolicys, gstError: $gstError, paymentLoading: $paymentLoading, paymetnDone: $paymetnDone, creditedTranscations: $creditedTranscations, debitedTranscations: $debitedTranscations, manuelTranscations: $manuelTranscations, message: $message, invoice: $invoice, reciept: $reciept, amountPayable: $amountPayable, isCreditedTab: $isCreditedTab)';
+    return 'TranscationState(hasError: $hasError, isLoading: $isLoading, creditedLoading: $creditedLoading, manuelTranscationsLoading: $manuelTranscationsLoading, manuelTranscationDone: $manuelTranscationDone, debitedLoading: $debitedLoading, downloading: $downloading, downloaded: $downloaded, agreePolicys: $agreePolicys, gstError: $gstError, paymentLoading: $paymentLoading, paymetnDone: $paymetnDone, creditedTranscations: $creditedTranscations, debitedTranscations: $debitedTranscations, manuelTranscations: $manuelTranscations, message: $message, invoice: $invoice, reciept: $reciept, amountPayable: $amountPayable, payuResponse: $payuResponse, payuLoading: $payuLoading, isCreditedTab: $isCreditedTab)';
   }
 }
 
@@ -1335,6 +1428,8 @@ abstract mixin class $TranscationStateCopyWith<$Res> {
       String? invoice,
       ImageModel? reciept,
       double? amountPayable,
+      PayUResponseModel? payuResponse,
+      bool payuLoading,
       bool isCreditedTab});
 }
 
@@ -1370,6 +1465,8 @@ class _$TranscationStateCopyWithImpl<$Res>
     Object? invoice = freezed,
     Object? reciept = freezed,
     Object? amountPayable = freezed,
+    Object? payuResponse = freezed,
+    Object? payuLoading = null,
     Object? isCreditedTab = null,
   }) {
     return _then(_self.copyWith(
@@ -1449,6 +1546,14 @@ class _$TranscationStateCopyWithImpl<$Res>
           ? _self.amountPayable
           : amountPayable // ignore: cast_nullable_to_non_nullable
               as double?,
+      payuResponse: freezed == payuResponse
+          ? _self.payuResponse
+          : payuResponse // ignore: cast_nullable_to_non_nullable
+              as PayUResponseModel?,
+      payuLoading: null == payuLoading
+          ? _self.payuLoading
+          : payuLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       isCreditedTab: null == isCreditedTab
           ? _self.isCreditedTab
           : isCreditedTab // ignore: cast_nullable_to_non_nullable
@@ -1570,6 +1675,8 @@ extension TranscationStatePatterns on TranscationState {
             String? invoice,
             ImageModel? reciept,
             double? amountPayable,
+            PayUResponseModel? payuResponse,
+            bool payuLoading,
             bool isCreditedTab)?
         $default, {
     required TResult orElse(),
@@ -1597,6 +1704,8 @@ extension TranscationStatePatterns on TranscationState {
             _that.invoice,
             _that.reciept,
             _that.amountPayable,
+            _that.payuResponse,
+            _that.payuLoading,
             _that.isCreditedTab);
       case _:
         return orElse();
@@ -1638,6 +1747,8 @@ extension TranscationStatePatterns on TranscationState {
             String? invoice,
             ImageModel? reciept,
             double? amountPayable,
+            PayUResponseModel? payuResponse,
+            bool payuLoading,
             bool isCreditedTab)
         $default,
   ) {
@@ -1664,6 +1775,8 @@ extension TranscationStatePatterns on TranscationState {
             _that.invoice,
             _that.reciept,
             _that.amountPayable,
+            _that.payuResponse,
+            _that.payuLoading,
             _that.isCreditedTab);
       case _:
         throw StateError('Unexpected subclass');
@@ -1704,6 +1817,8 @@ extension TranscationStatePatterns on TranscationState {
             String? invoice,
             ImageModel? reciept,
             double? amountPayable,
+            PayUResponseModel? payuResponse,
+            bool payuLoading,
             bool isCreditedTab)?
         $default,
   ) {
@@ -1730,6 +1845,8 @@ extension TranscationStatePatterns on TranscationState {
             _that.invoice,
             _that.reciept,
             _that.amountPayable,
+            _that.payuResponse,
+            _that.payuLoading,
             _that.isCreditedTab);
       case _:
         return null;
@@ -1760,6 +1877,8 @@ class _Initial implements TranscationState {
       this.invoice,
       this.reciept,
       this.amountPayable,
+      this.payuResponse,
+      required this.payuLoading,
       required this.isCreditedTab})
       : _creditedTranscations = creditedTranscations,
         _debitedTranscations = debitedTranscations,
@@ -1831,6 +1950,10 @@ class _Initial implements TranscationState {
   @override
   final double? amountPayable;
   @override
+  final PayUResponseModel? payuResponse;
+  @override
+  final bool payuLoading;
+  @override
   final bool isCreditedTab;
 
   /// Create a copy of TranscationState
@@ -1882,6 +2005,10 @@ class _Initial implements TranscationState {
             (identical(other.reciept, reciept) || other.reciept == reciept) &&
             (identical(other.amountPayable, amountPayable) ||
                 other.amountPayable == amountPayable) &&
+            (identical(other.payuResponse, payuResponse) ||
+                other.payuResponse == payuResponse) &&
+            (identical(other.payuLoading, payuLoading) ||
+                other.payuLoading == payuLoading) &&
             (identical(other.isCreditedTab, isCreditedTab) ||
                 other.isCreditedTab == isCreditedTab));
   }
@@ -1908,12 +2035,14 @@ class _Initial implements TranscationState {
         invoice,
         reciept,
         amountPayable,
+        payuResponse,
+        payuLoading,
         isCreditedTab
       ]);
 
   @override
   String toString() {
-    return 'TranscationState(hasError: $hasError, isLoading: $isLoading, creditedLoading: $creditedLoading, manuelTranscationsLoading: $manuelTranscationsLoading, manuelTranscationDone: $manuelTranscationDone, debitedLoading: $debitedLoading, downloading: $downloading, downloaded: $downloaded, agreePolicys: $agreePolicys, gstError: $gstError, paymentLoading: $paymentLoading, paymetnDone: $paymetnDone, creditedTranscations: $creditedTranscations, debitedTranscations: $debitedTranscations, manuelTranscations: $manuelTranscations, message: $message, invoice: $invoice, reciept: $reciept, amountPayable: $amountPayable, isCreditedTab: $isCreditedTab)';
+    return 'TranscationState(hasError: $hasError, isLoading: $isLoading, creditedLoading: $creditedLoading, manuelTranscationsLoading: $manuelTranscationsLoading, manuelTranscationDone: $manuelTranscationDone, debitedLoading: $debitedLoading, downloading: $downloading, downloaded: $downloaded, agreePolicys: $agreePolicys, gstError: $gstError, paymentLoading: $paymentLoading, paymetnDone: $paymetnDone, creditedTranscations: $creditedTranscations, debitedTranscations: $debitedTranscations, manuelTranscations: $manuelTranscations, message: $message, invoice: $invoice, reciept: $reciept, amountPayable: $amountPayable, payuResponse: $payuResponse, payuLoading: $payuLoading, isCreditedTab: $isCreditedTab)';
   }
 }
 
@@ -1944,6 +2073,8 @@ abstract mixin class _$InitialCopyWith<$Res>
       String? invoice,
       ImageModel? reciept,
       double? amountPayable,
+      PayUResponseModel? payuResponse,
+      bool payuLoading,
       bool isCreditedTab});
 }
 
@@ -1978,6 +2109,8 @@ class __$InitialCopyWithImpl<$Res> implements _$InitialCopyWith<$Res> {
     Object? invoice = freezed,
     Object? reciept = freezed,
     Object? amountPayable = freezed,
+    Object? payuResponse = freezed,
+    Object? payuLoading = null,
     Object? isCreditedTab = null,
   }) {
     return _then(_Initial(
@@ -2057,6 +2190,14 @@ class __$InitialCopyWithImpl<$Res> implements _$InitialCopyWith<$Res> {
           ? _self.amountPayable
           : amountPayable // ignore: cast_nullable_to_non_nullable
               as double?,
+      payuResponse: freezed == payuResponse
+          ? _self.payuResponse
+          : payuResponse // ignore: cast_nullable_to_non_nullable
+              as PayUResponseModel?,
+      payuLoading: null == payuLoading
+          ? _self.payuLoading
+          : payuLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       isCreditedTab: null == isCreditedTab
           ? _self.isCreditedTab
           : isCreditedTab // ignore: cast_nullable_to_non_nullable

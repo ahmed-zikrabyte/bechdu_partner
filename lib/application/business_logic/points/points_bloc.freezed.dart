@@ -374,7 +374,7 @@ mixin _$PointsState {
   bool get hasError;
   bool get isLoading;
   int? get gst;
-  int? get coinValue;
+  double? get coinValue;
   String? get message;
 
   /// Create a copy of PointsState
@@ -419,7 +419,7 @@ abstract mixin class $PointsStateCopyWith<$Res> {
       {bool hasError,
       bool isLoading,
       int? gst,
-      int? coinValue,
+      double? coinValue,
       String? message});
 }
 
@@ -457,7 +457,7 @@ class _$PointsStateCopyWithImpl<$Res> implements $PointsStateCopyWith<$Res> {
       coinValue: freezed == coinValue
           ? _self.coinValue
           : coinValue // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       message: freezed == message
           ? _self.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -559,7 +559,7 @@ extension PointsStatePatterns on PointsState {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(bool hasError, bool isLoading, int? gst, int? coinValue,
+    TResult Function(bool hasError, bool isLoading, int? gst, double? coinValue,
             String? message)?
         $default, {
     required TResult orElse(),
@@ -589,7 +589,7 @@ extension PointsStatePatterns on PointsState {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(bool hasError, bool isLoading, int? gst, int? coinValue,
+    TResult Function(bool hasError, bool isLoading, int? gst, double? coinValue,
             String? message)
         $default,
   ) {
@@ -617,8 +617,8 @@ extension PointsStatePatterns on PointsState {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(bool hasError, bool isLoading, int? gst, int? coinValue,
-            String? message)?
+    TResult? Function(bool hasError, bool isLoading, int? gst,
+            double? coinValue, String? message)?
         $default,
   ) {
     final _that = this;
@@ -649,7 +649,7 @@ class _Initial implements PointsState {
   @override
   final int? gst;
   @override
-  final int? coinValue;
+  final double? coinValue;
   @override
   final String? message;
 
@@ -697,7 +697,7 @@ abstract mixin class _$InitialCopyWith<$Res>
       {bool hasError,
       bool isLoading,
       int? gst,
-      int? coinValue,
+      double? coinValue,
       String? message});
 }
 
@@ -735,7 +735,7 @@ class __$InitialCopyWithImpl<$Res> implements _$InitialCopyWith<$Res> {
       coinValue: freezed == coinValue
           ? _self.coinValue
           : coinValue // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       message: freezed == message
           ? _self.message
           : message // ignore: cast_nullable_to_non_nullable

@@ -6,7 +6,7 @@ abstract class PointsState with _$PointsState {
     required bool hasError,
     required bool isLoading,
     int? gst,
-    int? coinValue,
+    double? coinValue,
     String? message,
   }) = _Initial;
 
