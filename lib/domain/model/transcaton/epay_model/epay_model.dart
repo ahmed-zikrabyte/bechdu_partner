@@ -12,6 +12,7 @@ class EpayModel {
   String? paymentId;
   double? totalPrice;
   Map<String, dynamic>? payuResponse;
+  String? source;
 
   EpayModel({
     this.coins,
@@ -22,6 +23,7 @@ class EpayModel {
     this.paymentId,
     this.totalPrice,
     this.payuResponse,
+    this.source,
   });
 
   factory EpayModel.fromJson(Map<String, dynamic> json) {
@@ -39,6 +41,7 @@ class EpayModel {
     String? paymentId,
     double? totalPrice,
     Map<String, dynamic>? payuResponse,
+    String? source,
   }) {
     return EpayModel(
       coins: coins ?? this.coins,
@@ -49,6 +52,7 @@ class EpayModel {
       paymentId: paymentId ?? this.paymentId,
       totalPrice: totalPrice ?? this.totalPrice,
       payuResponse: payuResponse ?? this.payuResponse,
+      source: source ?? this.source,
     );
   }
 }

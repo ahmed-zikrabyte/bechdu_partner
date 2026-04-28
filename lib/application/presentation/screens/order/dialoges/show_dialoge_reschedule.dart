@@ -84,36 +84,37 @@ class _ReshedulePopupState extends State<ReshedulePopup> {
                           items: state.dates,
                           onTap: (value) {
                             date = value ?? 'Date';
-                            List<String> timess = List.from(state.time);
-                            timeSlots = List.from(state.time);
+                            timeSlots = List.from(state.time ?? []);
                             if (date != 'Date') {
-                              final day = date.split(' ').first.length == 1
-                                  ? '0${date.split(' ').first}'
-                                  : date.split(' ').first;
-                              final toDay =
-                                  DateTime.now().day.toString().length == 1
-                                      ? "0${DateTime.now().day.toString()}"
-                                      : DateTime.now().day.toString();
-                              if (day == toDay) {
+                              final dayPart = date.split(' ').first;
+                              final selectedDay = dayPart.padLeft(2, '0');
+                              final today =
+                                  DateTime.now().day.toString().padLeft(2, '0');
+                              if (selectedDay == today) {
                                 DateTime currentTime = DateTime.now();
-                                List<String> remainingTimeSlots =
-                                    timess.where((timeSlot) {
-                                  List<String> times = timeSlot.split(" - ");
-                                  int startTime = int.parse(times.first
-                                      .substring(0, times.first.length - 2));
-                                  if (times.first
-                                          .substring(times.first.length - 2) ==
-                                      'PM') {
-                                    startTime += 12;
-                                  }
-                                  final timenow = currentTime.hour;
-                                  return startTime > timenow;
+                                timeSlots = timeSlots.where((timeSlot) {
+                                  // Handles "10:00 AM - 01:00 PM" or "10 AM - 1 PM"
+                                  String startTimePart = timeSlot
+                                      .split("-")
+                                      .first
+                                      .trim()
+                                      .toUpperCase();
+                                  bool isPM = startTimePart.endsWith('PM');
+                                  String hourString = startTimePart
+                                      .split(':')
+                                      .first
+                                      .replaceAll(RegExp(r'[^0-9]'), '');
+                                  int startHour = int.parse(hourString);
+                                  if (isPM && startHour < 12) startHour += 12;
+                                  if (!isPM && startHour == 12) startHour = 0;
+                                  return startHour > currentTime.hour;
                                 }).toList();
-                                timeSlots = remainingTimeSlots;
                               }
                             }
                             setState(() {
-                              dateError = value == 'Date';
+                              dateError = date == 'Date';
+                              time = 'Time';
+                              timeError = false;
                             });
                           },
                         ),

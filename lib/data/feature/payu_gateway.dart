@@ -7,7 +7,7 @@ import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:payu_checkoutpro_flutter/PayUConstantKeys.dart';
 import 'package:payu_checkoutpro_flutter/payu_checkoutpro_flutter.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+// import 'package:webview_flutter/webview_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PayUGateway {
@@ -16,15 +16,16 @@ class PayUGateway {
   final BuildContext context;
 
   /// Opens PayU payment.
-  /// 
+  ///
   /// Priority is given to Native SDK (CheckoutPro) if txnid is alphanumeric.
   Future<Map<String, dynamic>?> makePayment({
     required Map<String, dynamic> payuData,
   }) async {
     final txnid = (payuData['txnid'] ?? '').toString();
-    
+
     // SDK requirement: txnid must be strictly alphanumeric (no hyphens/underscores)
-    final isAlphaNum = txnid.isNotEmpty && RegExp(r'^[a-zA-Z0-9]+$').hasMatch(txnid);
+    final isAlphaNum =
+        txnid.isNotEmpty && RegExp(r'^[a-zA-Z0-9]+$').hasMatch(txnid);
 
     log('PayUGateway: txnid=$txnid, isAlphaNum=$isAlphaNum');
 
@@ -49,9 +50,10 @@ class PayUGateway {
 
     return await Navigator.of(context).push<Map<String, dynamic>?>(
       MaterialPageRoute(
-        builder: (_) => isAlphaNum
-            ? _PayUCheckoutProScreen(payuData: payuData)
-            : _PayUWebViewScreen(payuData: payuData),
+        builder: (_) => _PayUCheckoutProScreen(payuData: payuData),
+        // isAlphaNum
+        //     ? _PayUCheckoutProScreen(payuData: payuData)
+        //     : _PayUWebViewScreen(payuData: payuData),
       ),
     );
   }
@@ -106,7 +108,7 @@ class _PayUCheckoutProScreenState extends State<_PayUCheckoutProScreen>
 
   Future<void> _openCheckout() async {
     final payuData = widget.payuData;
-    
+
     // Environment: "0" for Production, "1" for Test
     final env = payUIsProduction ? "0" : "1";
     final surl = (payuData['surl'] ?? '').toString();
@@ -117,7 +119,7 @@ class _PayUCheckoutProScreenState extends State<_PayUCheckoutProScreen>
     final amount = (payuData['amount'] ?? '').toString();
     final firstName = (payuData['firstname'] ?? 'Partner').toString();
     final productInfo = (payuData['productinfo'] ?? 'Coin Purchase').toString();
-    
+
     // Transaction ID must be alphanumeric and <= 25 characters for some SDK versions
     final rawTxnId = (payuData['txnid'] ?? '').toString();
     final txnId = rawTxnId.length <= 25 ? rawTxnId : rawTxnId.substring(0, 25);
@@ -152,6 +154,7 @@ class _PayUCheckoutProScreenState extends State<_PayUCheckoutProScreen>
       PayUCheckoutProConfigKeys.merchantName: 'Bechdu',
       PayUCheckoutProConfigKeys.showExitConfirmationOnCheckoutScreen: true,
       PayUCheckoutProConfigKeys.showExitConfirmationOnPaymentScreen: true,
+      'showAfterPaymentPage': false,
     };
 
     try {
@@ -177,7 +180,9 @@ class _PayUCheckoutProScreenState extends State<_PayUCheckoutProScreen>
     final hashName = pick(PayUHashConstantsKeys.hashName, 'hashName');
     final hashString = pick(PayUHashConstantsKeys.hashString, 'hashString');
     final hashType = pick(PayUHashConstantsKeys.hashType, 'hashType');
-    final postSalt = (response[PayUHashConstantsKeys.postSalt] ?? response['postSalt'])?.toString();
+    final postSalt =
+        (response[PayUHashConstantsKeys.postSalt] ?? response['postSalt'])
+            ?.toString();
 
     String hash;
     if (hashType == 'V2') {
@@ -246,12 +251,13 @@ class _PayUCheckoutProScreenState extends State<_PayUCheckoutProScreen>
     if (response is! Map) return {'raw': response};
     final base = Map<String, dynamic>.from(response);
     final raw = base['payuResponse'];
-    
+
     if (raw is String && raw.trim().startsWith('{')) {
       try {
         return Map<String, dynamic>.from(jsonDecode(raw) as Map);
       } catch (_) {}
     }
+    if (raw is Map) return Map<String, dynamic>.from(raw);
     return base;
   }
 
@@ -262,6 +268,7 @@ class _PayUCheckoutProScreenState extends State<_PayUCheckoutProScreen>
   }
 }
 
+/*
 class _PayUWebViewScreen extends StatefulWidget {
   const _PayUWebViewScreen({required this.payuData});
 
@@ -390,7 +397,8 @@ class _PayUWebViewScreenState extends State<_PayUWebViewScreen> {
       onPopInvokedWithResult: (didPop, result) async {
         if (didPop) return;
         if (mounted) {
-          Navigator.of(context).pop({'type': 'cancel', 'message': 'User closed payment screen'});
+          Navigator.of(context)
+              .pop({'type': 'cancel', 'message': 'User closed payment screen'});
         }
       },
       child: Scaffold(
@@ -407,3 +415,4 @@ class _PayUWebViewScreenState extends State<_PayUWebViewScreen> {
     );
   }
 }
+*/

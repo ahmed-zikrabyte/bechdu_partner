@@ -19,6 +19,7 @@ import 'package:bechdu_partner/application/presentation/screens/transcations/tra
 import 'package:bechdu_partner/application/presentation/screens/qc_reports/qc_reports_screen.dart';
 import 'package:bechdu_partner/application/presentation/screens/qc_reports/qc_order_detail_screen.dart';
 import 'package:bechdu_partner/application/presentation/utils/pdf/pdf_preview.dart';
+import 'package:bechdu_partner/application/presentation/screens/points/payment_status_screen.dart';
 import 'package:bechdu_partner/domain/model/order/get_partner_order_response_model/order_detail.dart';
 import 'package:flutter/material.dart';
 
@@ -94,6 +95,15 @@ class RouteGenerator {
         return arguments is String
             ? MaterialPageRoute(
                 builder: (ctx) => ImagePreview(image: arguments))
+            : _errorScreen();
+      case Routes.paymentStatus:
+        return arguments is Map<String, dynamic>
+            ? MaterialPageRoute(
+                builder: (ctx) => PaymentStatusScreen(
+                      isSuccess: arguments['isSuccess'] ?? false,
+                      message: arguments['message'],
+                      txnId: arguments['txnId'],
+                    ))
             : _errorScreen();
       default:
         return _errorScreen();
