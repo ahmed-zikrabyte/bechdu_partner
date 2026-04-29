@@ -257,13 +257,6 @@ class CustomDropDown extends StatefulWidget {
 
 class _CustomDropDownState extends State<CustomDropDown> {
   @override
-  void initState() {
-    title = widget.title;
-    super.initState();
-  }
-
-  String title = '';
-  @override
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
         child: DropdownButton(
@@ -279,7 +272,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(title, style: textHeadSemiBold1),
+                  Text(widget.title, style: textHeadSemiBold1),
                   Icon(
                     widget.icon,
                     color: kBluePrimary,
@@ -290,9 +283,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
             items: widget.items.map<DropdownMenuItem<String>>(
               (String value) {
                 return DropdownMenuItem<String>(
-                  onTap: () => setState(() {
-                    title = value;
-                  }),
+                  onTap: () {},
                   value: value,
                   child: Text(
                     value,

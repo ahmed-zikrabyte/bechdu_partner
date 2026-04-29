@@ -6,6 +6,7 @@ import 'package:bechdu_partner/application/presentation/screens/points/widgets/a
 import 'package:bechdu_partner/application/presentation/utils/colors.dart';
 import 'package:bechdu_partner/application/presentation/utils/constant.dart';
 import 'package:bechdu_partner/application/presentation/utils/dialoge/dialoge.dart';
+import 'package:bechdu_partner/application/presentation/utils/snackbar/snack_show.dart';
 import 'package:bechdu_partner/data/feature/payu_gateway.dart';
 import 'package:bechdu_partner/domain/model/transcaton/epay_model/epay_model.dart';
 import 'package:bechdu_partner/secret/secret_keys.dart';
@@ -31,12 +32,12 @@ class _AddCoinsDialogeState extends State<AddCoinsDialoge> {
     context.read<TranscationBloc>().add(const TranscationEvent.reset());
     context.read<TranscationBloc>().priceController.text = '';
     context.read<TranscationBloc>().add(
-      const TranscationEvent.calculateAmount(
-        coins: 0,
-        coinValue: 0,
-        gstValue: 0,
-      ),
-    );
+          const TranscationEvent.calculateAmount(
+            coins: 0,
+            coinValue: 0,
+            gstValue: 0,
+          ),
+        );
 
     super.initState();
   }
@@ -82,9 +83,8 @@ class _AddCoinsDialogeState extends State<AddCoinsDialoge> {
                         return ColoredBox(
                           color: kWhite,
                           child: TextField(
-                            controller: context
-                                .read<TranscationBloc>()
-                                .priceController,
+                            controller:
+                                context.read<TranscationBloc>().priceController,
                             keyboardType: TextInputType.number,
                             onChanged: (value) {
                               int coins = 0;
@@ -100,12 +100,12 @@ class _AddCoinsDialogeState extends State<AddCoinsDialoge> {
                                 e;
                               }
                               context.read<TranscationBloc>().add(
-                                TranscationEvent.calculateAmount(
-                                  coinValue: state.coinValue ?? 0,
-                                  gstValue: state.gst ?? 0,
-                                  coins: coins,
-                                ),
-                              );
+                                    TranscationEvent.calculateAmount(
+                                      coinValue: state.coinValue ?? 0,
+                                      gstValue: state.gst ?? 0,
+                                      coins: coins,
+                                    ),
+                                  );
                             },
                             cursorColor: kBluePrimary,
                             style: textHeadBoldBig,
@@ -183,10 +183,8 @@ class _AddCoinsDialogeState extends State<AddCoinsDialoge> {
                       builder: (context, partner) {
                         return BlocBuilder<PointsBloc, PointsState>(
                           builder: (context, point) {
-                            return BlocConsumer<
-                              TranscationBloc,
-                              TranscationState
-                            >(
+                            return BlocConsumer<TranscationBloc,
+                                TranscationState>(
                               listenWhen: (previous, current) =>
                                   current.gstError ||
                                   current.manuelTranscationDone ||
@@ -209,8 +207,7 @@ class _AddCoinsDialogeState extends State<AddCoinsDialoge> {
                                 if (state.payuResponse != null &&
                                     !state.payuLoading) {
                                   final data = state.payuResponse!.toJson();
-                                  final int coins =
-                                      int.tryParse(
+                                  final int coins = int.tryParse(
                                         context
                                             .read<TranscationBloc>()
                                             .priceController
@@ -225,11 +222,11 @@ class _AddCoinsDialogeState extends State<AddCoinsDialoge> {
                                       basePrice * ((point.gst ?? 0) / 100);
 
                                   // Fill missing data for PayU SDK/WebView
-                                  data['amount'] = state.amountPayable!
-                                      .toStringAsFixed(2);
+                                  data['amount'] =
+                                      state.amountPayable!.toStringAsFixed(2);
                                   data['email'] =
                                       partner.partnerProfile?.email ??
-                                      'info@bechdu.in';
+                                          'info@bechdu.in';
                                   data['phone'] =
                                       partner.partnerProfile?.phone ?? '';
                                   data['firstname'] =
@@ -246,27 +243,26 @@ class _AddCoinsDialogeState extends State<AddCoinsDialoge> {
                                   // Ensure hash is calculated for the exact params being sent
                                   data['hash'] =
                                       PayUGateway.calculateInitiationHash(
-                                        key: data['key'] ?? payUMerchantKey,
-                                        txnid: data['txnid'],
-                                        amount: data['amount'],
-                                        productInfo: data['productinfo'],
-                                        firstname: data['firstname'],
-                                        email: data['email'],
-                                        udf1: data['udf1'],
-                                        udf2: data['udf2'],
-                                        udf3: data['udf3'],
-                                        udf4: data['udf4'],
-                                        udf5: data['udf5'],
-                                        salt: payUSalt,
-                                      );
+                                    key: data['key'] ?? payUMerchantKey,
+                                    txnid: data['txnid'],
+                                    amount: data['amount'],
+                                    productInfo: data['productinfo'],
+                                    firstname: data['firstname'],
+                                    email: data['email'],
+                                    udf1: data['udf1'],
+                                    udf2: data['udf2'],
+                                    udf3: data['udf3'],
+                                    udf4: data['udf4'],
+                                    udf5: data['udf5'],
+                                    salt: payUSalt,
+                                  );
 
                                   PayUGateway(
                                     context,
                                   ).makePayment(payuData: data).then((res) {
                                     if (res != null) {
                                       final type = res['type'];
-                                      final isSuccess =
-                                          type == 'success' ||
+                                      final isSuccess = type == 'success' ||
                                           (type == 'webviewCallback' &&
                                               res['success'] == true);
 
@@ -280,15 +276,21 @@ class _AddCoinsDialogeState extends State<AddCoinsDialoge> {
                                           totalPrice: basePrice + gstAmount,
                                           gstPercentage: point.gst,
                                           action: "verify",
+                                          paymentId: (res['response']
+                                                      ?['mihpayid'] ??
+                                                  res['response']?['result']
+                                                      ?['mihpayid'] ??
+                                                  '')
+                                              .toString(),
                                           payuResponse: res['response'] ?? res,
                                           source: "Mobile",
                                         );
 
                                         context.read<TranscationBloc>().add(
-                                          TranscationEvent.makeEpaymetns(
-                                            epayModel: verifyModel,
-                                          ),
-                                        );
+                                              TranscationEvent.makeEpaymetns(
+                                                epayModel: verifyModel,
+                                              ),
+                                            );
 
                                         Navigator.pushReplacementNamed(
                                           context,
@@ -299,28 +301,49 @@ class _AddCoinsDialogeState extends State<AddCoinsDialoge> {
                                             'txnId': data['txnid'],
                                           },
                                         );
-                                      } else if (type != 'cancel') {
-                                        Navigator.pushReplacementNamed(
-                                          context,
-                                          Routes.paymentStatus,
-                                          arguments: {
-                                            'isSuccess': false,
-                                            'message':
-                                                res['message'] ??
-                                                'Payment Failed',
-                                          },
+                                      } else {
+                                        String failMessage = 'Payment Failed';
+                                        if (type == 'cancel') {
+                                          failMessage =
+                                              'Payment Cancelled by User';
+                                        } else if (res['message'] != null) {
+                                          failMessage =
+                                              res['message'].toString();
+                                        } else if (res['response'] is Map &&
+                                            res['response']['error_Message'] !=
+                                                null) {
+                                          failMessage = res['response']
+                                                  ['error_Message']
+                                              .toString();
+                                        }
+
+                                        showSnackBar(
+                                          context: context,
+                                          message: failMessage,
+                                          color: kRed,
                                         );
+
+                                        if (type != 'cancel') {
+                                          Navigator.pushReplacementNamed(
+                                            context,
+                                            Routes.paymentStatus,
+                                            arguments: {
+                                              'isSuccess': false,
+                                              'message': failMessage,
+                                            },
+                                          );
+                                        }
                                       }
                                     }
                                   });
                                 }
                                 if (state.gstError) {
                                   context.read<PointsBloc>().add(
-                                    const PointsEvent.getGst(),
-                                  );
+                                        const PointsEvent.getGst(),
+                                      );
                                   context.read<PointsBloc>().add(
-                                    const PointsEvent.getCoinValue(),
-                                  );
+                                        const PointsEvent.getCoinValue(),
+                                      );
                                 }
                                 if (state.manuelTranscationDone) {
                                   Navigator.pushNamedAndRemoveUntil(
@@ -365,11 +388,12 @@ class _AddCoinsDialogeState extends State<AddCoinsDialoge> {
                                           state.amountPayable != 0.0 &&
                                           paymentMethod == PaymentMethod.cash) {
                                         context.read<TranscationBloc>().add(
-                                          TranscationEvent.makeManuelTranscationRequest(
-                                            gst: point.gst ?? 0,
-                                            coinValue: point.coinValue ?? 0,
-                                          ),
-                                        );
+                                              TranscationEvent
+                                                  .makeManuelTranscationRequest(
+                                                gst: point.gst ?? 0,
+                                                coinValue: point.coinValue ?? 0,
+                                              ),
+                                            );
                                       } else if (state.agreePolicys &&
                                           state.amountPayable != null &&
                                           state.amountPayable != 0.0 &&
@@ -398,14 +422,14 @@ class _AddCoinsDialogeState extends State<AddCoinsDialoge> {
                                         );
 
                                         context.read<TranscationBloc>().add(
-                                          TranscationEvent.initiatePayuPayment(
-                                            epayModel: epayModel,
-                                          ),
-                                        );
+                                              TranscationEvent
+                                                  .initiatePayuPayment(
+                                                epayModel: epayModel,
+                                              ),
+                                            );
                                       }
                                     },
-                                    child:
-                                        state.manuelTranscationsLoading ||
+                                    child: state.manuelTranscationsLoading ||
                                             state.payuLoading
                                         ? const Center(
                                             child: CircularProgressIndicator(
@@ -419,19 +443,19 @@ class _AddCoinsDialogeState extends State<AddCoinsDialoge> {
                                               child: Padding(
                                                 padding:
                                                     const EdgeInsets.symmetric(
-                                                      horizontal: 30,
-                                                      vertical: 10,
-                                                    ),
+                                                  horizontal: 30,
+                                                  vertical: 10,
+                                                ),
                                                 child: Text(
                                                   state.amountPayable == null ||
                                                           state.amountPayable ==
                                                               0.0
                                                       ? 'Add Coins'
                                                       : paymentMethod ==
-                                                            PaymentMethod
-                                                                .epayment
-                                                      ? 'Pay ₹${state.amountPayable}'
-                                                      : 'Proceed\n₹${state.amountPayable}',
+                                                              PaymentMethod
+                                                                  .epayment
+                                                          ? 'Pay ₹${state.amountPayable}'
+                                                          : 'Proceed\n₹${state.amountPayable}',
                                                   style: textHeadBoldBig,
                                                 ),
                                               ),
@@ -471,13 +495,13 @@ class CustomTextFileldPaymnet extends StatelessWidget {
           cancelButtonText: 'Gallery',
           onCancelTap: () {
             context.read<TranscationBloc>().add(
-              const TranscationEvent.uploadReciept(cam: false),
-            );
+                  const TranscationEvent.uploadReciept(cam: false),
+                );
           },
           onTap: () {
             context.read<TranscationBloc>().add(
-              const TranscationEvent.uploadReciept(cam: true),
-            );
+                  const TranscationEvent.uploadReciept(cam: true),
+                );
           },
         );
       },
@@ -525,8 +549,8 @@ class UserAgrementPaymnetChekBox extends StatelessWidget {
               value: state.agreePolicys,
               onChanged: (value) {
                 context.read<TranscationBloc>().add(
-                  const TranscationEvent.agreePolicy(),
-                );
+                      const TranscationEvent.agreePolicy(),
+                    );
               },
               checkColor: kBluePrimary,
               activeColor: kWhite,

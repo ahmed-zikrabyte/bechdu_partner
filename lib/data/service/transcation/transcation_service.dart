@@ -172,9 +172,9 @@ class TranscationService implements TranscationsRepo {
       try {
         log('makeEpayment dio exception => $e');
         log(e.response.toString());
-        ErrorResponseModel error =
-            ErrorResponseModel.fromJson(e.response?.data);
-        return Left(Failure(message: error.error ?? errorMessage));
+        final data = e.response?.data;
+        final message = data?['error'] ?? data?['message'] ?? errorMessage;
+        return Left(Failure(message: message.toString()));
       } catch (e) {
         return Left(Failure(message: errorMessage));
       }
@@ -183,6 +183,7 @@ class TranscationService implements TranscationsRepo {
       return Left(Failure(message: errorMessage));
     }
   }
+
   @override
   Future<Either<Failure, PayUResponseModel>> initiateEpayment(
       {required String phone, required EpayModel epayModel}) async {
@@ -196,13 +197,14 @@ class TranscationService implements TranscationsRepo {
       try {
         log('initiateEpayment dio exception => $e');
         log(e.response.toString());
-        ErrorResponseModel error =
-            ErrorResponseModel.fromJson(e.response?.data);
-        return Left(Failure(message: error.error ?? errorMessage));
+        final data = e.response?.data;
+        final message = data?['error'] ?? data?['message'] ?? errorMessage;
+        return Left(Failure(message: message.toString()));
       } catch (e) {
         return Left(Failure(message: errorMessage));
       }
-    } catch (e) {
+    }
+ catch (e) {
       log('initiateEpayment exception => $e');
       return Left(Failure(message: errorMessage));
     }

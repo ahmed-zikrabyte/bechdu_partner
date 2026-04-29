@@ -125,7 +125,7 @@ class _PayUCheckoutProScreenState extends State<_PayUCheckoutProScreen>
     final txnId = rawTxnId.length <= 25 ? rawTxnId : rawTxnId.substring(0, 25);
 
     final additionalParam = <String, dynamic>{
-      'payment': (payuData['hash'] ?? '').toString(),
+      // DO NOT pass 'payment' hash here. It conflicts with Native SDK hash requests for cards.
       'udf1': (payuData['udf1'] ?? '').toString(),
       'udf2': (payuData['udf2'] ?? '').toString(),
       'udf3': (payuData['udf3'] ?? '').toString(),
@@ -172,30 +172,41 @@ class _PayUCheckoutProScreenState extends State<_PayUCheckoutProScreen>
 
   @override
   void generateHash(Map response) {
-    String pick(String keyConst, String keyRaw) {
-      final v = response[keyConst] ?? response[keyRaw];
-      return (v ?? '').toString();
+    try {
+      String pick(String keyConst, String keyRaw) {
+        final v = response[keyConst] ?? response[keyRaw];
+        return (v ?? '').toString();
+      }
+
+      final hashName = pick(PayUHashConstantsKeys.hashName, 'hashName');
+      final hashString = pick(PayUHashConstantsKeys.hashString, 'hashString');
+      final hashType = pick(PayUHashConstantsKeys.hashType, 'hashType');
+      final postSalt =
+          (response[PayUHashConstantsKeys.postSalt] ?? response['postSalt'])
+              ?.toString();
+
+      String hash;
+      
+      // If SDK asks for the main 'payment' hash, prioritize the backend's hash 
+      // because backend is the source of truth for the transaction hash.
+      if (hashName == 'payment' && (widget.payuData['hash']?.toString().isNotEmpty ?? false)) {
+        hash = widget.payuData['hash'].toString();
+      } else if (hashType == PayUHashConstantsKeys.hashVersionV2 || hashType == 'V2') {
+        hash = _hmacSha256(hashString, payUSalt);
+      } else if (hashName == PayUHashConstantsKeys.mcpLookup || hashName == 'mcpLookup') {
+        hash = _hmacSha1(hashString, payUSalt);
+      } else if (postSalt != null && postSalt.isNotEmpty) {
+        hash = _sha512('$hashString$payUSalt$postSalt');
+      } else {
+        hash = _sha512('$hashString$payUSalt');
+      }
+
+      _checkoutPro.hashGenerated(hash: <String, dynamic>{hashName: hash});
+    } catch (e) {
+      log('PayU Hash Generation Error: $e');
+      // Return empty hash so SDK doesn't crash completely, though payment will fail.
+      _checkoutPro.hashGenerated(hash: <String, dynamic>{response[PayUHashConstantsKeys.hashName]?.toString() ?? 'hashName': ''});
     }
-
-    final hashName = pick(PayUHashConstantsKeys.hashName, 'hashName');
-    final hashString = pick(PayUHashConstantsKeys.hashString, 'hashString');
-    final hashType = pick(PayUHashConstantsKeys.hashType, 'hashType');
-    final postSalt =
-        (response[PayUHashConstantsKeys.postSalt] ?? response['postSalt'])
-            ?.toString();
-
-    String hash;
-    if (hashType == 'V2') {
-      hash = _hmacSha256(hashString, payUSalt);
-    } else if (hashName == 'mcpLookup') {
-      hash = _hmacSha1(hashString, payUSalt);
-    } else if (postSalt != null && postSalt.isNotEmpty) {
-      hash = _sha512('$hashString$payUSalt$postSalt');
-    } else {
-      hash = _sha512('$hashString$payUSalt');
-    }
-
-    _checkoutPro.hashGenerated(hash: <String, dynamic>{hashName: hash});
   }
 
   String _sha512(String input) {
@@ -252,13 +263,30 @@ class _PayUCheckoutProScreenState extends State<_PayUCheckoutProScreen>
     final base = Map<String, dynamic>.from(response);
     final raw = base['payuResponse'];
 
+    Map<String, dynamic> decoded = {};
     if (raw is String && raw.trim().startsWith('{')) {
       try {
-        return Map<String, dynamic>.from(jsonDecode(raw) as Map);
+        decoded = Map<String, dynamic>.from(jsonDecode(raw) as Map);
       } catch (_) {}
+    } else if (raw is Map) {
+      decoded = Map<String, dynamic>.from(raw);
+    } else {
+      decoded = base;
     }
-    if (raw is Map) return Map<String, dynamic>.from(raw);
-    return base;
+
+    // Flatten if 'result' is present (common in Native SDK responses)
+    if (decoded.containsKey('result') && decoded['result'] is Map) {
+      final result = Map<String, dynamic>.from(decoded['result'] as Map);
+      // Merge other top-level keys if they don't exist in result
+      decoded.forEach((key, value) {
+        if (key != 'result' && !result.containsKey(key)) {
+          result[key] = value;
+        }
+      });
+      return result;
+    }
+
+    return decoded;
   }
 
   @override
