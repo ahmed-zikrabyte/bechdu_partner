@@ -5,7 +5,7 @@ class ApiEndPoints {
   // static const String baseUrl = 'https://jp6lrvpv-5000.inc1.devtunnels.ms';
 //   static String baseUrl = 'https://itchy-regions-divide.loca.lt/';
 
-  static String baseUrlImage = 'https://api.bechdu.in/uploads/';
+  static String baseUrlImage = '';
 
   // auth
   static String sendOtp = '/partner/send-sms';
