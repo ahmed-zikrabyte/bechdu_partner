@@ -77,6 +77,7 @@ extension OrdersEventPatterns on OrdersEvent {
     TResult Function(DownloadOrderInvoice value)? downloadOrderInvoice,
     TResult Function(ChangeNotificationStatusOrder value)?
         changeNotificationStatusOrder,
+    TResult Function(FilterOrders value)? filterOrders,
     TResult Function(Reset value)? reset,
     required TResult orElse(),
   }) {
@@ -133,6 +134,8 @@ extension OrdersEventPatterns on OrdersEvent {
       case ChangeNotificationStatusOrder()
           when changeNotificationStatusOrder != null:
         return changeNotificationStatusOrder(_that);
+      case FilterOrders() when filterOrders != null:
+        return filterOrders(_that);
       case Reset() when reset != null:
         return reset(_that);
       case _:
@@ -183,6 +186,7 @@ extension OrdersEventPatterns on OrdersEvent {
     required TResult Function(DownloadOrderInvoice value) downloadOrderInvoice,
     required TResult Function(ChangeNotificationStatusOrder value)
         changeNotificationStatusOrder,
+    required TResult Function(FilterOrders value) filterOrders,
     required TResult Function(Reset value) reset,
   }) {
     final _that = this;
@@ -237,6 +241,8 @@ extension OrdersEventPatterns on OrdersEvent {
         return downloadOrderInvoice(_that);
       case ChangeNotificationStatusOrder():
         return changeNotificationStatusOrder(_that);
+      case FilterOrders():
+        return filterOrders(_that);
       case Reset():
         return reset(_that);
       case _:
@@ -285,6 +291,7 @@ extension OrdersEventPatterns on OrdersEvent {
     TResult? Function(DownloadOrderInvoice value)? downloadOrderInvoice,
     TResult? Function(ChangeNotificationStatusOrder value)?
         changeNotificationStatusOrder,
+    TResult? Function(FilterOrders value)? filterOrders,
     TResult? Function(Reset value)? reset,
   }) {
     final _that = this;
@@ -340,6 +347,8 @@ extension OrdersEventPatterns on OrdersEvent {
       case ChangeNotificationStatusOrder()
           when changeNotificationStatusOrder != null:
         return changeNotificationStatusOrder(_that);
+      case FilterOrders() when filterOrders != null:
+        return filterOrders(_that);
       case Reset() when reset != null:
         return reset(_that);
       case _:
@@ -388,6 +397,7 @@ extension OrdersEventPatterns on OrdersEvent {
     TResult Function()? removeSignatureImage,
     TResult Function(String orderId)? downloadOrderInvoice,
     TResult Function(String orderId)? changeNotificationStatusOrder,
+    TResult Function(String? filter)? filterOrders,
     TResult Function()? reset,
     required TResult orElse(),
   }) {
@@ -444,6 +454,8 @@ extension OrdersEventPatterns on OrdersEvent {
       case ChangeNotificationStatusOrder()
           when changeNotificationStatusOrder != null:
         return changeNotificationStatusOrder(_that.orderId);
+      case FilterOrders() when filterOrders != null:
+        return filterOrders(_that.filter);
       case Reset() when reset != null:
         return reset();
       case _:
@@ -494,6 +506,7 @@ extension OrdersEventPatterns on OrdersEvent {
     required TResult Function() removeSignatureImage,
     required TResult Function(String orderId) downloadOrderInvoice,
     required TResult Function(String orderId) changeNotificationStatusOrder,
+    required TResult Function(String? filter) filterOrders,
     required TResult Function() reset,
   }) {
     final _that = this;
@@ -548,6 +561,8 @@ extension OrdersEventPatterns on OrdersEvent {
         return downloadOrderInvoice(_that.orderId);
       case ChangeNotificationStatusOrder():
         return changeNotificationStatusOrder(_that.orderId);
+      case FilterOrders():
+        return filterOrders(_that.filter);
       case Reset():
         return reset();
       case _:
@@ -596,6 +611,7 @@ extension OrdersEventPatterns on OrdersEvent {
     TResult? Function()? removeSignatureImage,
     TResult? Function(String orderId)? downloadOrderInvoice,
     TResult? Function(String orderId)? changeNotificationStatusOrder,
+    TResult? Function(String? filter)? filterOrders,
     TResult? Function()? reset,
   }) {
     final _that = this;
@@ -651,6 +667,8 @@ extension OrdersEventPatterns on OrdersEvent {
       case ChangeNotificationStatusOrder()
           when changeNotificationStatusOrder != null:
         return changeNotificationStatusOrder(_that.orderId);
+      case FilterOrders() when filterOrders != null:
+        return filterOrders(_that.filter);
       case Reset() when reset != null:
         return reset();
       case _:
@@ -1847,6 +1865,69 @@ class _$ChangeNotificationStatusOrderCopyWithImpl<$Res>
 
 /// @nodoc
 
+class FilterOrders implements OrdersEvent {
+  const FilterOrders({required this.filter});
+
+  final String? filter;
+
+  /// Create a copy of OrdersEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $FilterOrdersCopyWith<FilterOrders> get copyWith =>
+      _$FilterOrdersCopyWithImpl<FilterOrders>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is FilterOrders &&
+            (identical(other.filter, filter) || other.filter == filter));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, filter);
+
+  @override
+  String toString() {
+    return 'OrdersEvent.filterOrders(filter: $filter)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $FilterOrdersCopyWith<$Res>
+    implements $OrdersEventCopyWith<$Res> {
+  factory $FilterOrdersCopyWith(
+          FilterOrders value, $Res Function(FilterOrders) _then) =
+      _$FilterOrdersCopyWithImpl;
+  @useResult
+  $Res call({String? filter});
+}
+
+/// @nodoc
+class _$FilterOrdersCopyWithImpl<$Res> implements $FilterOrdersCopyWith<$Res> {
+  _$FilterOrdersCopyWithImpl(this._self, this._then);
+
+  final FilterOrders _self;
+  final $Res Function(FilterOrders) _then;
+
+  /// Create a copy of OrdersEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? filter = freezed,
+  }) {
+    return _then(FilterOrders(
+      filter: freezed == filter
+          ? _self.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
 class Reset implements OrdersEvent {
   const Reset();
 
@@ -1892,6 +1973,7 @@ mixin _$OrdersState {
   List<OrderDetail>? get partnerOrders;
   List<OrderDetail>? get newOrders;
   OrderDetail? get orderDetail;
+  String? get orderFilter;
   int get orderTab;
 
   /// Create a copy of OrdersState
@@ -1955,6 +2037,8 @@ mixin _$OrdersState {
             const DeepCollectionEquality().equals(other.newOrders, newOrders) &&
             (identical(other.orderDetail, orderDetail) ||
                 other.orderDetail == orderDetail) &&
+            (identical(other.orderFilter, orderFilter) ||
+                other.orderFilter == orderFilter) &&
             (identical(other.orderTab, orderTab) ||
                 other.orderTab == orderTab));
   }
@@ -1987,12 +2071,13 @@ mixin _$OrdersState {
         const DeepCollectionEquality().hash(partnerOrders),
         const DeepCollectionEquality().hash(newOrders),
         orderDetail,
+        orderFilter,
         orderTab
       ]);
 
   @override
   String toString() {
-    return 'OrdersState(isLoading: $isLoading, hasError: $hasError, acceptOrderLoading: $acceptOrderLoading, acceptOrderError: $acceptOrderError, acceptOrder: $acceptOrder, cancelOrder: $cancelOrder, completeOrderLoading: $completeOrderLoading, orderCompleted: $orderCompleted, orderCompletionError: $orderCompletionError, newOrdesRefreshLoading: $newOrdesRefreshLoading, partnerOrdesRefreshLoading: $partnerOrdesRefreshLoading, orderDetailError: $orderDetailError, popOrderScreen: $popOrderScreen, downloaded: $downloaded, downloading: $downloading, orderInvoice: $orderInvoice, message: $message, deviceBill: $deviceBill, idCard: $idCard, imeiImage: $imeiImage, deviceImages: $deviceImages, signatureImage: $signatureImage, partnerOrders: $partnerOrders, newOrders: $newOrders, orderDetail: $orderDetail, orderTab: $orderTab)';
+    return 'OrdersState(isLoading: $isLoading, hasError: $hasError, acceptOrderLoading: $acceptOrderLoading, acceptOrderError: $acceptOrderError, acceptOrder: $acceptOrder, cancelOrder: $cancelOrder, completeOrderLoading: $completeOrderLoading, orderCompleted: $orderCompleted, orderCompletionError: $orderCompletionError, newOrdesRefreshLoading: $newOrdesRefreshLoading, partnerOrdesRefreshLoading: $partnerOrdesRefreshLoading, orderDetailError: $orderDetailError, popOrderScreen: $popOrderScreen, downloaded: $downloaded, downloading: $downloading, orderInvoice: $orderInvoice, message: $message, deviceBill: $deviceBill, idCard: $idCard, imeiImage: $imeiImage, deviceImages: $deviceImages, signatureImage: $signatureImage, partnerOrders: $partnerOrders, newOrders: $newOrders, orderDetail: $orderDetail, orderFilter: $orderFilter, orderTab: $orderTab)';
   }
 }
 
@@ -2028,6 +2113,7 @@ abstract mixin class $OrdersStateCopyWith<$Res> {
       List<OrderDetail>? partnerOrders,
       List<OrderDetail>? newOrders,
       OrderDetail? orderDetail,
+      String? orderFilter,
       int orderTab});
 }
 
@@ -2068,6 +2154,7 @@ class _$OrdersStateCopyWithImpl<$Res> implements $OrdersStateCopyWith<$Res> {
     Object? partnerOrders = freezed,
     Object? newOrders = freezed,
     Object? orderDetail = freezed,
+    Object? orderFilter = freezed,
     Object? orderTab = null,
   }) {
     return _then(_self.copyWith(
@@ -2171,6 +2258,10 @@ class _$OrdersStateCopyWithImpl<$Res> implements $OrdersStateCopyWith<$Res> {
           ? _self.orderDetail
           : orderDetail // ignore: cast_nullable_to_non_nullable
               as OrderDetail?,
+      orderFilter: freezed == orderFilter
+          ? _self.orderFilter
+          : orderFilter // ignore: cast_nullable_to_non_nullable
+              as String?,
       orderTab: null == orderTab
           ? _self.orderTab
           : orderTab // ignore: cast_nullable_to_non_nullable
@@ -2298,6 +2389,7 @@ extension OrdersStatePatterns on OrdersState {
             List<OrderDetail>? partnerOrders,
             List<OrderDetail>? newOrders,
             OrderDetail? orderDetail,
+            String? orderFilter,
             int orderTab)?
         $default, {
     required TResult orElse(),
@@ -2331,6 +2423,7 @@ extension OrdersStatePatterns on OrdersState {
             _that.partnerOrders,
             _that.newOrders,
             _that.orderDetail,
+            _that.orderFilter,
             _that.orderTab);
       case _:
         return orElse();
@@ -2378,6 +2471,7 @@ extension OrdersStatePatterns on OrdersState {
             List<OrderDetail>? partnerOrders,
             List<OrderDetail>? newOrders,
             OrderDetail? orderDetail,
+            String? orderFilter,
             int orderTab)
         $default,
   ) {
@@ -2410,6 +2504,7 @@ extension OrdersStatePatterns on OrdersState {
             _that.partnerOrders,
             _that.newOrders,
             _that.orderDetail,
+            _that.orderFilter,
             _that.orderTab);
       case _:
         throw StateError('Unexpected subclass');
@@ -2456,6 +2551,7 @@ extension OrdersStatePatterns on OrdersState {
             List<OrderDetail>? partnerOrders,
             List<OrderDetail>? newOrders,
             OrderDetail? orderDetail,
+            String? orderFilter,
             int orderTab)?
         $default,
   ) {
@@ -2488,6 +2584,7 @@ extension OrdersStatePatterns on OrdersState {
             _that.partnerOrders,
             _that.newOrders,
             _that.orderDetail,
+            _that.orderFilter,
             _that.orderTab);
       case _:
         return null;
@@ -2524,6 +2621,7 @@ class _Initial implements OrdersState {
       final List<OrderDetail>? partnerOrders,
       final List<OrderDetail>? newOrders,
       this.orderDetail,
+      this.orderFilter,
       required this.orderTab})
       : _idCard = idCard,
         _deviceImages = deviceImages,
@@ -2613,6 +2711,8 @@ class _Initial implements OrdersState {
   @override
   final OrderDetail? orderDetail;
   @override
+  final String? orderFilter;
+  @override
   final int orderTab;
 
   /// Create a copy of OrdersState
@@ -2678,6 +2778,8 @@ class _Initial implements OrdersState {
                 .equals(other._newOrders, _newOrders) &&
             (identical(other.orderDetail, orderDetail) ||
                 other.orderDetail == orderDetail) &&
+            (identical(other.orderFilter, orderFilter) ||
+                other.orderFilter == orderFilter) &&
             (identical(other.orderTab, orderTab) ||
                 other.orderTab == orderTab));
   }
@@ -2710,12 +2812,13 @@ class _Initial implements OrdersState {
         const DeepCollectionEquality().hash(_partnerOrders),
         const DeepCollectionEquality().hash(_newOrders),
         orderDetail,
+        orderFilter,
         orderTab
       ]);
 
   @override
   String toString() {
-    return 'OrdersState(isLoading: $isLoading, hasError: $hasError, acceptOrderLoading: $acceptOrderLoading, acceptOrderError: $acceptOrderError, acceptOrder: $acceptOrder, cancelOrder: $cancelOrder, completeOrderLoading: $completeOrderLoading, orderCompleted: $orderCompleted, orderCompletionError: $orderCompletionError, newOrdesRefreshLoading: $newOrdesRefreshLoading, partnerOrdesRefreshLoading: $partnerOrdesRefreshLoading, orderDetailError: $orderDetailError, popOrderScreen: $popOrderScreen, downloaded: $downloaded, downloading: $downloading, orderInvoice: $orderInvoice, message: $message, deviceBill: $deviceBill, idCard: $idCard, imeiImage: $imeiImage, deviceImages: $deviceImages, signatureImage: $signatureImage, partnerOrders: $partnerOrders, newOrders: $newOrders, orderDetail: $orderDetail, orderTab: $orderTab)';
+    return 'OrdersState(isLoading: $isLoading, hasError: $hasError, acceptOrderLoading: $acceptOrderLoading, acceptOrderError: $acceptOrderError, acceptOrder: $acceptOrder, cancelOrder: $cancelOrder, completeOrderLoading: $completeOrderLoading, orderCompleted: $orderCompleted, orderCompletionError: $orderCompletionError, newOrdesRefreshLoading: $newOrdesRefreshLoading, partnerOrdesRefreshLoading: $partnerOrdesRefreshLoading, orderDetailError: $orderDetailError, popOrderScreen: $popOrderScreen, downloaded: $downloaded, downloading: $downloading, orderInvoice: $orderInvoice, message: $message, deviceBill: $deviceBill, idCard: $idCard, imeiImage: $imeiImage, deviceImages: $deviceImages, signatureImage: $signatureImage, partnerOrders: $partnerOrders, newOrders: $newOrders, orderDetail: $orderDetail, orderFilter: $orderFilter, orderTab: $orderTab)';
   }
 }
 
@@ -2752,6 +2855,7 @@ abstract mixin class _$InitialCopyWith<$Res>
       List<OrderDetail>? partnerOrders,
       List<OrderDetail>? newOrders,
       OrderDetail? orderDetail,
+      String? orderFilter,
       int orderTab});
 }
 
@@ -2792,6 +2896,7 @@ class __$InitialCopyWithImpl<$Res> implements _$InitialCopyWith<$Res> {
     Object? partnerOrders = freezed,
     Object? newOrders = freezed,
     Object? orderDetail = freezed,
+    Object? orderFilter = freezed,
     Object? orderTab = null,
   }) {
     return _then(_Initial(
@@ -2895,6 +3000,10 @@ class __$InitialCopyWithImpl<$Res> implements _$InitialCopyWith<$Res> {
           ? _self.orderDetail
           : orderDetail // ignore: cast_nullable_to_non_nullable
               as OrderDetail?,
+      orderFilter: freezed == orderFilter
+          ? _self.orderFilter
+          : orderFilter // ignore: cast_nullable_to_non_nullable
+              as String?,
       orderTab: null == orderTab
           ? _self.orderTab
           : orderTab // ignore: cast_nullable_to_non_nullable

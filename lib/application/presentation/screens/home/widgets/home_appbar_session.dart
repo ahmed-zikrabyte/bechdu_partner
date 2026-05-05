@@ -127,7 +127,8 @@ class HomeScreenAppBar extends StatelessWidget {
                         ? Expanded(
                             child: PopupMenuButton(
                                 color: kWhite,
-                                icon: const Icon(Icons.filter_alt),
+                                icon: const Icon(Icons.swap_horizontal_circle,
+                                    color: kBluePrimary),
                                 itemBuilder: (context) => ([
                                       PopupMenuItem(
                                           onTap: () {
@@ -177,6 +178,33 @@ class HomeScreenAppBar extends StatelessWidget {
                                       textHeadBoldBig.copyWith(color: kWhite),
                                 ),
                                 const Spacer(),
+                                state.orderTab == 1
+                                    ? PopupMenuButton<String>(
+                                        padding: EdgeInsets.zero,
+                                        onSelected: (value) {
+                                          context.read<OrdersBloc>().add(
+                                              OrdersEvent.filterOrders(
+                                                  filter: value == 'All'
+                                                      ? null
+                                                      : value));
+                                        },
+                                        icon: const Icon(Icons.filter_alt,
+                                            color: kWhite),
+                                        itemBuilder: (context) => [
+                                          const PopupMenuItem(
+                                              value: 'All', child: Text('All')),
+                                          const PopupMenuItem(
+                                              value: 'completed',
+                                              child: Text('Completed')),
+                                          const PopupMenuItem(
+                                              value: 'processing',
+                                              child: Text('Processing')),
+                                          const PopupMenuItem(
+                                              value: 'cancelled',
+                                              child: Text('Cancelled')),
+                                        ],
+                                      )
+                                    : kEmpty,
                                 // Container(
                                 //   padding: const EdgeInsets.all(2),
                                 //   decoration: BoxDecoration(

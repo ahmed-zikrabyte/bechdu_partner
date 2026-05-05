@@ -59,6 +59,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
     on<GetOrderDetailNotification>(getOrderDetailNotification);
     on<ChangeNotificationStatusOrder>(changeNotificationStatusOrder);
     on<DownloadOrderInvoice>(downloadOrderInvoice);
+    on<FilterOrders>(filterOrders);
     on<Reset>(reset);
   }
 
@@ -521,6 +522,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
   FutureOr<void> changeTab(ChangeTab event, emit) async {
     emit(state.copyWith(
         orderTab: event.tab,
+        orderFilter: null,
         message: null,
         downloaded: false,
         orderInvoice: null,
@@ -638,6 +640,14 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
         downloaded: false,
         orderInvoice: null,
         partnerOrders: orders,
+        popOrderScreen: false,
+        message: null));
+  }
+  FutureOr<void> filterOrders(FilterOrders event, emit) {
+    emit(state.copyWith(
+        orderFilter: event.filter,
+        downloaded: false,
+        orderInvoice: null,
         popOrderScreen: false,
         message: null));
   }

@@ -28,6 +28,7 @@ abstract class OrdersState with _$OrdersState {
       List<OrderDetail>? partnerOrders,
       List<OrderDetail>? newOrders,
       OrderDetail? orderDetail,
+      String? orderFilter,
       required int orderTab}) = _Initial;
 
   factory OrdersState.initial() => const OrdersState(

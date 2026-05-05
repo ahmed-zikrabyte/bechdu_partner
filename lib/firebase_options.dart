@@ -65,5 +65,4 @@ class DefaultFirebaseOptions {
     storageBucket: 'bechdu-9649a.firebasestorage.app',
     iosBundleId: 'com.bechduapp.partner',
   );
-
 }
