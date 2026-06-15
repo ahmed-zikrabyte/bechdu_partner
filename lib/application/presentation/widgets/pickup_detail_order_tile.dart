@@ -3,6 +3,9 @@ import 'package:bechdu_partner/application/presentation/utils/constant.dart';
 import 'package:bechdu_partner/application/presentation/widgets/custom_blur_maker.dart';
 import 'package:bechdu_partner/data/feature/url_launcher_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bechdu_partner/application/business_logic/order/orders/orders_bloc.dart';
+import 'package:bechdu_partner/application/presentation/utils/snackbar/snack_show.dart';
 
 class PickUpDetailOrderTile extends StatelessWidget {
   final bool isBlurred;
@@ -61,61 +64,58 @@ class PickUpDetailOrderTile extends StatelessWidget {
                 ),
                 trailing: isBlurred
                     ? null
-                    : _circleIconMaker(
-                        icon: iconPhone,
-                        onTap: () {
-                          if (addPhone != null && addPhone!.isNotEmpty) {
-                            showDialog(
-                              context: context,
-                              builder: (context) => AlertDialog(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: kRadius15),
-                                title: Text('Select Phone Number',
-                                    style: textHeadBoldBig,
-                                    textAlign: TextAlign.center),
-                                content: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: kGreenPrimary,
-                                        foregroundColor: kWhite,
-                                        minimumSize:
-                                            const Size(double.infinity, 45),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius: kRadius10),
-                                      ),
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                        OpenLauncherFeature.launchPhone(
-                                            phone: phone);
-                                      },
-                                      child: const Text('Primary Number'),
-                                    ),
-                                    kHeight10,
-                                    ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: kGreenPrimary,
-                                        foregroundColor: kWhite,
-                                        minimumSize:
-                                            const Size(double.infinity, 45),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius: kRadius10),
-                                      ),
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                        OpenLauncherFeature.launchPhone(
-                                            phone: addPhone!);
-                                      },
-                                      child: const Text('Alternative Number'),
-                                    ),
-                                  ],
+                    : BlocConsumer<OrdersBloc, OrdersState>(
+                        listener: (context, state) {
+                          if (state.ivrMessage != null) {
+                            if (state.ivrCallSuccess) {
+                              showSnackBar(
+                                context: context,
+                                message: state.ivrMessage!,
+                                color: kGreenPrimary,
+                              );
+                              context
+                                  .read<OrdersBloc>()
+                                  .add(const OrdersEvent.resetIvrState());
+                            } else if (state.ivrCallError) {
+                              showSnackBar(
+                                context: context,
+                                message: state.ivrMessage!,
+                                color: kRed,
+                              );
+                              context
+                                  .read<OrdersBloc>()
+                                  .add(const OrdersEvent.resetIvrState());
+                            }
+                          }
+                        },
+                        builder: (context, state) {
+                          final isCallingPrimary = state.ivrCallLoading &&
+                              state.callingPhoneNumber == phone;
+                          final isCallingAlternative = state.ivrCallLoading &&
+                              state.callingPhoneNumber == addPhone;
+
+                          if (isCallingPrimary || isCallingAlternative) {
+                            return SizedBox(
+                              width: sWidth * 0.10,
+                              height: sWidth * 0.10,
+                              child: const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  color: kGreenPrimary,
                                 ),
                               ),
                             );
-                          } else {
-                            OpenLauncherFeature.launchPhone(phone: phone);
                           }
+
+                          return _circleIconMaker(
+                            icon: iconPhone,
+                            onTap: () {
+                              context.read<OrdersBloc>().add(
+                                  OrdersEvent.ivrClickToCall(
+                                      customerNumber: phone));
+                            },
+                          );
                         },
                       ),
               ),

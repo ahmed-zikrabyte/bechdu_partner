@@ -61,6 +61,8 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
     on<DownloadOrderInvoice>(downloadOrderInvoice);
     on<FilterOrders>(filterOrders);
     on<Reset>(reset);
+    on<IvrClickToCall>(ivrClickToCall);
+    on<ResetIvrState>(resetIvrState);
   }
 
   FutureOr<void> reset(Reset event, emit) {
@@ -650,5 +652,63 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
         orderInvoice: null,
         popOrderScreen: false,
         message: null));
+  }
+
+  FutureOr<void> resetIvrState(ResetIvrState event, emit) {
+    emit(state.copyWith(
+      ivrCallLoading: false,
+      ivrCallSuccess: false,
+      ivrCallError: false,
+      ivrMessage: null,
+      callingPhoneNumber: null,
+    ));
+  }
+
+  FutureOr<void> ivrClickToCall(IvrClickToCall event, emit) async {
+    emit(state.copyWith(
+      ivrCallLoading: true,
+      ivrCallSuccess: false,
+      ivrCallError: false,
+      ivrMessage: null,
+      callingPhoneNumber: event.customerNumber,
+    ));
+    final agentNumber = await SharedPref.getPhone();
+    if (agentNumber == null || agentNumber.isEmpty) {
+      return emit(state.copyWith(
+        ivrCallLoading: false,
+        ivrCallError: true,
+        ivrMessage: 'Agent phone number not found. Please log in again.',
+      ));
+    }
+    final result = await _orderRepo.ivrClickToCall(
+      customerNumber: event.customerNumber,
+      agentNumber: agentNumber,
+    );
+    result.fold(
+      (failure) => emit(state.copyWith(
+        ivrCallLoading: false,
+        ivrCallError: true,
+        ivrMessage: failure.message,
+      )),
+      (response) {
+        if (response.success) {
+          emit(state.copyWith(
+            ivrCallLoading: false,
+            ivrCallSuccess: true,
+            ivrMessage: response.message.isNotEmpty
+                ? response.message
+                : 'Calling you now. Please pick up to connect to the customer.',
+          ));
+        } else {
+          emit(state.copyWith(
+            ivrCallLoading: false,
+            ivrCallError: true,
+            ivrMessage: response.message.isNotEmpty
+                ? response.message
+                : 'Failed to initiate call.',
+          ));
+        }
+      },
+    );
   }
 }

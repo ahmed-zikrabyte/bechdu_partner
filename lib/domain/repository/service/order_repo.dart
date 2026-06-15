@@ -6,6 +6,7 @@ import 'package:bechdu_partner/domain/model/order/complete_order_model/complete_
 import 'package:bechdu_partner/domain/model/order/get_partner_order_response_model/get_partner_order_response_model.dart';
 import 'package:bechdu_partner/domain/model/order/get_partner_order_response_model/order_detail.dart';
 import 'package:bechdu_partner/domain/model/transcaton/invoice_response_model/invoice_response_model.dart';
+import 'package:bechdu_partner/domain/model/ivr/ivr_response_model.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class OrderRepo {
@@ -32,4 +33,6 @@ abstract class OrderRepo {
       {required String phone, required String orderID});
   Future<Either<Failure, InvoiceResponseModel>> downloadOrderInvoice(
       {required String phone, required String id});
+  Future<Either<Failure, IvrResponseModel>> ivrClickToCall(
+      {required String customerNumber, required String agentNumber});
 }

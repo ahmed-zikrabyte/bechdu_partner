@@ -79,6 +79,8 @@ extension OrdersEventPatterns on OrdersEvent {
         changeNotificationStatusOrder,
     TResult Function(FilterOrders value)? filterOrders,
     TResult Function(Reset value)? reset,
+    TResult Function(IvrClickToCall value)? ivrClickToCall,
+    TResult Function(ResetIvrState value)? resetIvrState,
     required TResult orElse(),
   }) {
     final _that = this;
@@ -138,6 +140,10 @@ extension OrdersEventPatterns on OrdersEvent {
         return filterOrders(_that);
       case Reset() when reset != null:
         return reset(_that);
+      case IvrClickToCall() when ivrClickToCall != null:
+        return ivrClickToCall(_that);
+      case ResetIvrState() when resetIvrState != null:
+        return resetIvrState(_that);
       case _:
         return orElse();
     }
@@ -188,6 +194,8 @@ extension OrdersEventPatterns on OrdersEvent {
         changeNotificationStatusOrder,
     required TResult Function(FilterOrders value) filterOrders,
     required TResult Function(Reset value) reset,
+    required TResult Function(IvrClickToCall value) ivrClickToCall,
+    required TResult Function(ResetIvrState value) resetIvrState,
   }) {
     final _that = this;
     switch (_that) {
@@ -245,6 +253,10 @@ extension OrdersEventPatterns on OrdersEvent {
         return filterOrders(_that);
       case Reset():
         return reset(_that);
+      case IvrClickToCall():
+        return ivrClickToCall(_that);
+      case ResetIvrState():
+        return resetIvrState(_that);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -293,6 +305,8 @@ extension OrdersEventPatterns on OrdersEvent {
         changeNotificationStatusOrder,
     TResult? Function(FilterOrders value)? filterOrders,
     TResult? Function(Reset value)? reset,
+    TResult? Function(IvrClickToCall value)? ivrClickToCall,
+    TResult? Function(ResetIvrState value)? resetIvrState,
   }) {
     final _that = this;
     switch (_that) {
@@ -351,6 +365,10 @@ extension OrdersEventPatterns on OrdersEvent {
         return filterOrders(_that);
       case Reset() when reset != null:
         return reset(_that);
+      case IvrClickToCall() when ivrClickToCall != null:
+        return ivrClickToCall(_that);
+      case ResetIvrState() when resetIvrState != null:
+        return resetIvrState(_that);
       case _:
         return null;
     }
@@ -399,6 +417,8 @@ extension OrdersEventPatterns on OrdersEvent {
     TResult Function(String orderId)? changeNotificationStatusOrder,
     TResult Function(String? filter)? filterOrders,
     TResult Function()? reset,
+    TResult Function(String customerNumber)? ivrClickToCall,
+    TResult Function()? resetIvrState,
     required TResult orElse(),
   }) {
     final _that = this;
@@ -458,6 +478,10 @@ extension OrdersEventPatterns on OrdersEvent {
         return filterOrders(_that.filter);
       case Reset() when reset != null:
         return reset();
+      case IvrClickToCall() when ivrClickToCall != null:
+        return ivrClickToCall(_that.customerNumber);
+      case ResetIvrState() when resetIvrState != null:
+        return resetIvrState();
       case _:
         return orElse();
     }
@@ -508,6 +532,8 @@ extension OrdersEventPatterns on OrdersEvent {
     required TResult Function(String orderId) changeNotificationStatusOrder,
     required TResult Function(String? filter) filterOrders,
     required TResult Function() reset,
+    required TResult Function(String customerNumber) ivrClickToCall,
+    required TResult Function() resetIvrState,
   }) {
     final _that = this;
     switch (_that) {
@@ -565,6 +591,10 @@ extension OrdersEventPatterns on OrdersEvent {
         return filterOrders(_that.filter);
       case Reset():
         return reset();
+      case IvrClickToCall():
+        return ivrClickToCall(_that.customerNumber);
+      case ResetIvrState():
+        return resetIvrState();
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -613,6 +643,8 @@ extension OrdersEventPatterns on OrdersEvent {
     TResult? Function(String orderId)? changeNotificationStatusOrder,
     TResult? Function(String? filter)? filterOrders,
     TResult? Function()? reset,
+    TResult? Function(String customerNumber)? ivrClickToCall,
+    TResult? Function()? resetIvrState,
   }) {
     final _that = this;
     switch (_that) {
@@ -671,6 +703,10 @@ extension OrdersEventPatterns on OrdersEvent {
         return filterOrders(_that.filter);
       case Reset() when reset != null:
         return reset();
+      case IvrClickToCall() when ivrClickToCall != null:
+        return ivrClickToCall(_that.customerNumber);
+      case ResetIvrState() when resetIvrState != null:
+        return resetIvrState();
       case _:
         return null;
     }
@@ -1947,6 +1983,91 @@ class Reset implements OrdersEvent {
 }
 
 /// @nodoc
+
+class IvrClickToCall implements OrdersEvent {
+  const IvrClickToCall({required this.customerNumber});
+
+  final String customerNumber;
+
+  /// Create a copy of OrdersEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $IvrClickToCallCopyWith<IvrClickToCall> get copyWith =>
+      _$IvrClickToCallCopyWithImpl<IvrClickToCall>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is IvrClickToCall &&
+            (identical(other.customerNumber, customerNumber) ||
+                other.customerNumber == customerNumber));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, customerNumber);
+
+  @override
+  String toString() {
+    return 'OrdersEvent.ivrClickToCall(customerNumber: $customerNumber)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $IvrClickToCallCopyWith<$Res>
+    implements $OrdersEventCopyWith<$Res> {
+  factory $IvrClickToCallCopyWith(
+          IvrClickToCall value, $Res Function(IvrClickToCall) _then) =
+      _$IvrClickToCallCopyWithImpl;
+  @useResult
+  $Res call({String customerNumber});
+}
+
+/// @nodoc
+class _$IvrClickToCallCopyWithImpl<$Res>
+    implements $IvrClickToCallCopyWith<$Res> {
+  _$IvrClickToCallCopyWithImpl(this._self, this._then);
+
+  final IvrClickToCall _self;
+  final $Res Function(IvrClickToCall) _then;
+
+  /// Create a copy of OrdersEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? customerNumber = null,
+  }) {
+    return _then(IvrClickToCall(
+      customerNumber: null == customerNumber
+          ? _self.customerNumber
+          : customerNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class ResetIvrState implements OrdersEvent {
+  const ResetIvrState();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is ResetIvrState);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'OrdersEvent.resetIvrState()';
+  }
+}
+
+/// @nodoc
 mixin _$OrdersState {
   bool get isLoading;
   bool get hasError;
@@ -1974,6 +2095,11 @@ mixin _$OrdersState {
   List<OrderDetail>? get newOrders;
   OrderDetail? get orderDetail;
   String? get orderFilter;
+  bool get ivrCallLoading;
+  bool get ivrCallSuccess;
+  bool get ivrCallError;
+  String? get ivrMessage;
+  String? get callingPhoneNumber;
   int get orderTab;
 
   /// Create a copy of OrdersState
@@ -2039,6 +2165,16 @@ mixin _$OrdersState {
                 other.orderDetail == orderDetail) &&
             (identical(other.orderFilter, orderFilter) ||
                 other.orderFilter == orderFilter) &&
+            (identical(other.ivrCallLoading, ivrCallLoading) ||
+                other.ivrCallLoading == ivrCallLoading) &&
+            (identical(other.ivrCallSuccess, ivrCallSuccess) ||
+                other.ivrCallSuccess == ivrCallSuccess) &&
+            (identical(other.ivrCallError, ivrCallError) ||
+                other.ivrCallError == ivrCallError) &&
+            (identical(other.ivrMessage, ivrMessage) ||
+                other.ivrMessage == ivrMessage) &&
+            (identical(other.callingPhoneNumber, callingPhoneNumber) ||
+                other.callingPhoneNumber == callingPhoneNumber) &&
             (identical(other.orderTab, orderTab) ||
                 other.orderTab == orderTab));
   }
@@ -2072,12 +2208,17 @@ mixin _$OrdersState {
         const DeepCollectionEquality().hash(newOrders),
         orderDetail,
         orderFilter,
+        ivrCallLoading,
+        ivrCallSuccess,
+        ivrCallError,
+        ivrMessage,
+        callingPhoneNumber,
         orderTab
       ]);
 
   @override
   String toString() {
-    return 'OrdersState(isLoading: $isLoading, hasError: $hasError, acceptOrderLoading: $acceptOrderLoading, acceptOrderError: $acceptOrderError, acceptOrder: $acceptOrder, cancelOrder: $cancelOrder, completeOrderLoading: $completeOrderLoading, orderCompleted: $orderCompleted, orderCompletionError: $orderCompletionError, newOrdesRefreshLoading: $newOrdesRefreshLoading, partnerOrdesRefreshLoading: $partnerOrdesRefreshLoading, orderDetailError: $orderDetailError, popOrderScreen: $popOrderScreen, downloaded: $downloaded, downloading: $downloading, orderInvoice: $orderInvoice, message: $message, deviceBill: $deviceBill, idCard: $idCard, imeiImage: $imeiImage, deviceImages: $deviceImages, signatureImage: $signatureImage, partnerOrders: $partnerOrders, newOrders: $newOrders, orderDetail: $orderDetail, orderFilter: $orderFilter, orderTab: $orderTab)';
+    return 'OrdersState(isLoading: $isLoading, hasError: $hasError, acceptOrderLoading: $acceptOrderLoading, acceptOrderError: $acceptOrderError, acceptOrder: $acceptOrder, cancelOrder: $cancelOrder, completeOrderLoading: $completeOrderLoading, orderCompleted: $orderCompleted, orderCompletionError: $orderCompletionError, newOrdesRefreshLoading: $newOrdesRefreshLoading, partnerOrdesRefreshLoading: $partnerOrdesRefreshLoading, orderDetailError: $orderDetailError, popOrderScreen: $popOrderScreen, downloaded: $downloaded, downloading: $downloading, orderInvoice: $orderInvoice, message: $message, deviceBill: $deviceBill, idCard: $idCard, imeiImage: $imeiImage, deviceImages: $deviceImages, signatureImage: $signatureImage, partnerOrders: $partnerOrders, newOrders: $newOrders, orderDetail: $orderDetail, orderFilter: $orderFilter, ivrCallLoading: $ivrCallLoading, ivrCallSuccess: $ivrCallSuccess, ivrCallError: $ivrCallError, ivrMessage: $ivrMessage, callingPhoneNumber: $callingPhoneNumber, orderTab: $orderTab)';
   }
 }
 
@@ -2114,6 +2255,11 @@ abstract mixin class $OrdersStateCopyWith<$Res> {
       List<OrderDetail>? newOrders,
       OrderDetail? orderDetail,
       String? orderFilter,
+      bool ivrCallLoading,
+      bool ivrCallSuccess,
+      bool ivrCallError,
+      String? ivrMessage,
+      String? callingPhoneNumber,
       int orderTab});
 }
 
@@ -2155,6 +2301,11 @@ class _$OrdersStateCopyWithImpl<$Res> implements $OrdersStateCopyWith<$Res> {
     Object? newOrders = freezed,
     Object? orderDetail = freezed,
     Object? orderFilter = freezed,
+    Object? ivrCallLoading = null,
+    Object? ivrCallSuccess = null,
+    Object? ivrCallError = null,
+    Object? ivrMessage = freezed,
+    Object? callingPhoneNumber = freezed,
     Object? orderTab = null,
   }) {
     return _then(_self.copyWith(
@@ -2261,6 +2412,26 @@ class _$OrdersStateCopyWithImpl<$Res> implements $OrdersStateCopyWith<$Res> {
       orderFilter: freezed == orderFilter
           ? _self.orderFilter
           : orderFilter // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ivrCallLoading: null == ivrCallLoading
+          ? _self.ivrCallLoading
+          : ivrCallLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      ivrCallSuccess: null == ivrCallSuccess
+          ? _self.ivrCallSuccess
+          : ivrCallSuccess // ignore: cast_nullable_to_non_nullable
+              as bool,
+      ivrCallError: null == ivrCallError
+          ? _self.ivrCallError
+          : ivrCallError // ignore: cast_nullable_to_non_nullable
+              as bool,
+      ivrMessage: freezed == ivrMessage
+          ? _self.ivrMessage
+          : ivrMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      callingPhoneNumber: freezed == callingPhoneNumber
+          ? _self.callingPhoneNumber
+          : callingPhoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
       orderTab: null == orderTab
           ? _self.orderTab
@@ -2390,6 +2561,11 @@ extension OrdersStatePatterns on OrdersState {
             List<OrderDetail>? newOrders,
             OrderDetail? orderDetail,
             String? orderFilter,
+            bool ivrCallLoading,
+            bool ivrCallSuccess,
+            bool ivrCallError,
+            String? ivrMessage,
+            String? callingPhoneNumber,
             int orderTab)?
         $default, {
     required TResult orElse(),
@@ -2424,6 +2600,11 @@ extension OrdersStatePatterns on OrdersState {
             _that.newOrders,
             _that.orderDetail,
             _that.orderFilter,
+            _that.ivrCallLoading,
+            _that.ivrCallSuccess,
+            _that.ivrCallError,
+            _that.ivrMessage,
+            _that.callingPhoneNumber,
             _that.orderTab);
       case _:
         return orElse();
@@ -2472,6 +2653,11 @@ extension OrdersStatePatterns on OrdersState {
             List<OrderDetail>? newOrders,
             OrderDetail? orderDetail,
             String? orderFilter,
+            bool ivrCallLoading,
+            bool ivrCallSuccess,
+            bool ivrCallError,
+            String? ivrMessage,
+            String? callingPhoneNumber,
             int orderTab)
         $default,
   ) {
@@ -2505,6 +2691,11 @@ extension OrdersStatePatterns on OrdersState {
             _that.newOrders,
             _that.orderDetail,
             _that.orderFilter,
+            _that.ivrCallLoading,
+            _that.ivrCallSuccess,
+            _that.ivrCallError,
+            _that.ivrMessage,
+            _that.callingPhoneNumber,
             _that.orderTab);
       case _:
         throw StateError('Unexpected subclass');
@@ -2552,6 +2743,11 @@ extension OrdersStatePatterns on OrdersState {
             List<OrderDetail>? newOrders,
             OrderDetail? orderDetail,
             String? orderFilter,
+            bool ivrCallLoading,
+            bool ivrCallSuccess,
+            bool ivrCallError,
+            String? ivrMessage,
+            String? callingPhoneNumber,
             int orderTab)?
         $default,
   ) {
@@ -2585,6 +2781,11 @@ extension OrdersStatePatterns on OrdersState {
             _that.newOrders,
             _that.orderDetail,
             _that.orderFilter,
+            _that.ivrCallLoading,
+            _that.ivrCallSuccess,
+            _that.ivrCallError,
+            _that.ivrMessage,
+            _that.callingPhoneNumber,
             _that.orderTab);
       case _:
         return null;
@@ -2622,6 +2823,11 @@ class _Initial implements OrdersState {
       final List<OrderDetail>? newOrders,
       this.orderDetail,
       this.orderFilter,
+      required this.ivrCallLoading,
+      required this.ivrCallSuccess,
+      required this.ivrCallError,
+      this.ivrMessage,
+      this.callingPhoneNumber,
       required this.orderTab})
       : _idCard = idCard,
         _deviceImages = deviceImages,
@@ -2713,6 +2919,16 @@ class _Initial implements OrdersState {
   @override
   final String? orderFilter;
   @override
+  final bool ivrCallLoading;
+  @override
+  final bool ivrCallSuccess;
+  @override
+  final bool ivrCallError;
+  @override
+  final String? ivrMessage;
+  @override
+  final String? callingPhoneNumber;
+  @override
   final int orderTab;
 
   /// Create a copy of OrdersState
@@ -2780,6 +2996,16 @@ class _Initial implements OrdersState {
                 other.orderDetail == orderDetail) &&
             (identical(other.orderFilter, orderFilter) ||
                 other.orderFilter == orderFilter) &&
+            (identical(other.ivrCallLoading, ivrCallLoading) ||
+                other.ivrCallLoading == ivrCallLoading) &&
+            (identical(other.ivrCallSuccess, ivrCallSuccess) ||
+                other.ivrCallSuccess == ivrCallSuccess) &&
+            (identical(other.ivrCallError, ivrCallError) ||
+                other.ivrCallError == ivrCallError) &&
+            (identical(other.ivrMessage, ivrMessage) ||
+                other.ivrMessage == ivrMessage) &&
+            (identical(other.callingPhoneNumber, callingPhoneNumber) ||
+                other.callingPhoneNumber == callingPhoneNumber) &&
             (identical(other.orderTab, orderTab) ||
                 other.orderTab == orderTab));
   }
@@ -2813,12 +3039,17 @@ class _Initial implements OrdersState {
         const DeepCollectionEquality().hash(_newOrders),
         orderDetail,
         orderFilter,
+        ivrCallLoading,
+        ivrCallSuccess,
+        ivrCallError,
+        ivrMessage,
+        callingPhoneNumber,
         orderTab
       ]);
 
   @override
   String toString() {
-    return 'OrdersState(isLoading: $isLoading, hasError: $hasError, acceptOrderLoading: $acceptOrderLoading, acceptOrderError: $acceptOrderError, acceptOrder: $acceptOrder, cancelOrder: $cancelOrder, completeOrderLoading: $completeOrderLoading, orderCompleted: $orderCompleted, orderCompletionError: $orderCompletionError, newOrdesRefreshLoading: $newOrdesRefreshLoading, partnerOrdesRefreshLoading: $partnerOrdesRefreshLoading, orderDetailError: $orderDetailError, popOrderScreen: $popOrderScreen, downloaded: $downloaded, downloading: $downloading, orderInvoice: $orderInvoice, message: $message, deviceBill: $deviceBill, idCard: $idCard, imeiImage: $imeiImage, deviceImages: $deviceImages, signatureImage: $signatureImage, partnerOrders: $partnerOrders, newOrders: $newOrders, orderDetail: $orderDetail, orderFilter: $orderFilter, orderTab: $orderTab)';
+    return 'OrdersState(isLoading: $isLoading, hasError: $hasError, acceptOrderLoading: $acceptOrderLoading, acceptOrderError: $acceptOrderError, acceptOrder: $acceptOrder, cancelOrder: $cancelOrder, completeOrderLoading: $completeOrderLoading, orderCompleted: $orderCompleted, orderCompletionError: $orderCompletionError, newOrdesRefreshLoading: $newOrdesRefreshLoading, partnerOrdesRefreshLoading: $partnerOrdesRefreshLoading, orderDetailError: $orderDetailError, popOrderScreen: $popOrderScreen, downloaded: $downloaded, downloading: $downloading, orderInvoice: $orderInvoice, message: $message, deviceBill: $deviceBill, idCard: $idCard, imeiImage: $imeiImage, deviceImages: $deviceImages, signatureImage: $signatureImage, partnerOrders: $partnerOrders, newOrders: $newOrders, orderDetail: $orderDetail, orderFilter: $orderFilter, ivrCallLoading: $ivrCallLoading, ivrCallSuccess: $ivrCallSuccess, ivrCallError: $ivrCallError, ivrMessage: $ivrMessage, callingPhoneNumber: $callingPhoneNumber, orderTab: $orderTab)';
   }
 }
 
@@ -2856,6 +3087,11 @@ abstract mixin class _$InitialCopyWith<$Res>
       List<OrderDetail>? newOrders,
       OrderDetail? orderDetail,
       String? orderFilter,
+      bool ivrCallLoading,
+      bool ivrCallSuccess,
+      bool ivrCallError,
+      String? ivrMessage,
+      String? callingPhoneNumber,
       int orderTab});
 }
 
@@ -2897,6 +3133,11 @@ class __$InitialCopyWithImpl<$Res> implements _$InitialCopyWith<$Res> {
     Object? newOrders = freezed,
     Object? orderDetail = freezed,
     Object? orderFilter = freezed,
+    Object? ivrCallLoading = null,
+    Object? ivrCallSuccess = null,
+    Object? ivrCallError = null,
+    Object? ivrMessage = freezed,
+    Object? callingPhoneNumber = freezed,
     Object? orderTab = null,
   }) {
     return _then(_Initial(
@@ -3003,6 +3244,26 @@ class __$InitialCopyWithImpl<$Res> implements _$InitialCopyWith<$Res> {
       orderFilter: freezed == orderFilter
           ? _self.orderFilter
           : orderFilter // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ivrCallLoading: null == ivrCallLoading
+          ? _self.ivrCallLoading
+          : ivrCallLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      ivrCallSuccess: null == ivrCallSuccess
+          ? _self.ivrCallSuccess
+          : ivrCallSuccess // ignore: cast_nullable_to_non_nullable
+              as bool,
+      ivrCallError: null == ivrCallError
+          ? _self.ivrCallError
+          : ivrCallError // ignore: cast_nullable_to_non_nullable
+              as bool,
+      ivrMessage: freezed == ivrMessage
+          ? _self.ivrMessage
+          : ivrMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      callingPhoneNumber: freezed == callingPhoneNumber
+          ? _self.callingPhoneNumber
+          : callingPhoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
       orderTab: null == orderTab
           ? _self.orderTab
