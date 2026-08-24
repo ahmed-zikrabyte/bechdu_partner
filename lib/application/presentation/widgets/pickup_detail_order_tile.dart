@@ -111,9 +111,15 @@ class PickUpDetailOrderTile extends StatelessWidget {
                           return _circleIconMaker(
                             icon: iconPhone,
                             onTap: () {
-                              context.read<OrdersBloc>().add(
-                                  OrdersEvent.ivrClickToCall(
-                                      customerNumber: phone));
+                              final hasAltPhone = addPhone != null &&
+                                  addPhone!.trim().isNotEmpty;
+                              if (hasAltPhone) {
+                                _showCallDialog(context, phone, addPhone!);
+                              } else {
+                                context.read<OrdersBloc>().add(
+                                    OrdersEvent.ivrClickToCall(
+                                        customerNumber: phone));
+                              }
                             },
                           );
                         },
@@ -151,6 +157,55 @@ class PickUpDetailOrderTile extends StatelessWidget {
             ]),
           ),
         ),
+      ),
+    );
+  }
+
+  void _showCallDialog(
+      BuildContext context, String primaryPhone, String altPhone) {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        title: const Text('Call Customer'),
+        content: const Text('Choose the number you want to call:'),
+        actionsAlignment: MainAxisAlignment.spaceEvenly,
+        actions: [
+          OutlinedButton.icon(
+            icon: const Icon(Icons.phone_outlined),
+            label: const Text('Primary\nNumber', textAlign: TextAlign.center),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: kGreenPrimary,
+              side: const BorderSide(color: kGreenPrimary),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+              context.read<OrdersBloc>().add(
+                  OrdersEvent.ivrClickToCall(customerNumber: primaryPhone));
+            },
+          ),
+          OutlinedButton.icon(
+            icon: const Icon(Icons.phone_callback_outlined),
+            label:
+                const Text('Alternative\nNumber', textAlign: TextAlign.center),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: kGreenPrimary,
+              side: const BorderSide(color: kGreenPrimary),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+              context
+                  .read<OrdersBloc>()
+                  .add(OrdersEvent.ivrClickToCall(customerNumber: altPhone));
+            },
+          ),
+        ],
       ),
     );
   }

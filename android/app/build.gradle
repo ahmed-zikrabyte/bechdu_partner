@@ -28,9 +28,9 @@ android {
     defaultConfig {
         applicationId "com.bechduapp.partner"
         minSdkVersion flutter.minSdkVersion
-        targetSdk 35
-        versionCode 20
-        versionName "1.1.6"
+        targetSdk 36
+        versionCode 22
+        versionName "1.1.8"
         multiDexEnabled true
 
         externalNativeBuild {
