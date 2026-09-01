@@ -18,11 +18,23 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:secure_application/secure_application.dart';
 
+import 'package:bechdu_partner/data/firebase_api/firebase_api.dart';
+
 final navigatorKey = GlobalKey<NavigatorState>();
 
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  
+  // Create channels in background isolate if not created
+  await NotificationServices().createNotificationChannels();
+
+  // If the backend sends a data-only payload, show local notification
+  if (message.notification == null && message.data.isNotEmpty) {
+    await NotificationServices().showNotification(message);
+  }
 }
 
 Future<void> main() async {
@@ -34,6 +46,10 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  
+  // Register notification channels on startup
+  await NotificationServices().createNotificationChannels();
+
   await configuteInjection();
   runApp(SecureApplication(child: Beachdu()));
 }
