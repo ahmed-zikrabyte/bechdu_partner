@@ -70,5 +70,14 @@
 	<string>This app requires access to the photo library to upload device and identification images.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>This app requires access to the microphone if you record videos during the verification process.</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>phonepe</string>
+		<string>tez</string>
+		<string>paytm</string>
+		<string>bhim</string>
+		<string>googlegpay</string>
+		<string>phonepepay</string>
+	</array>
 </dict>
 </plist>

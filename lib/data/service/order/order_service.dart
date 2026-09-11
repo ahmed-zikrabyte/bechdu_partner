@@ -12,6 +12,7 @@ import 'package:bechdu_partner/domain/model/order/complete_order_model/complete_
 import 'package:bechdu_partner/domain/model/order/get_partner_order_response_model/get_partner_order_response_model.dart';
 import 'package:bechdu_partner/domain/model/order/get_partner_order_response_model/order_detail.dart';
 import 'package:bechdu_partner/domain/model/transcaton/invoice_response_model/invoice_response_model.dart';
+import 'package:bechdu_partner/domain/model/ivr/ivr_response_model.dart';
 import 'package:bechdu_partner/domain/repository/service/order_repo.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -253,6 +254,34 @@ class OrderService implements OrderRepo {
       }
     } catch (e) {
       log('changeNotificationStatusOrder exception => $e');
+      return Left(Failure(message: errorMessage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, IvrResponseModel>> ivrClickToCall(
+      {required String customerNumber, required String agentNumber}) async {
+    try {
+      final response = await _apiService.post(
+        ApiEndPoints.clickToCall,
+        data: {
+          "customerNumber": customerNumber,
+          "agentNumber": agentNumber,
+        },
+      );
+      log('ivrClickToCall success data=> ${response.data}');
+      return Right(IvrResponseModel.fromJson(response.data));
+    } on DioException catch (e) {
+      try {
+        log('ivrClickToCall dio exception => $e');
+        ErrorResponseModel error =
+            ErrorResponseModel.fromJson(e.response?.data);
+        return Left(Failure(message: error.error ?? errorMessage));
+      } catch (e) {
+        return Left(Failure(message: errorMessage));
+      }
+    } catch (e) {
+      log('ivrClickToCall exception => $e');
       return Left(Failure(message: errorMessage));
     }
   }

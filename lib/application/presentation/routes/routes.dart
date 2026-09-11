@@ -20,4 +20,5 @@ class Routes {
   static const String supportDetails = '/support_details';
   static const String qcReportsPage = '/qc_reports';
   static const String qcReportDetail = '/qc_report_detail';
+  static const String paymentStatus = '/payment_status';
 }

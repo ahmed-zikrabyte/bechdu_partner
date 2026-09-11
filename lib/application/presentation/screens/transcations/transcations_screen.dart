@@ -1,3 +1,4 @@
+import 'package:bechdu_partner/application/business_logic/pickup_partner/pickup_partner_bloc.dart';
 import 'package:bechdu_partner/application/business_logic/transcation/transcation_bloc.dart';
 import 'package:bechdu_partner/application/presentation/screens/transcations/widgets/completed_transcations.dart';
 import 'package:bechdu_partner/application/presentation/screens/transcations/widgets/pending_transcations.dart';
@@ -5,8 +6,6 @@ import 'package:bechdu_partner/application/presentation/utils/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:secure_application/secure_application.dart';
-
-
 
 class ScreenTranscations extends StatefulWidget {
   const ScreenTranscations({super.key});
@@ -16,7 +15,7 @@ class ScreenTranscations extends StatefulWidget {
 }
 
 class _ScreenTranscationsState extends State<ScreenTranscations> {
-    late SecureApplicationController _secureController;
+  late SecureApplicationController _secureController;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -42,6 +41,9 @@ class _ScreenTranscationsState extends State<ScreenTranscations> {
       context
           .read<TranscationBloc>()
           .add(const TranscationEvent.getDebitedTranscations(call: false));
+      context
+          .read<PickupPartnerBloc>()
+          .add(const PickupPartnerEvent.getPartnerProfile());
     });
     return Scaffold(
       appBar: AppBar(

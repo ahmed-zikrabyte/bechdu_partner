@@ -58,6 +58,9 @@ class _NewOrdersListState extends State<NewOrdersList> {
                 context
                     .read<OrdersBloc>()
                     .add(const OrdersEvent.getNewOrder(call: true));
+                context
+                    .read<PickupPartnerBloc>()
+                    .add(const PickupPartnerEvent.getPartnerProfile());
               }
               context
                   .read<OrdersBloc>()

@@ -31,7 +31,13 @@ class CoinsPointsHistory extends StatelessWidget {
             BlocListener<TranscationBloc, TranscationState>(
               listener: (context, state) {
                 if (state.message != null) {
-                  showSnackBar(context: context, message: state.message!);
+                  String msg = state.message!;
+                  final lowMsg = msg.toLowerCase();
+                  if (lowMsg.contains('already') &&
+                      (lowMsg.contains('added') || lowMsg.contains('updated'))) {
+                    msg = 'Coins added successfully';
+                  }
+                  showSnackBar(context: context, message: msg);
                 }
                 if (state.paymentLoading) {
                   showDialog(
@@ -58,6 +64,9 @@ class CoinsPointsHistory extends StatelessWidget {
                       onRefresh: () async {
                         context.read<OrdersBloc>().add(
                             const OrdersEvent.getPartnerOrders(call: true));
+                        context
+                            .read<PickupPartnerBloc>()
+                            .add(const PickupPartnerEvent.getPartnerProfile());
                       },
                       child: ListView.builder(
                         itemCount: state.partnerOrders?.length ?? 0,

@@ -18,21 +18,23 @@ class DeviceImagesSession extends StatelessWidget {
           previous.orderCompletionError != current.orderCompletionError,
       builder: (context, state) {
         return InkWell(
-          onTap: () => context
-              .read<OrdersBloc>()
-              .add(const OrdersEvent.addDeviceImages()),
+          onTap: (state.deviceImages?.length ?? 0) >= 5
+              ? null
+              : () => context
+                  .read<OrdersBloc>()
+                  .add(const OrdersEvent.addDeviceImages()),
           child: Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
                 border: Border.all(
                     width: state.orderCompletionError &&
                             (state.deviceImages == null ||
-                                state.deviceImages == [])
+                                state.deviceImages!.isEmpty)
                         ? 2
                         : 1,
                     color: state.orderCompletionError &&
                             (state.deviceImages == null ||
-                                state.deviceImages == [])
+                                state.deviceImages!.isEmpty)
                         ? kRedDark
                         : kGreyLight),
                 borderRadius: kRadius10),
@@ -43,13 +45,15 @@ class DeviceImagesSession extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text('Device Images', style: textHeadRegular2),
-                    kWidth10,
-                    Icon(Icons.camera_outlined,
-                        color: state.orderCompletionError &&
-                                (state.deviceImages == null ||
-                                    state.deviceImages == [])
-                            ? kRedDark
-                            : kBlack)
+                    if ((state.deviceImages?.length ?? 0) < 5) ...[
+                      kWidth10,
+                      Icon(Icons.camera_outlined,
+                          color: state.orderCompletionError &&
+                                  (state.deviceImages == null ||
+                                      state.deviceImages!.isEmpty)
+                              ? kRedDark
+                              : kBlack)
+                    ]
                   ],
                 )),
                 state.deviceImages != null && state.deviceImages!.isNotEmpty
@@ -61,10 +65,12 @@ class DeviceImagesSession extends StatelessWidget {
                         child: ListView.separated(
                           scrollDirection: Axis.horizontal,
                           separatorBuilder: (_, __) => kWidth20,
-                          itemCount:state.deviceImages!.length + 1, // add button + all images
+                          itemCount: state.deviceImages!.length < 5
+                              ? state.deviceImages!.length + 1
+                              : state.deviceImages!.length, // add button + all images
                           itemBuilder: (context, index) {
-                            // 📸 Add button always at index 0
-                            if (index == 0) {
+                            // 📸 Add button always at index 0 if limit not reached
+                            if (state.deviceImages!.length < 5 && index == 0) {
                               return InkWell(
                                 onTap: () => context
                                     .read<OrdersBloc>()
@@ -81,7 +87,8 @@ class DeviceImagesSession extends StatelessWidget {
                               );
                             }
 
-                            final actualIndex = index - 1;
+                            final actualIndex =
+                                state.deviceImages!.length < 5 ? index - 1 : index;
                             return Stack(
                               children: [
                                 AspectRatio(
@@ -92,7 +99,7 @@ class DeviceImagesSession extends StatelessWidget {
                                       MaterialPageRoute(
                                         builder: (context) =>
                                             ScreenSlidablePhotoGallery(
-                                          images:state. deviceImages!
+                                          images: state.deviceImages!
                                               .map((e) => e.base64Image)
                                               .toList(),
                                           initialIndex: actualIndex,
@@ -100,7 +107,8 @@ class DeviceImagesSession extends StatelessWidget {
                                       ),
                                     ),
                                     child: Image.file(
-                                     state.deviceImages![actualIndex].fileImage,
+                                      state
+                                          .deviceImages![actualIndex].fileImage,
                                       fit: BoxFit.cover,
                                     ),
                                   ),

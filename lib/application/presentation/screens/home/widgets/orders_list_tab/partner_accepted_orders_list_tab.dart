@@ -55,10 +55,18 @@ class _OrdersHistoryListState extends State<OrdersHistoryList> {
             child: CircularProgressIndicator(color: kBluePrimary));
       }
       if (state.partnerOrders != null) {
-        if (state.partnerOrders!.isNotEmpty) {
+        final filteredOrders = state.orderFilter == null
+            ? state.partnerOrders!
+            : state.partnerOrders!
+                .where((order) =>
+                    order.status?.toLowerCase() ==
+                    state.orderFilter?.toLowerCase())
+                .toList();
+
+        if (filteredOrders.isNotEmpty) {
           int len = state.partnerOrdesRefreshLoading
-              ? state.partnerOrders!.length + 1
-              : state.partnerOrders!.length;
+              ? filteredOrders.length + 1
+              : filteredOrders.length;
           return RefreshIndicator(
             onRefresh: () async {
               if (partner) {
@@ -84,13 +92,13 @@ class _OrdersHistoryListState extends State<OrdersHistoryList> {
                 if (len < 5 && !state.partnerOrdesRefreshLoading) {
                   if (index < len) {
                     return OrdersListTileHome(
-                        orderDetail: state.partnerOrders![index],
+                        orderDetail: filteredOrders[index],
                         showExpansion: true);
                   } else {
                     return SizedBox(height: 1000, width: sWidth);
                   }
                 }
-                if (state.partnerOrders!.length <= index) {
+                if (filteredOrders.length <= index) {
                   return Padding(
                     padding: EdgeInsets.only(
                         bottom: index == len ? 100 : 0, left: 20, right: 20),
@@ -100,14 +108,14 @@ class _OrdersHistoryListState extends State<OrdersHistoryList> {
                 }
                 return Padding(
                   padding: EdgeInsets.only(
-                      bottom: state.partnerOrders!.length - 1 == index &&
+                      bottom: filteredOrders.length - 1 == index &&
                               !state.partnerOrdesRefreshLoading
                           ? 100
                           : 0),
                   child: OrdersListTileHome(
-                      orderDetail: state.partnerOrders![index],
+                      orderDetail: filteredOrders[index],
                       showExpansion:
-                          state.partnerOrders![index].status == 'cancelled'),
+                          filteredOrders[index].status == 'cancelled'),
                 );
               },
             ),
@@ -124,7 +132,9 @@ class _OrdersHistoryListState extends State<OrdersHistoryList> {
                   .read<OrdersBloc>()
                   .add(const OrdersEvent.getPartnerOrders(call: true));
             },
-            errorMessage: 'Your order list is empty',
+            errorMessage: state.orderFilter != null
+                ? 'No ${state.orderFilter} orders found'
+                : 'Your order list is empty',
           );
         }
       } else {

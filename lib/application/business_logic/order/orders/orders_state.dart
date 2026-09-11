@@ -28,6 +28,12 @@ abstract class OrdersState with _$OrdersState {
       List<OrderDetail>? partnerOrders,
       List<OrderDetail>? newOrders,
       OrderDetail? orderDetail,
+      String? orderFilter,
+      required bool ivrCallLoading,
+      required bool ivrCallSuccess,
+      required bool ivrCallError,
+      String? ivrMessage,
+      String? callingPhoneNumber,
       required int orderTab}) = _Initial;
 
   factory OrdersState.initial() => const OrdersState(
@@ -46,5 +52,10 @@ abstract class OrdersState with _$OrdersState {
       orderCompleted: false,
       acceptOrderLoading: false,
       downloaded: false,
-      downloading: false);
+      downloading: false,
+      ivrCallLoading: false,
+      ivrCallSuccess: false,
+      ivrCallError: false,
+      ivrMessage: null,
+      callingPhoneNumber: null);
 }

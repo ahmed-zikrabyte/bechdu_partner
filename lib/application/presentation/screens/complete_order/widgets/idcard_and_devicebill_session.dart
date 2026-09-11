@@ -14,7 +14,7 @@ class IdCardAndDeviceBillSession extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        /// 📄 Device Bill (unchanged)
+        /// 📄 Device Bill
         BlocBuilder<OrdersBloc, OrdersState>(
           buildWhen: (previous, current) =>
               previous.deviceBill != current.deviceBill ||
@@ -95,7 +95,7 @@ class IdCardAndDeviceBillSession extends StatelessWidget {
 
         kHeight20,
 
-        /// 🪪 ID Card (multiple images like deviceImages)
+        /// 🪪 ID Card
         BlocBuilder<OrdersBloc, OrdersState>(
           buildWhen: (previous, current) =>
               previous.idCard != current.idCard ||

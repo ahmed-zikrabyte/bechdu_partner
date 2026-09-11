@@ -8,6 +8,7 @@ import 'package:bechdu_partner/domain/model/transcaton/epay_model/epay_model.dar
 import 'package:bechdu_partner/domain/model/transcaton/get_credited_transcations_response_model/transcation.dart';
 import 'package:bechdu_partner/domain/model/transcaton/manual_transcation_response_model/transcation_cash_model.dart';
 import 'package:bechdu_partner/domain/model/transcaton/manuel_transcation_model/manuel_transcation_model.dart';
+import 'package:bechdu_partner/domain/model/transcaton/payu_response_model/payu_response_model.dart';
 import 'package:bechdu_partner/domain/repository/service/transcations_repo.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,6 +45,7 @@ class TranscationBloc extends Bloc<TranscationEvent, TranscationState> {
     on<UploadReciept>(uploadReciept);
     on<MakeManuelTranscationRequest>(makeManuelTranscationRequest);
     on<MakeEpaymetns>(makeEpaymetns);
+    on<InitiatePayuPayment>(initiatePayuPayment);
     on<MakePdf>(makePdf);
     on<Reset>(reset);
   }
@@ -55,6 +57,7 @@ class TranscationBloc extends Bloc<TranscationEvent, TranscationState> {
         hasError: false,
         paymentLoading: true,
         paymetnDone: false,
+        payuResponse: null,
         downloaded: false));
     final phone = await SharedPref.getPhone();
     final result = await transcationsRepo.makeEpayment(
@@ -70,6 +73,23 @@ class TranscationBloc extends Bloc<TranscationEvent, TranscationState> {
       add(const TranscationEvent.getCreditedTranscations(call: true));
       add(const TranscationEvent.getDebitedTranscations(call: true));
       add(const TranscationEvent.getManuelTransactions(call: true));
+    });
+  }
+
+  FutureOr<void> initiatePayuPayment(InitiatePayuPayment event, emit) async {
+    emit(state.copyWith(
+        payuLoading: true,
+        payuResponse: null,
+        hasError: false,
+        message: null,
+        gstError: false));
+    final phone = await SharedPref.getPhone();
+    final result = await transcationsRepo.initiateEpayment(
+        epayModel: event.epayModel, phone: phone!);
+    result.fold(
+        (l) => emit(state.copyWith(
+            hasError: true, payuLoading: false, message: l.message)), (r) {
+      emit(state.copyWith(payuLoading: false, payuResponse: r));
     });
   }
 
@@ -94,6 +114,7 @@ class TranscationBloc extends Bloc<TranscationEvent, TranscationState> {
         manuelTranscationDone: false,
         gstError: false,
         hasError: false,
+        payuResponse: null,
         message: null));
     final coins = int.parse(priceController.text.trim());
     final persentage = (coins * event.coinValue) * (event.gst / 100);
@@ -145,6 +166,7 @@ class TranscationBloc extends Bloc<TranscationEvent, TranscationState> {
         hasError: false,
         message: null,
         gstError: false,
+        payuResponse: null,
         amountPayable: total));
   }
 
