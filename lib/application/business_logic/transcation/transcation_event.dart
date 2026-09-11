@@ -17,7 +17,7 @@ class TranscationEvent with _$TranscationEvent {
   const factory TranscationEvent.makePdf({required String buffer}) = MakePdf;
   const factory TranscationEvent.calculateAmount(
       {required int coins,
-      required int coinValue,
+      required double coinValue,
       required int gstValue}) = CalculateAmount;
   const factory TranscationEvent.getManuelTransactions({required bool call}) =
       GetManuelTransactions;
@@ -27,8 +27,10 @@ class TranscationEvent with _$TranscationEvent {
       UploadReciept;
   const factory TranscationEvent.makeManuelTranscationRequest(
       {required int gst,
-      required int coinValue}) = MakeManuelTranscationRequest;
+      required double coinValue}) = MakeManuelTranscationRequest;
   const factory TranscationEvent.makeEpaymetns({required EpayModel epayModel}) =
       MakeEpaymetns;
+  const factory TranscationEvent.initiatePayuPayment(
+      {required EpayModel epayModel}) = InitiatePayuPayment;
   const factory TranscationEvent.reset() = Reset;
 }

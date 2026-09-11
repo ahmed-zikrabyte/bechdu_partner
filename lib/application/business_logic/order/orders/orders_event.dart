@@ -42,5 +42,10 @@ class OrdersEvent with _$OrdersEvent {
       DownloadOrderInvoice;
   const factory OrdersEvent.changeNotificationStatusOrder(
       {required String orderId}) = ChangeNotificationStatusOrder;
+  const factory OrdersEvent.filterOrders({required String? filter}) =
+      FilterOrders;
   const factory OrdersEvent.reset() = Reset;
+  const factory OrdersEvent.ivrClickToCall({required String customerNumber}) =
+      IvrClickToCall;
+  const factory OrdersEvent.resetIvrState() = ResetIvrState;
 }

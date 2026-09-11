@@ -74,8 +74,8 @@ extension GetItInjectableX on _i174.GetIt {
     );
     final dioModule = _$DioModule();
     gh.factory<_i542.RoleBloc>(() => _i542.RoleBloc());
-    gh.factory<_i412.ImagePickerService>(() => _i412.ImagePickerService());
     gh.factory<_i208.InvoiceMaker>(() => _i208.InvoiceMaker());
+    gh.factory<_i412.ImagePickerService>(() => _i412.ImagePickerService());
     gh.lazySingleton<_i361.Dio>(() => dioModule.dioInstance);
     gh.factory<_i363.ApiService>(() => _i363.ApiService(gh<_i361.Dio>()));
     gh.lazySingleton<_i452.AuthRepo>(

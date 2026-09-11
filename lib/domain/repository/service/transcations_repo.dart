@@ -6,6 +6,7 @@ import 'package:bechdu_partner/domain/model/transcaton/get_credited_transcations
 import 'package:bechdu_partner/domain/model/transcaton/invoice_response_model/invoice_response_model.dart';
 import 'package:bechdu_partner/domain/model/transcaton/manual_transcation_response_model/manual_transcation_response_model.dart';
 import 'package:bechdu_partner/domain/model/transcaton/manuel_transcation_model/manuel_transcation_model.dart';
+import 'package:bechdu_partner/domain/model/transcaton/payu_response_model/payu_response_model.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class TranscationsRepo {
@@ -24,5 +25,7 @@ abstract class TranscationsRepo {
   Future<Either<Failure, ManualTranscationResponseModel>> getManuelTranscations(
       {required String phone, required PageSizeQueryModel pageSizeQueryModel});
   Future<Either<Failure, SuccessResponseModel>> makeEpayment(
+      {required String phone, required EpayModel epayModel});
+  Future<Either<Failure, PayUResponseModel>> initiateEpayment(
       {required String phone, required EpayModel epayModel});
 }

@@ -59,7 +59,10 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
     on<GetOrderDetailNotification>(getOrderDetailNotification);
     on<ChangeNotificationStatusOrder>(changeNotificationStatusOrder);
     on<DownloadOrderInvoice>(downloadOrderInvoice);
+    on<FilterOrders>(filterOrders);
     on<Reset>(reset);
+    on<IvrClickToCall>(ivrClickToCall);
+    on<ResetIvrState>(resetIvrState);
   }
 
   FutureOr<void> reset(Reset event, emit) {
@@ -363,6 +366,12 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
             completeOrderLoading: false,
             hasError: true,
             message: l.message)), (r) {
+      if (r.status == false) {
+        return emit(state.copyWith(
+            completeOrderLoading: false,
+            hasError: true,
+            message: r.message ?? 'Something went wrong'));
+      }
       emit(state.copyWith(
           completeOrderLoading: false,
           deviceBill: null,
@@ -515,6 +524,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
   FutureOr<void> changeTab(ChangeTab event, emit) async {
     emit(state.copyWith(
         orderTab: event.tab,
+        orderFilter: null,
         message: null,
         downloaded: false,
         orderInvoice: null,
@@ -634,5 +644,71 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
         partnerOrders: orders,
         popOrderScreen: false,
         message: null));
+  }
+  FutureOr<void> filterOrders(FilterOrders event, emit) {
+    emit(state.copyWith(
+        orderFilter: event.filter,
+        downloaded: false,
+        orderInvoice: null,
+        popOrderScreen: false,
+        message: null));
+  }
+
+  FutureOr<void> resetIvrState(ResetIvrState event, emit) {
+    emit(state.copyWith(
+      ivrCallLoading: false,
+      ivrCallSuccess: false,
+      ivrCallError: false,
+      ivrMessage: null,
+      callingPhoneNumber: null,
+    ));
+  }
+
+  FutureOr<void> ivrClickToCall(IvrClickToCall event, emit) async {
+    emit(state.copyWith(
+      ivrCallLoading: true,
+      ivrCallSuccess: false,
+      ivrCallError: false,
+      ivrMessage: null,
+      callingPhoneNumber: event.customerNumber,
+    ));
+    final agentNumber = await SharedPref.getPhone();
+    if (agentNumber == null || agentNumber.isEmpty) {
+      return emit(state.copyWith(
+        ivrCallLoading: false,
+        ivrCallError: true,
+        ivrMessage: 'Agent phone number not found. Please log in again.',
+      ));
+    }
+    final result = await _orderRepo.ivrClickToCall(
+      customerNumber: event.customerNumber,
+      agentNumber: agentNumber,
+    );
+    result.fold(
+      (failure) => emit(state.copyWith(
+        ivrCallLoading: false,
+        ivrCallError: true,
+        ivrMessage: failure.message,
+      )),
+      (response) {
+        if (response.success) {
+          emit(state.copyWith(
+            ivrCallLoading: false,
+            ivrCallSuccess: true,
+            ivrMessage: response.message.isNotEmpty
+                ? response.message
+                : 'Calling you now. Please pick up to connect to the customer.',
+          ));
+        } else {
+          emit(state.copyWith(
+            ivrCallLoading: false,
+            ivrCallError: true,
+            ivrMessage: response.message.isNotEmpty
+                ? response.message
+                : 'Failed to initiate call.',
+          ));
+        }
+      },
+    );
   }
 }

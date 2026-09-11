@@ -8,8 +8,14 @@ part 'complete_order_model.g.dart';
 class CompleteOrderModel {
   DeviceInfo? deviceInfo;
   String? customerSignature;
+  String? coins;
+  String? cancellationReason;
 
-  CompleteOrderModel({this.deviceInfo, this.customerSignature});
+  CompleteOrderModel(
+      {this.deviceInfo,
+      this.customerSignature,
+      this.coins,
+      this.cancellationReason});
 
   factory CompleteOrderModel.fromJson(Map<String, dynamic> json) {
     return _$CompleteOrderModelFromJson(json);

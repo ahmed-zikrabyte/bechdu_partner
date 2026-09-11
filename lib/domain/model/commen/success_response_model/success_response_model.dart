@@ -5,8 +5,9 @@ part 'success_response_model.g.dart';
 @JsonSerializable()
 class SuccessResponseModel {
   String? message;
+  bool? status;
 
-  SuccessResponseModel({this.message});
+  SuccessResponseModel({this.message, this.status});
 
   factory SuccessResponseModel.fromJson(Map<String, dynamic> json) {
     return _$SuccessResponseModelFromJson(json);
