@@ -9,6 +9,8 @@ class SharedPref {
   static const String isPartnerKey = 'is_partner';
   static const String phoneKey = 'phone_key';
   static const String notificationKey = 'notification_key';
+  static const String orderSoundKey = 'order_sound_key';
+  static const String defaultOrderSound = 'order_alarm';
 
   static Future<SharedPreferences> _getPrefs() async =>
       await SharedPreferences.getInstance();
@@ -80,5 +82,17 @@ class SharedPref {
     final preferences = await _getPrefs();
     final phone = preferences.getString(phoneKey);
     return phone;
+  }
+
+  static Future<void> setOrderSound({required String sound}) async {
+    log('set orderSound =>() $sound');
+    final preferences = await _getPrefs();
+    await preferences.setString(orderSoundKey, sound);
+  }
+
+  static Future<String> getOrderSound() async {
+    final preferences = await _getPrefs();
+    final sound = preferences.getString(orderSoundKey) ?? defaultOrderSound;
+    return sound;
   }
 }

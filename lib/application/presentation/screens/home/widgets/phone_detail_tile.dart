@@ -17,8 +17,100 @@ class PhoneDetailTile extends StatelessWidget {
   final OrderDetail orderDetail;
   final VoidCallback? onTap;
 
+  String _getCityName() {
+    if (orderDetail.user?.ordercity != null &&
+        orderDetail.user!.ordercity!.trim().isNotEmpty) {
+      return orderDetail.user!.ordercity!.trim();
+    }
+
+    final address = orderDetail.user?.address?.trim();
+    if (address == null || address.isEmpty) {
+      return '';
+    }
+
+    final pincode = orderDetail.user?.orderpincode?.trim() ?? '';
+
+    // Split by any whitespace sequence to avoid empty string elements from multiple spaces
+    final tokens = address
+        .split(RegExp(r'\s+'))
+        .map((t) => t.trim())
+        .where((t) => t.isNotEmpty)
+        .toList();
+
+    if (tokens.isEmpty) {
+      return '';
+    }
+
+    String cleanToken(String token) {
+      return token.replaceAll(RegExp(r'^[^a-zA-Z0-9]+|[^a-zA-Z0-9]+$'), '');
+    }
+
+    int cityIndex = -1;
+    for (int i = tokens.length - 1; i >= 0; i--) {
+      final cleaned = cleanToken(tokens[i]);
+
+      // Skip empty or punctuation-only tokens
+      if (cleaned.isEmpty) {
+        continue;
+      }
+
+      // Skip pincode (matches user's pincode or standard 6-digit postal code)
+      if ((pincode.isNotEmpty && cleaned == pincode) ||
+          RegExp(r'^\d{6}$').hasMatch(cleaned)) {
+        continue;
+      }
+
+      cityIndex = i;
+      break;
+    }
+
+    if (cityIndex == -1) {
+      return '';
+    }
+
+    String city = cleanToken(tokens[cityIndex]);
+
+    // Check if preceding token is a modifier like "New", "Navi", "Greater", etc.
+    if (cityIndex > 0) {
+      final prevCleaned = cleanToken(tokens[cityIndex - 1]);
+      const prefixes = {
+        'new',
+        'navi',
+        'greater',
+        'north',
+        'south',
+        'east',
+        'west',
+        'old',
+      };
+      if (prefixes.contains(prevCleaned.toLowerCase())) {
+        city = '$prevCleaned $city';
+      }
+    }
+
+    return city;
+  }
+
+  String _getPincode() {
+    if (orderDetail.user?.orderpincode != null &&
+        orderDetail.user!.orderpincode!.trim().isNotEmpty) {
+      return orderDetail.user!.orderpincode!.trim();
+    }
+    final address = orderDetail.user?.address?.trim();
+    if (address != null && address.isNotEmpty) {
+      final match = RegExp(r'\b\d{6}\b').firstMatch(address);
+      if (match != null) {
+        return match.group(0)!;
+      }
+    }
+    return '';
+  }
+
   @override
   Widget build(BuildContext context) {
+    final cityName = _getCityName();
+    final pincode = _getPincode();
+
     return InkWell(
       onTap: onTap ??
           () {
@@ -106,33 +198,23 @@ class PhoneDetailTile extends StatelessWidget {
                 right: 5,
                 child: Row(
                   children: [
-                    Text(
-                      orderDetail.user?.ordercity?.isNotEmpty == true
-                          ? orderDetail.user!.ordercity!
-                          : (orderDetail.user?.address
-                                      ?.trim()
-                                      .split(' ')
-                                      .lastWhere(
-                                        (element) =>
-                                            element !=
-                                            orderDetail.user?.orderpincode,
-                                        orElse: () => '',
-                                      ) ??
-                                  '')
-                              .replaceAll(',', ''),
-                      style: textHeadRegular1.copyWith(
-                        color: Colors.black,
-                        fontSize: 10,
+                    if (cityName.isNotEmpty)
+                      Text(
+                        cityName,
+                        style: textHeadRegular1.copyWith(
+                          color: Colors.black,
+                          fontSize: 10,
+                        ),
                       ),
-                    ),
-                    kWidth5,
-                    Text(
-                      orderDetail.user?.orderpincode ?? '',
-                      style: textHeadRegular1.copyWith(
-                        color: Colors.black,
-                        fontSize: 10,
+                    if (cityName.isNotEmpty && pincode.isNotEmpty) kWidth5,
+                    if (pincode.isNotEmpty)
+                      Text(
+                        pincode,
+                        style: textHeadRegular1.copyWith(
+                          color: Colors.black,
+                          fontSize: 10,
+                        ),
                       ),
-                    ),
                   ],
                 ),
               ),

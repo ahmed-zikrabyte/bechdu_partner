@@ -46,6 +46,16 @@ class ScreenSettings extends StatelessWidget {
               ListTile(
                 leading: const CircleAvatar(
                   backgroundColor: kWhite,
+                  child: Icon(Icons.volume_up_outlined),
+                ),
+                title: Text('Audio Reminder', style: textHeadRegular2),
+                onTap: () =>
+                    Navigator.pushNamed(context, Routes.audioReminderPage),
+              ),
+              const Divider(),
+              ListTile(
+                leading: const CircleAvatar(
+                  backgroundColor: kWhite,
                   child: Icon(Icons.privacy_tip),
                 ),
                 title: Text('Privacy Poicy', style: textHeadRegular2),

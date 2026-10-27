@@ -16,8 +16,8 @@ class CustomBottomBar extends StatelessWidget {
       child: SafeArea(
         top: false,
         child: Container(
-          height: sWidth * 0.15,
-          padding: const EdgeInsets.only(top: 20),
+          height: sWidth * 0.18,
+          padding: const EdgeInsets.only(top: 10),
           decoration: BoxDecoration(
               color: kWhite,
               boxShadow: [
@@ -34,37 +34,35 @@ class CustomBottomBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
-                children: [
-                  const BottomIconMaker(image: iconHome),
-                  kHeight5,
-                  ClipRRect(
-                    borderRadius: kRadius5,
-                    child: SizedBox(
-                        height: 3,
-                        width: sWidth * 0.1,
-                        child: const ColoredBox(color: kGreenPrimary)),
-                  )
-                ],
+              const BottomIconMaker(
+                image: iconHome,
+                text: 'Home',
+                isSelected: true,
               ),
               BottomIconMaker(
-                  image: iconMoney,
-                  ontap: () {
-                    Navigator.pushNamed(context, Routes.transcationPage);
-                  }),
+                image: iconMoney,
+                text: 'Transaction',
+                ontap: () {
+                  Navigator.pushNamed(context, Routes.transcationPage);
+                },
+              ),
               BottomIconMaker(
-                  image: iconPeople,
-                  ontap: () {
-                    Navigator.pushNamed(context, Routes.partnersList);
-                  }),
+                image: iconPeople,
+                text: 'Pickup Executive',
+                ontap: () {
+                  Navigator.pushNamed(context, Routes.partnersList);
+                },
+              ),
               BottomIconMaker(
                 icon: Icons.fact_check_outlined,
+                text: 'QC Report',
                 ontap: () {
                   Navigator.pushNamed(context, Routes.qcReportsPage);
                 },
               ),
               BottomIconMaker(
                 image: iconSettings,
+                text: 'Setting',
                 ontap: () => Navigator.pushNamed(context, Routes.settingsPage),
               ),
             ],

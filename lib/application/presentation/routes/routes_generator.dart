@@ -12,6 +12,7 @@ import 'package:bechdu_partner/application/presentation/screens/pick_up_partner/
 import 'package:bechdu_partner/application/presentation/screens/pick_up_partner/pick_up_profile/pick_up_profile_screen.dart';
 import 'package:bechdu_partner/application/presentation/screens/points/points_screen.dart';
 import 'package:bechdu_partner/application/presentation/screens/profile/profile_screen.dart';
+import 'package:bechdu_partner/application/presentation/screens/settings/audio_reminder_screen.dart';
 import 'package:bechdu_partner/application/presentation/screens/settings/settings_screen.dart';
 import 'package:bechdu_partner/application/presentation/screens/settings/support_details.dart';
 import 'package:bechdu_partner/application/presentation/screens/splash/splash_screen.dart';
@@ -105,6 +106,9 @@ class RouteGenerator {
                       txnId: arguments['txnId'],
                     ))
             : _errorScreen();
+      case Routes.audioReminderPage:
+        return MaterialPageRoute(
+            builder: (ctx) => const ScreenAudioReminder());
       default:
         return _errorScreen();
     }
