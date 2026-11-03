@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:bechdu_partner/data/secure_storage/secure_storage.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,16 @@ class NotificationServices {
   static const String orderSoundIos =
       'order_alarm.mp3'; // iOS bundled sound name
 
+  // List of all sound identifiers available in assets/sounds, res/raw, and iOS bundle
+  static const List<String> availableSounds = [
+    'order_alarm',
+    'order_alarm_1',
+    'order_alarm_2',
+    'order_alarm_3',
+    'order_alarm_4',
+    'order_alarm_5',
+  ];
+
   // initialising firebase message plugin
   FirebaseMessaging messaging = FirebaseMessaging.instance;
 
@@ -37,6 +48,22 @@ class NotificationServices {
           .resolvePlatformSpecificImplementation<
               AndroidFlutterLocalNotificationsPlugin>();
 
+      // Create notification channels for each custom sound so channel settings are preserved
+      for (final sound in availableSounds) {
+        final soundChannel = AndroidNotificationChannel(
+          '${orderChannelId}_$sound',
+          orderChannelName,
+          description: orderChannelDescription,
+          importance: Importance.max,
+          playSound: true,
+          sound: RawResourceAndroidNotificationSound(sound),
+          enableVibration: true,
+          enableLights: true,
+        );
+        await androidPlugin?.createNotificationChannel(soundChannel);
+      }
+
+      // Base order channel with default sound as fallback
       const orderChannel = AndroidNotificationChannel(
         orderChannelId,
         orderChannelName,
@@ -152,16 +179,24 @@ class NotificationServices {
 
     // Determine if this is a new order notification
     final bool isOrderNotification = channelIdFromPayload == orderChannelId ||
+        (channelIdFromPayload != null &&
+            channelIdFromPayload.startsWith(orderChannelId)) ||
         type == 'new_order' ||
         type == 'order' ||
         type == 'new' ||
         message.data['channel_id'] == orderChannelId ||
+        (message.data['channel_id'] != null &&
+            message.data['channel_id'].toString().startsWith(orderChannelId)) ||
         (bodyText != null && bodyText.contains('new order')) ||
         (titleText != null && titleText.contains('order'));
 
+    final String selectedSoundRaw = await SharedPref.getOrderSound();
+    final String selectedSoundIos = '$selectedSoundRaw.mp3';
+    final String targetOrderChannelId = '${orderChannelId}_$selectedSoundRaw';
+
     final AndroidNotificationDetails androidNotificationDetails =
         AndroidNotificationDetails(
-      isOrderNotification ? orderChannelId : defaultChannelId,
+      isOrderNotification ? targetOrderChannelId : defaultChannelId,
       isOrderNotification ? orderChannelName : defaultChannelName,
       channelDescription: isOrderNotification
           ? orderChannelDescription
@@ -170,7 +205,7 @@ class NotificationServices {
       priority: isOrderNotification ? Priority.max : Priority.high,
       playSound: true,
       sound: isOrderNotification
-          ? const RawResourceAndroidNotificationSound(orderSoundRaw)
+          ? RawResourceAndroidNotificationSound(selectedSoundRaw)
           : null,
       icon: '@mipmap/launcher_icon',
       enableVibration: true,
@@ -181,7 +216,7 @@ class NotificationServices {
       presentAlert: true,
       presentBadge: true,
       presentSound: true,
-      sound: isOrderNotification ? orderSoundIos : null,
+      sound: isOrderNotification ? selectedSoundIos : null,
     );
 
     final NotificationDetails notificationDetails = NotificationDetails(
