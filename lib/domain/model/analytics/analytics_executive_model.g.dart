@@ -19,6 +19,8 @@ AnalyticsExecutiveModel _$AnalyticsExecutiveModelFromJson(
       conversionRate: (json['conversionRate'] as num?)?.toDouble(),
       cancellationRate: (json['cancellationRate'] as num?)?.toDouble(),
       gmv: json['gmv'] as num?,
+      profit: json['profit'] as num?,
+      grossProfit: json['grossProfit'] as num?,
       avgTurnaroundTime: json['avgTurnaroundTime'] as String?,
     );
 
@@ -35,5 +37,7 @@ Map<String, dynamic> _$AnalyticsExecutiveModelToJson(
       'conversionRate': instance.conversionRate,
       'cancellationRate': instance.cancellationRate,
       'gmv': instance.gmv,
+      'profit': instance.profit,
+      'grossProfit': instance.grossProfit,
       'avgTurnaroundTime': instance.avgTurnaroundTime,
     };

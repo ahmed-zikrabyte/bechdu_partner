@@ -9,6 +9,8 @@ class AnalyticsTrendModel {
   int? completed;
   int? cancelled;
   num? value;
+  num? profit;
+  num? grossProfit;
 
   AnalyticsTrendModel({
     this.date,
@@ -16,6 +18,8 @@ class AnalyticsTrendModel {
     this.completed,
     this.cancelled,
     this.value,
+    this.profit,
+    this.grossProfit,
   });
 
   factory AnalyticsTrendModel.fromJson(Map<String, dynamic> json) =>

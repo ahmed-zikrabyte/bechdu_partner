@@ -6,6 +6,8 @@ import 'analytics_funnel_model.dart';
 import 'analytics_trend_model.dart';
 import 'analytics_status_model.dart';
 import 'analytics_executive_model.dart';
+import 'analytics_top_brand_model.dart';
+import 'analytics_top_device_model.dart';
 
 part 'analytics_response_model.g.dart';
 
@@ -19,6 +21,10 @@ class AnalyticsResponseModel {
   List<AnalyticsTrendModel>? trends;
   AnalyticsStatusModel? statusDistribution;
   List<AnalyticsExecutiveModel>? executives;
+  List<AnalyticsTopBrandModel>? topBrands;
+  List<AnalyticsTopDeviceModel>? topDevices;
+  num? grossProfit;
+  num? profit;
 
   AnalyticsResponseModel({
     this.success,
@@ -29,6 +35,10 @@ class AnalyticsResponseModel {
     this.trends,
     this.statusDistribution,
     this.executives,
+    this.topBrands,
+    this.topDevices,
+    this.grossProfit,
+    this.profit,
   });
 
   factory AnalyticsResponseModel.fromJson(Map<String, dynamic> json) =>

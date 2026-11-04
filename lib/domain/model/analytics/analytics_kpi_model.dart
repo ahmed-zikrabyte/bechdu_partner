@@ -21,6 +21,10 @@ class AnalyticsKpiModel {
   int? orderVolume;
   num? totalTransactionValue;
   num? applicableRevenue;
+  num? grossProfit;
+  num? profit;
+  num? netProfit;
+  double? profitMargin;
 
   double? avgResponseTimeHours;
   String? avgResponseTimeText;
@@ -43,6 +47,10 @@ class AnalyticsKpiModel {
     this.orderVolume,
     this.totalTransactionValue,
     this.applicableRevenue,
+    this.grossProfit,
+    this.profit,
+    this.netProfit,
+    this.profitMargin,
     this.avgResponseTimeHours,
     this.avgResponseTimeText,
     this.avgPickupTimeHours,
