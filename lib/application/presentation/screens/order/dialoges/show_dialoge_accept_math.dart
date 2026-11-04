@@ -82,7 +82,7 @@ Future<dynamic> showDialogAcceptMathCalc(BuildContext context, String orderId) {
                             }
                           },
                           text: 'Accept Order',
-                          backgroundColor: kBluePrimary.withOpacity(0.9),
+                          backgroundColor: kBluePrimary.withValues(alpha: 0.9),
                         ),
                       ],
                     ),

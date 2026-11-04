@@ -217,7 +217,7 @@ class PickUpDetailOrderTile extends StatelessWidget {
         width: sWidth * 0.10,
         height: sWidth * 0.10,
         decoration: BoxDecoration(
-          color: kGreyLight.withOpacity(0.3),
+          color: kGreyLight.withValues(alpha: 0.3),
           borderRadius: BorderRadius.circular(100),
         ),
         child: Padding(

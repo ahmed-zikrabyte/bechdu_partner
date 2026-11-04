@@ -44,7 +44,7 @@ class AddCoinShortCutButton extends StatelessWidget {
             child: ClipRRect(
               borderRadius: kRadius5,
               child: ColoredBox(
-                color: kWhite.withOpacity(0.3),
+                color: kWhite.withValues(alpha: 0.3),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(

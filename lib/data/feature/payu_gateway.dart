@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:payu_checkoutpro_flutter/PayUConstantKeys.dart';
 import 'package:payu_checkoutpro_flutter/payu_checkoutpro_flutter.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class PayUGateway {
   PayUGateway(this.context);
@@ -186,14 +185,17 @@ class _PayUCheckoutProScreenState extends State<_PayUCheckoutProScreen>
               ?.toString();
 
       String hash;
-      
-      // If SDK asks for the main 'payment' hash, prioritize the backend's hash 
+
+      // If SDK asks for the main 'payment' hash, prioritize the backend's hash
       // because backend is the source of truth for the transaction hash.
-      if (hashName == 'payment' && (widget.payuData['hash']?.toString().isNotEmpty ?? false)) {
+      if (hashName == 'payment' &&
+          (widget.payuData['hash']?.toString().isNotEmpty ?? false)) {
         hash = widget.payuData['hash'].toString();
-      } else if (hashType == PayUHashConstantsKeys.hashVersionV2 || hashType == 'V2') {
+      } else if (hashType == PayUHashConstantsKeys.hashVersionV2 ||
+          hashType == 'V2') {
         hash = _hmacSha256(hashString, payUSalt);
-      } else if (hashName == PayUHashConstantsKeys.mcpLookup || hashName == 'mcpLookup') {
+      } else if (hashName == PayUHashConstantsKeys.mcpLookup ||
+          hashName == 'mcpLookup') {
         hash = _hmacSha1(hashString, payUSalt);
       } else if (postSalt != null && postSalt.isNotEmpty) {
         hash = _sha512('$hashString$payUSalt$postSalt');
@@ -205,7 +207,9 @@ class _PayUCheckoutProScreenState extends State<_PayUCheckoutProScreen>
     } catch (e) {
       log('PayU Hash Generation Error: $e');
       // Return empty hash so SDK doesn't crash completely, though payment will fail.
-      _checkoutPro.hashGenerated(hash: <String, dynamic>{response[PayUHashConstantsKeys.hashName]?.toString() ?? 'hashName': ''});
+      _checkoutPro.hashGenerated(hash: <String, dynamic>{
+        response[PayUHashConstantsKeys.hashName]?.toString() ?? 'hashName': ''
+      });
     }
   }
 

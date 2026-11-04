@@ -20,7 +20,7 @@ class CoinsPointsHistory extends StatelessWidget {
     return ClipRRect(
       borderRadius: kRadius10,
       child: ColoredBox(
-        color: kBluelight.withOpacity(0.3),
+        color: kBluelight.withValues(alpha: 0.3),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -34,7 +34,8 @@ class CoinsPointsHistory extends StatelessWidget {
                   String msg = state.message!;
                   final lowMsg = msg.toLowerCase();
                   if (lowMsg.contains('already') &&
-                      (lowMsg.contains('added') || lowMsg.contains('updated'))) {
+                      (lowMsg.contains('added') ||
+                          lowMsg.contains('updated'))) {
                     msg = 'Coins added successfully';
                   }
                   showSnackBar(context: context, message: msg);

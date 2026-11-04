@@ -109,8 +109,8 @@ class TapButtonYesOrNo extends StatelessWidget {
               : selected && !yesOrNo
                   ? kRed
                   : yesOrNo
-                      ? kGreenLight.withOpacity(0.5)
-                      : kRedLight.withOpacity(0.5),
+                      ? kGreenLight.withValues(alpha: 0.5)
+                      : kRedLight.withValues(alpha: 0.5),
           child: Padding(
             padding: EdgeInsets.symmetric(
                 horizontal: selected ? 15 : 10, vertical: selected ? 5 : 3),

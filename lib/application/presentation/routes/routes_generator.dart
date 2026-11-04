@@ -23,6 +23,10 @@ import 'package:bechdu_partner/application/presentation/utils/pdf/pdf_preview.da
 import 'package:bechdu_partner/application/presentation/screens/points/payment_status_screen.dart';
 import 'package:bechdu_partner/domain/model/order/get_partner_order_response_model/order_detail.dart';
 import 'package:flutter/material.dart';
+import 'package:bechdu_partner/application/presentation/screens/analytics/analytics_screen.dart';
+import 'package:bechdu_partner/application/business_logic/analytics/analytics_bloc.dart';
+import 'package:bechdu_partner/domain/core/di/dipendency_injection.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RouteGenerator {
   Route onGenerateRoute(RouteSettings settings) {
@@ -40,16 +44,23 @@ class RouteGenerator {
       case Routes.addPickUpPage:
         return MaterialPageRoute(
             builder: (ctx) => const ScreenAddPickUpPartner());
-            
+
       case Routes.supportDetails:
-        return MaterialPageRoute(
-            builder: (ctx) => const SupportDetails());
+        return MaterialPageRoute(builder: (ctx) => const SupportDetails());
 
       case Routes.partnersList:
         return MaterialPageRoute(
             builder: (ctx) => const ScreenPickUpPartnersList());
       case Routes.qcReportsPage:
         return MaterialPageRoute(builder: (ctx) => const ScreenQcReports());
+      case Routes.analyticsPage:
+        return MaterialPageRoute(
+          builder: (ctx) => BlocProvider(
+            create: (_) => getIt<AnalyticsBloc>()
+              ..add(const AnalyticsEvent.fetchAnalytics()),
+            child: const ScreenAnalytics(),
+          ),
+        );
       case Routes.qcReportDetail:
         return arguments is String
             ? MaterialPageRoute(
@@ -107,8 +118,7 @@ class RouteGenerator {
                     ))
             : _errorScreen();
       case Routes.audioReminderPage:
-        return MaterialPageRoute(
-            builder: (ctx) => const ScreenAudioReminder());
+        return MaterialPageRoute(builder: (ctx) => const ScreenAudioReminder());
       default:
         return _errorScreen();
     }

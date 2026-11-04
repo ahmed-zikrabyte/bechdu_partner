@@ -41,7 +41,7 @@ class ScreenPickUpPartnersList extends StatelessWidget {
               child: ListView.separated(
                 itemCount: state.pickUpPersons!.length,
                 separatorBuilder: (context, index) => ColoredBox(
-                  color: kGreyLight.withOpacity(0.5),
+                  color: kGreyLight.withValues(alpha: 0.5),
                   child: const SizedBox(height: 1, width: double.infinity),
                 ),
                 itemBuilder: (context, index) => PickupPartnerListTile(

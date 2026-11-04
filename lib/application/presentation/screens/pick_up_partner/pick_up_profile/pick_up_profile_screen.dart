@@ -90,7 +90,7 @@ class ScreenPickUpPartnerProfile extends StatelessWidget {
                     ),
                     kHeight20,
                     ColoredBox(
-                      color: kGreyLight.withOpacity(0.2),
+                      color: kGreyLight.withValues(alpha: 0.2),
                       child: Column(
                         children: [
                           ListTile(

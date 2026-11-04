@@ -9,6 +9,8 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:bechdu_partner/application/business_logic/analytics/analytics_bloc.dart'
+    as _i924;
 import 'package:bechdu_partner/application/business_logic/auth/auth_bloc.dart'
     as _i73;
 import 'package:bechdu_partner/application/business_logic/notification/notification_bloc.dart'
@@ -30,6 +32,8 @@ import 'package:bechdu_partner/application/business_logic/transcation/transcatio
 import 'package:bechdu_partner/data/feature/image_picker_service.dart' as _i412;
 import 'package:bechdu_partner/data/feature/pdf_buffer.dart' as _i208;
 import 'package:bechdu_partner/data/service/api_service.dart' as _i363;
+import 'package:bechdu_partner/data/service/auth/analytics_service.dart'
+    as _i808;
 import 'package:bechdu_partner/data/service/auth/auth_service.dart' as _i54;
 import 'package:bechdu_partner/data/service/notification/notification.dart'
     as _i800;
@@ -43,6 +47,8 @@ import 'package:bechdu_partner/data/service/requote/requote_service.dart'
 import 'package:bechdu_partner/data/service/transcation/transcation_service.dart'
     as _i658;
 import 'package:bechdu_partner/domain/core/dio_module/dio_module.dart' as _i821;
+import 'package:bechdu_partner/domain/repository/service/analytics_repo.dart'
+    as _i381;
 import 'package:bechdu_partner/domain/repository/service/auth_repo.dart'
     as _i452;
 import 'package:bechdu_partner/domain/repository/service/notification_repo.dart'
@@ -74,8 +80,8 @@ extension GetItInjectableX on _i174.GetIt {
     );
     final dioModule = _$DioModule();
     gh.factory<_i542.RoleBloc>(() => _i542.RoleBloc());
-    gh.factory<_i208.InvoiceMaker>(() => _i208.InvoiceMaker());
     gh.factory<_i412.ImagePickerService>(() => _i412.ImagePickerService());
+    gh.factory<_i208.InvoiceMaker>(() => _i208.InvoiceMaker());
     gh.lazySingleton<_i361.Dio>(() => dioModule.dioInstance);
     gh.factory<_i363.ApiService>(() => _i363.ApiService(gh<_i361.Dio>()));
     gh.lazySingleton<_i452.AuthRepo>(
@@ -95,6 +101,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i13.OrderService(gh<_i363.ApiService>()));
     gh.lazySingleton<_i241.PointsRepo>(
         () => _i208.PointsService(gh<_i363.ApiService>()));
+    gh.lazySingleton<_i381.AnalyticsRepo>(
+        () => _i808.AnalyticsService(gh<_i363.ApiService>()));
     gh.factory<_i73.AuthBloc>(() => _i73.AuthBloc(gh<_i452.AuthRepo>()));
     gh.lazySingleton<_i933.NotificatonRepo>(
         () => _i800.NotificationService(gh<_i363.ApiService>()));
@@ -109,6 +117,8 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i268.PointsBloc>(
         () => _i268.PointsBloc(gh<_i241.PointsRepo>()));
+    gh.factory<_i924.AnalyticsBloc>(
+        () => _i924.AnalyticsBloc(gh<_i381.AnalyticsRepo>()));
     gh.factory<_i955.NotificationBloc>(
         () => _i955.NotificationBloc(gh<_i933.NotificatonRepo>()));
     return this;

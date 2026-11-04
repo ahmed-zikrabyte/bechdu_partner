@@ -22,7 +22,7 @@ class CustomBottomBar extends StatelessWidget {
               color: kWhite,
               boxShadow: [
                 BoxShadow(
-                  color: kGreyLight.withOpacity(0.3),
+                  color: kGreyLight.withValues(alpha: 0.3),
                   blurRadius: 5.0,
                   offset: const Offset(-5.0, -5.0),
                 ),
@@ -58,6 +58,13 @@ class CustomBottomBar extends StatelessWidget {
                 text: 'QC Report',
                 ontap: () {
                   Navigator.pushNamed(context, Routes.qcReportsPage);
+                },
+              ),
+              BottomIconMaker(
+                icon: Icons.analytics_outlined,
+                text: 'Analytics',
+                ontap: () {
+                  Navigator.pushNamed(context, Routes.analyticsPage);
                 },
               ),
               BottomIconMaker(

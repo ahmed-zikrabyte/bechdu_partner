@@ -154,7 +154,8 @@ class _ManualTranscationItemState extends State<ManualTranscationItem> {
                       loading
                           ? LinearProgressIndicator(
                               color: kGreenPrimary,
-                              backgroundColor: kGreyLight.withOpacity(0.2),
+                              backgroundColor:
+                                  kGreyLight.withValues(alpha: 0.2),
                             )
                           : kEmpty
                     ]),

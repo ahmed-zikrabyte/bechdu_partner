@@ -21,7 +21,7 @@ class CoinPointTable extends StatelessWidget {
     return ClipRRect(
       borderRadius: kRadius5,
       child: ColoredBox(
-        color: kBluelight.withOpacity(0.3),
+        color: kBluelight.withValues(alpha: 0.3),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 20),
           child: BlocBuilder<PickupPartnerBloc, PickupPartnerState>(
