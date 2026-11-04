@@ -136,7 +136,7 @@ class _AddCoinsDialogeState extends State<AddCoinsDialoge> {
                       children: [
                         Radio(
                           activeColor: kWhite,
-                          fillColor: MaterialStateProperty.all(kWhite),
+                          fillColor: WidgetStateProperty.all(kWhite),
                           value: PaymentMethod.epayment,
                           groupValue: paymentMethod,
                           onChanged: (value) {
@@ -151,7 +151,7 @@ class _AddCoinsDialogeState extends State<AddCoinsDialoge> {
                         ),
                         Radio(
                           activeColor: kWhite,
-                          fillColor: MaterialStateProperty.all(kWhite),
+                          fillColor: WidgetStateProperty.all(kWhite),
                           value: PaymentMethod.cash,
                           groupValue: paymentMethod,
                           onChanged: (value) {

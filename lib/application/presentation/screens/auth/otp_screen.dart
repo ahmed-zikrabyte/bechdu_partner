@@ -91,7 +91,7 @@ class _ScreenOTPState extends State<ScreenOTP> {
                     decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
-                          color: kGreenLight.withOpacity(0.03),
+                          color: kGreenLight.withValues(alpha: 0.03),
                           offset: const Offset(0, 6),
                           blurRadius: 6,
                           spreadRadius: 2,

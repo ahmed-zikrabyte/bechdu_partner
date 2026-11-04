@@ -7,12 +7,11 @@ class AnimatedGrowShrinkContainer extends StatefulWidget {
   final double end;
 
   const AnimatedGrowShrinkContainer(
-      {Key? key,
+      {super.key,
       required this.child,
       this.milliseconds = 2000,
       this.begin = 1.0,
-      this.end = 0.8})
-      : super(key: key);
+      this.end = 0.8});
 
   @override
   State<AnimatedGrowShrinkContainer> createState() =>

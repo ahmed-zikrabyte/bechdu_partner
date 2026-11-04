@@ -19,7 +19,7 @@ class QcReportListTile extends StatelessWidget {
         borderRadius: kRadius10,
         boxShadow: [
           BoxShadow(
-            color: kBlack.withOpacity(0.05),
+            color: kBlack.withValues(alpha: 0.05),
             offset: const Offset(0, 2),
             blurRadius: 10,
           ),
@@ -37,7 +37,7 @@ class QcReportListTile extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: kBluePrimary.withOpacity(0.1),
+                    color: kBluePrimary.withValues(alpha: 0.1),
                     shape: BoxShape.circle,
                   ),
                   child: const Icon(Icons.picture_as_pdf, color: kBluePrimary),

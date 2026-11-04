@@ -30,10 +30,20 @@ class ApiService {
       } else {
         _dio.options.headers['content-Type'] = 'application/json';
       }
-      log('api uri ==>get  ${_dio.options.baseUrl + url}');
-      log('accessToken ==>  ${_dio.options.headers['authorization']}');
-      final response =
-          await _dio.get(url, data: data, queryParameters: queryParameters);
+      log('GET REQUEST STARTED');
+      log('ACTUAL BASE URL: ${_dio.options.baseUrl}');
+      log('REQUEST PATH: $url');
+      log('QUERY PARAMETERS: $queryParameters');
+
+      final response = await _dio.get(
+        url,
+        data: data,
+        queryParameters: queryParameters,
+      );
+
+      log('GET RESPONSE STATUS: ${response.statusCode}');
+      log('GET RESPONSE DATA: ${response.data}');
+
       return response;
     } on DioException catch (exception) {
       _handleDioError(exception);
@@ -55,6 +65,8 @@ class ApiService {
       if (addHeader) {
         final accessToken =
             await SharedPref.getToken().then((token) => token.accessToken);
+        log('TOKEN FETCH COMPLETED');
+
         _dio.options.headers.addAll(
           {
             'authorization': "Bearer $accessToken",

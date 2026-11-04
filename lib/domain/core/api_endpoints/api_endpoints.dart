@@ -1,8 +1,8 @@
 class ApiEndPoints {
   //base urls
   // static String baseUrl = 'https://api.bechdu.in';
-  static const String baseUrl = 'https://bechdu-mern-api.onrender.com';
-//   static const String baseUrl = 'https://x6w9rk3r-5000.inc1.devtunnels.ms';
+  // static const String baseUrl = 'https://bechdu-mern-api.onrender.com';
+  static const String baseUrl = 'https://x6w9rk3r-5000.inc1.devtunnels.ms';
 //   static String baseUrl = 'https://itchy-regions-divide.loca.lt/';
 
   static String baseUrlImage = '';
@@ -78,6 +78,9 @@ class ApiEndPoints {
   static String getQcReports = '/api/pdf/reports';
   static String getQcReportDetails = '/api/pdf/details';
   static String downloadQcReport = '/api/pdf/download';
+
+// Analytics
+  static String getPartnerAnalytics = '/partner/analytics';
 
   // IVR Click-to-Call
   static String clickToCall = '/api/ivr/click-to-call';

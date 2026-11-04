@@ -31,7 +31,7 @@ void showDialogeCancel(context, orderId) {
                               style: textHeadBoldBig),
                           kHeight20,
                           ColoredBox(
-                            color: kGreyLight.withOpacity(0.2),
+                            color: kGreyLight.withValues(alpha: 0.2),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Form(
@@ -72,7 +72,7 @@ void showDialogeCancel(context, orderId) {
                               }
                             },
                             text: 'Cancel',
-                            backgroundColor: kRed.withOpacity(0.9),
+                            backgroundColor: kRed.withValues(alpha: 0.9),
                           ),
                         ],
                       ),

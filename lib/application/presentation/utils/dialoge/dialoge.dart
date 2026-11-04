@@ -2,7 +2,7 @@ import 'package:bechdu_partner/application/presentation/utils/colors.dart';
 import 'package:bechdu_partner/application/presentation/utils/constant.dart';
 import 'package:flutter/material.dart';
 
-showCustomDialoge(
+void showCustomDialoge(
     {required BuildContext context,
     required String title,
     Color buttonColor = kGreenPrimary,

@@ -5,7 +5,8 @@ class AnimatedContentWidget extends StatefulWidget {
   final Widget newContent;
   final bool animate;
 
-  AnimatedContentWidget({
+  const AnimatedContentWidget({
+    super.key,
     required this.initialContent,
     required this.newContent,
     required this.animate,

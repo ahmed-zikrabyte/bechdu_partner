@@ -4,13 +4,13 @@ import 'package:shimmer/shimmer.dart';
 
 class ShimmerLoader extends StatelessWidget {
   const ShimmerLoader({
-    Key? key,
+    super.key,
     required this.itemCount,
     required this.height,
     required this.width,
     this.seprator = const SizedBox(),
     this.scrollDirection = Axis.vertical,
-  }) : super(key: key);
+  });
 
   final int itemCount;
   final double height;

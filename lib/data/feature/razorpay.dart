@@ -69,7 +69,7 @@ class RazorpayGateway {
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
     debugPrint('=========Payment successful: $response');
     debugPrint('=========Payment successful: ${response.paymentId}');
-    this.epayModel.paymentId = response.paymentId ?? '';
+    epayModel.paymentId = response.paymentId ?? '';
     context
         .read<TranscationBloc>()
         .add(TranscationEvent.makeEpaymetns(epayModel: epayModel));

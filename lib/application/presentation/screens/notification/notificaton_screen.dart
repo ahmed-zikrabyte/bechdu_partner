@@ -228,7 +228,7 @@ class _ScreenNotificationState extends State<ScreenNotification> {
 
   Widget _buildNotificationTile(data, Color color, {required bool isOffer}) {
     return Container(
-      color: data.status == false ? kBluelight.withOpacity(0.5) : kWhite,
+      color: data.status == false ? kBluelight.withValues(alpha: 0.5) : kWhite,
       child: ListTile(
         minLeadingWidth: 40,
         isThreeLine: true,
@@ -257,7 +257,7 @@ class _ScreenNotificationState extends State<ScreenNotification> {
                 : Icon(Icons.circle, size: 12, color: color),
             kWidth10,
             CircleAvatar(
-              backgroundColor: color.withOpacity(0.2),
+              backgroundColor: color.withValues(alpha: 0.2),
               child: Icon(getNotificationIcon(data.type ?? ''), color: color),
             ),
           ],

@@ -9,7 +9,7 @@ import 'package:bechdu_partner/domain/model/requote/requote_price_model/requote_
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-showDialogeRequote(context) {
+void showDialogeRequote(context) {
   showDialog(
     context: context,
     builder: (context) => Dialog(

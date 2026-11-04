@@ -136,8 +136,8 @@ class _ReshedulePopupState extends State<ReshedulePopup> {
                         kHeight10,
                         ColoredBox(
                           color: messageError
-                              ? kRedLight.withOpacity(0.5)
-                              : kGreyLight.withOpacity(0.2),
+                              ? kRedLight.withValues(alpha: 0.5)
+                              : kGreyLight.withValues(alpha: 0.2),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: TextField(
@@ -205,7 +205,7 @@ class _ReshedulePopupState extends State<ReshedulePopup> {
                                 },
                                 text: 'Reschedule',
                                 backgroundColor:
-                                    kOrangePrimary.withOpacity(0.9),
+                                    kOrangePrimary.withValues(alpha: 0.9),
                               ),
                       ],
                     );

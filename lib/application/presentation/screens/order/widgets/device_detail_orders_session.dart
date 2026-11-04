@@ -80,8 +80,9 @@ class OrderDetailDiviceDetailsSession extends StatelessWidget {
                                                                   .value!
                                                               ? kGreenLight
                                                               : kRedLight
-                                                                  .withOpacity(
-                                                                      0.5),
+                                                                  .withValues(
+                                                                      alpha:
+                                                                          0.5),
                                                           child: Padding(
                                                             padding:
                                                                 const EdgeInsets

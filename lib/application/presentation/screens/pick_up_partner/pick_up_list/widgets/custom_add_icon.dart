@@ -19,7 +19,7 @@ class CustomAddIcon extends StatelessWidget {
         borderOnForeground: true,
         child: CircleAvatar(
           radius: sWidth * 0.037,
-          backgroundColor: kGreenPrimary.withOpacity(0.5),
+          backgroundColor: kGreenPrimary.withValues(alpha: 0.5),
           child: CircleAvatar(
             radius: sWidth * 0.033,
             backgroundColor: kWhite,
