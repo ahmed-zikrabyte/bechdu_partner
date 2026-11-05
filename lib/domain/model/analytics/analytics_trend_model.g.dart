@@ -13,6 +13,8 @@ AnalyticsTrendModel _$AnalyticsTrendModelFromJson(Map<String, dynamic> json) =>
       completed: (json['completed'] as num?)?.toInt(),
       cancelled: (json['cancelled'] as num?)?.toInt(),
       value: json['value'] as num?,
+      profit: json['profit'] as num?,
+      grossProfit: json['grossProfit'] as num?,
     );
 
 Map<String, dynamic> _$AnalyticsTrendModelToJson(
@@ -23,4 +25,6 @@ Map<String, dynamic> _$AnalyticsTrendModelToJson(
       'completed': instance.completed,
       'cancelled': instance.cancelled,
       'value': instance.value,
+      'profit': instance.profit,
+      'grossProfit': instance.grossProfit,
     };

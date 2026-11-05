@@ -32,6 +32,16 @@ AnalyticsResponseModel _$AnalyticsResponseModelFromJson(
           ?.map((e) =>
               AnalyticsExecutiveModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      topBrands: (json['topBrands'] as List<dynamic>?)
+          ?.map((e) =>
+              AnalyticsTopBrandModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      topDevices: (json['topDevices'] as List<dynamic>?)
+          ?.map((e) =>
+              AnalyticsTopDeviceModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      grossProfit: json['grossProfit'] as num?,
+      profit: json['profit'] as num?,
     );
 
 Map<String, dynamic> _$AnalyticsResponseModelToJson(
@@ -45,4 +55,8 @@ Map<String, dynamic> _$AnalyticsResponseModelToJson(
       'trends': instance.trends,
       'statusDistribution': instance.statusDistribution,
       'executives': instance.executives,
+      'topBrands': instance.topBrands,
+      'topDevices': instance.topDevices,
+      'grossProfit': instance.grossProfit,
+      'profit': instance.profit,
     };

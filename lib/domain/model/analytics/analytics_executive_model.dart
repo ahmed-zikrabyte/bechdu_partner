@@ -14,6 +14,8 @@ class AnalyticsExecutiveModel {
   double? conversionRate;
   double? cancellationRate;
   num? gmv;
+  num? profit;
+  num? grossProfit;
   String? avgTurnaroundTime;
 
   AnalyticsExecutiveModel({
@@ -27,6 +29,8 @@ class AnalyticsExecutiveModel {
     this.conversionRate,
     this.cancellationRate,
     this.gmv,
+    this.profit,
+    this.grossProfit,
     this.avgTurnaroundTime,
   });
 
