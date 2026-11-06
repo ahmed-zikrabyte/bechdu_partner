@@ -106,8 +106,9 @@ class _ScreenAnalyticsState extends State<ScreenAnalytics> {
             return _buildEmptyView(context);
           }
 
-          final isCustomActive = state.selectedRange.toLowerCase() == 'custom' &&
-              _customDateRange != null;
+          final isCustomActive =
+              state.selectedRange.toLowerCase() == 'custom' &&
+                  _customDateRange != null;
           final isNonDefaultPeriod =
               state.selectedRange.toLowerCase() != 'monthly' || isCustomActive;
           final hasExecutiveFilter = _selectedExecutivePhone != null &&
@@ -155,7 +156,8 @@ class _ScreenAnalyticsState extends State<ScreenAnalytics> {
                   kHeight20,
 
                   // Lead Conversion Funnel
-                  if (analytics.funnel != null && analytics.funnel!.isNotEmpty) ...[
+                  if (analytics.funnel != null &&
+                      analytics.funnel!.isNotEmpty) ...[
                     _buildSectionHeader('Pipeline Funnel'),
                     kHeight10,
                     _FunnelCard(funnel: analytics.funnel!),
@@ -658,6 +660,7 @@ class _ScreenAnalyticsState extends State<ScreenAnalytics> {
   Widget _buildOperationalKpiGrid(AnalyticsKpiModel? kpis) {
     return Column(
       children: [
+        // Row 1: Leads Received & Leads Accepted
         Row(
           children: [
             Expanded(
@@ -665,8 +668,35 @@ class _ScreenAnalyticsState extends State<ScreenAnalytics> {
                 title: 'Leads Received',
                 value: '${kpis?.leadsReceived ?? 0}',
                 subtitle:
-                    'Assigned: ${kpis?.leadsAssigned ?? 0} • Contacted: ${kpis?.leadsContacted ?? kpis?.leadsAccepted ?? 0}',
+                    'Assigned: ${kpis?.leadsAssigned ?? 0} • Contacted: ${kpis?.leadsContacted ?? 0}',
                 icon: Icons.inbox_rounded,
+                iconColor: kBluePrimary,
+              ),
+            ),
+            kWidth10,
+            Expanded(
+              child: _MetricCard(
+                title: 'Leads Accepted',
+                value: '${kpis?.leadsAccepted ?? 0}',
+                subtitle: 'Accepted Leads',
+                icon: Icons.check_circle_outline_rounded,
+                iconColor: kGreenPrimary,
+              ),
+            ),
+          ],
+        ),
+
+        kHeight10,
+
+        // Row 2: Pickup Scheduled & Pending
+        Row(
+          children: [
+            Expanded(
+              child: _MetricCard(
+                title: 'Pickup Scheduled',
+                value: '${kpis?.pickupScheduled ?? 0}',
+                subtitle: 'Scheduled Pickups',
+                icon: Icons.calendar_month_rounded,
                 iconColor: kBluePrimary,
               ),
             ),
@@ -682,7 +712,10 @@ class _ScreenAnalyticsState extends State<ScreenAnalytics> {
             ),
           ],
         ),
+
         kHeight10,
+
+        // Row 3: Cancelled & Turnaround Time
         Row(
           children: [
             Expanded(
@@ -700,7 +733,7 @@ class _ScreenAnalyticsState extends State<ScreenAnalytics> {
               child: _MetricCard(
                 title: 'Avg Turnaround Time',
                 value: kpis?.avgPickupTimeText ?? '-',
-                subtitle: 'Contact: ${kpis?.avgResponseTimeText ?? '-'}',
+                subtitle: 'Response: ${kpis?.avgResponseTimeText ?? '-'}',
                 icon: Icons.timer_outlined,
                 iconColor: kGreenPrimary,
               ),
@@ -909,7 +942,8 @@ class _PartnerProfileCard extends StatelessWidget {
               ),
               // Status Pill
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                 decoration: BoxDecoration(
                   color: isActive
                       ? kGreenPrimary.withValues(alpha: 0.12)
@@ -1605,10 +1639,22 @@ class _StatusDistributionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final statusItems = [
       {'label': 'New', 'count': status.newCount ?? 0, 'color': kBluePrimary},
-      {'label': 'Processing', 'count': status.processing ?? 0, 'color': kYellowPrimary},
-      {'label': 'Completed', 'count': status.completed ?? 0, 'color': kGreenPrimary},
+      {
+        'label': 'Processing',
+        'count': status.processing ?? 0,
+        'color': kYellowPrimary
+      },
+      {
+        'label': 'Completed',
+        'count': status.completed ?? 0,
+        'color': kGreenPrimary
+      },
       {'label': 'Cancelled', 'count': status.cancelled ?? 0, 'color': kRed},
-      {'label': 'Rescheduled', 'count': status.rescheduled ?? 0, 'color': kOrangePrimary},
+      {
+        'label': 'Rescheduled',
+        'count': status.rescheduled ?? 0,
+        'color': kOrangePrimary
+      },
       {'label': 'Other', 'count': status.other ?? 0, 'color': kGreyDark},
     ];
 
@@ -1657,8 +1703,11 @@ class _StatusDistributionCard extends StatelessWidget {
               child: SizedBox(
                 height: 9,
                 child: Row(
-                  children: statusItems.where((e) => (e['count'] as int) > 0).map((e) {
-                    final weight = ((e['count'] as int) / total).clamp(0.01, 1.0);
+                  children: statusItems
+                      .where((e) => (e['count'] as int) > 0)
+                      .map((e) {
+                    final weight =
+                        ((e['count'] as int) / total).clamp(0.01, 1.0);
                     return Expanded(
                       flex: (weight * 1000).toInt(),
                       child: Container(color: e['color'] as Color),
@@ -1687,11 +1736,13 @@ class _StatusDistributionCard extends StatelessWidget {
               final percentage = total > 0 ? (count / total * 100).round() : 0;
 
               return Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                 decoration: BoxDecoration(
                   color: const Color(0xFFF7F9FC),
                   borderRadius: kRadius10,
-                  border: Border.all(color: kGreyLighter.withValues(alpha: 0.6)),
+                  border:
+                      Border.all(color: kGreyLighter.withValues(alpha: 0.6)),
                 ),
                 child: Row(
                   children: [
@@ -1878,10 +1929,14 @@ class _ExecutivesSection extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _buildExecutiveMiniStat('Assigned', '${executive.leadsAssigned ?? 0}'),
-                    _buildExecutiveMiniStat('Completed', '${executive.completed ?? 0}'),
-                    _buildExecutiveMiniStat('Conversion', _formatPercent(executive.conversionRate)),
-                    _buildExecutiveMiniStat('GMV', _formatCurrency(executive.gmv)),
+                    _buildExecutiveMiniStat(
+                        'Assigned', '${executive.leadsAssigned ?? 0}'),
+                    _buildExecutiveMiniStat(
+                        'Completed', '${executive.completed ?? 0}'),
+                    _buildExecutiveMiniStat(
+                        'Conversion', _formatPercent(executive.conversionRate)),
+                    _buildExecutiveMiniStat(
+                        'GMV', _formatCurrency(executive.gmv)),
                     if (executive.profit != null ||
                         executive.grossProfit != null)
                       _buildExecutiveMiniStat(
@@ -1983,11 +2038,13 @@ class _TrendsSection extends StatelessWidget {
             children: [
               // Date Box
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
                 decoration: BoxDecoration(
                   color: const Color(0xFFF7F9FC),
                   borderRadius: kRadius10,
-                  border: Border.all(color: kGreyLighter.withValues(alpha: 0.6)),
+                  border:
+                      Border.all(color: kGreyLighter.withValues(alpha: 0.6)),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -2013,7 +2070,8 @@ class _TrendsSection extends StatelessWidget {
                   runSpacing: 4,
                   children: [
                     _buildTrendPill('Rec: ${item.received ?? 0}', kBluePrimary),
-                    _buildTrendPill('Done: ${item.completed ?? 0}', kGreenPrimary),
+                    _buildTrendPill(
+                        'Done: ${item.completed ?? 0}', kGreenPrimary),
                     _buildTrendPill('Canc: ${item.cancelled ?? 0}', kRed),
                     if (item.profit != null || item.grossProfit != null)
                       _buildTrendPill(
