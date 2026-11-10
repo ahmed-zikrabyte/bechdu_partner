@@ -19,6 +19,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:secure_application/secure_application.dart';
 
 import 'package:bechdu_partner/data/firebase_api/firebase_api.dart';
+import 'package:bechdu_partner/application/business_logic/analytics/analytics_bloc.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -27,7 +28,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  
+
   // Create channels in background isolate if not created
   await NotificationServices().createNotificationChannels();
 
@@ -46,7 +47,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  
+
   // Register notification channels on startup
   await NotificationServices().createNotificationChannels();
 
@@ -76,6 +77,7 @@ class Beachdu extends StatelessWidget {
           BlocProvider(create: (context) => getIt<PickupPartnerBloc>()),
           BlocProvider(create: (context) => getIt<NotificationBloc>()),
           BlocProvider(create: (context) => getIt<QcBloc>()),
+          BlocProvider(create: (context) => getIt<AnalyticsBloc>()),
         ],
         child: MaterialApp(
           navigatorKey: navigatorKey,

@@ -13,7 +13,7 @@ part of 'analytics_bloc.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$AnalyticsEvent {
+mixin _$AnalyticsEvent implements DiagnosticableTreeMixin {
   String get range;
   String? get startDate;
   String? get endDate;
@@ -27,6 +27,17 @@ mixin _$AnalyticsEvent {
   $AnalyticsEventCopyWith<AnalyticsEvent> get copyWith =>
       _$AnalyticsEventCopyWithImpl<AnalyticsEvent>(
           this as AnalyticsEvent, _$identity);
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    properties
+      ..add(DiagnosticsProperty('type', 'AnalyticsEvent'))
+      ..add(DiagnosticsProperty('range', range))
+      ..add(DiagnosticsProperty('startDate', startDate))
+      ..add(DiagnosticsProperty('endDate', endDate))
+      ..add(DiagnosticsProperty('executivePhone', executivePhone))
+      ..add(DiagnosticsProperty('forceRefresh', forceRefresh));
+  }
 
   @override
   bool operator ==(Object other) {
@@ -48,7 +59,7 @@ mixin _$AnalyticsEvent {
       runtimeType, range, startDate, endDate, executivePhone, forceRefresh);
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'AnalyticsEvent(range: $range, startDate: $startDate, endDate: $endDate, executivePhone: $executivePhone, forceRefresh: $forceRefresh)';
   }
 }
@@ -279,7 +290,7 @@ extension AnalyticsEventPatterns on AnalyticsEvent {
 
 /// @nodoc
 
-class FetchAnalytics implements AnalyticsEvent {
+class FetchAnalytics with DiagnosticableTreeMixin implements AnalyticsEvent {
   const FetchAnalytics(
       {this.range = 'monthly',
       this.startDate,
@@ -309,6 +320,17 @@ class FetchAnalytics implements AnalyticsEvent {
       _$FetchAnalyticsCopyWithImpl<FetchAnalytics>(this, _$identity);
 
   @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    properties
+      ..add(DiagnosticsProperty('type', 'AnalyticsEvent.fetchAnalytics'))
+      ..add(DiagnosticsProperty('range', range))
+      ..add(DiagnosticsProperty('startDate', startDate))
+      ..add(DiagnosticsProperty('endDate', endDate))
+      ..add(DiagnosticsProperty('executivePhone', executivePhone))
+      ..add(DiagnosticsProperty('forceRefresh', forceRefresh));
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -328,7 +350,7 @@ class FetchAnalytics implements AnalyticsEvent {
       runtimeType, range, startDate, endDate, executivePhone, forceRefresh);
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'AnalyticsEvent.fetchAnalytics(range: $range, startDate: $startDate, endDate: $endDate, executivePhone: $executivePhone, forceRefresh: $forceRefresh)';
   }
 }
@@ -394,7 +416,7 @@ class _$FetchAnalyticsCopyWithImpl<$Res>
 }
 
 /// @nodoc
-mixin _$AnalyticsState {
+mixin _$AnalyticsState implements DiagnosticableTreeMixin {
   bool get isLoading;
   bool get hasError;
   String? get message;
@@ -408,6 +430,17 @@ mixin _$AnalyticsState {
   $AnalyticsStateCopyWith<AnalyticsState> get copyWith =>
       _$AnalyticsStateCopyWithImpl<AnalyticsState>(
           this as AnalyticsState, _$identity);
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    properties
+      ..add(DiagnosticsProperty('type', 'AnalyticsState'))
+      ..add(DiagnosticsProperty('isLoading', isLoading))
+      ..add(DiagnosticsProperty('hasError', hasError))
+      ..add(DiagnosticsProperty('message', message))
+      ..add(DiagnosticsProperty('analytics', analytics))
+      ..add(DiagnosticsProperty('selectedRange', selectedRange));
+  }
 
   @override
   bool operator ==(Object other) {
@@ -430,7 +463,7 @@ mixin _$AnalyticsState {
       runtimeType, isLoading, hasError, message, analytics, selectedRange);
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'AnalyticsState(isLoading: $isLoading, hasError: $hasError, message: $message, analytics: $analytics, selectedRange: $selectedRange)';
   }
 }
@@ -661,7 +694,7 @@ extension AnalyticsStatePatterns on AnalyticsState {
 
 /// @nodoc
 
-class _AnalyticsState implements AnalyticsState {
+class _AnalyticsState with DiagnosticableTreeMixin implements AnalyticsState {
   const _AnalyticsState(
       {this.isLoading = false,
       this.hasError = false,
@@ -692,6 +725,17 @@ class _AnalyticsState implements AnalyticsState {
       __$AnalyticsStateCopyWithImpl<_AnalyticsState>(this, _$identity);
 
   @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    properties
+      ..add(DiagnosticsProperty('type', 'AnalyticsState'))
+      ..add(DiagnosticsProperty('isLoading', isLoading))
+      ..add(DiagnosticsProperty('hasError', hasError))
+      ..add(DiagnosticsProperty('message', message))
+      ..add(DiagnosticsProperty('analytics', analytics))
+      ..add(DiagnosticsProperty('selectedRange', selectedRange));
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -712,7 +756,7 @@ class _AnalyticsState implements AnalyticsState {
       runtimeType, isLoading, hasError, message, analytics, selectedRange);
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'AnalyticsState(isLoading: $isLoading, hasError: $hasError, message: $message, analytics: $analytics, selectedRange: $selectedRange)';
   }
 }

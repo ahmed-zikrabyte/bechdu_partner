@@ -20,10 +20,19 @@ class AnalyticsKpiModel {
 
   int? orderVolume;
   num? totalTransactionValue;
-  num? applicableRevenue;
-  num? grossProfit;
+  num? gross;
+  num? grossTransactionValue;
   num? profit;
+  num? grossProfit;
+  num? loss;
+  num? grossLoss;
   num? netProfit;
+  num? netProfitLoss;
+  num? totalCompletedBasePrice;
+  num? totalCost;
+  num? totalPromoValue;
+  num? applicableRevenue;
+
   double? profitMargin;
 
   double? avgResponseTimeHours;
@@ -46,10 +55,18 @@ class AnalyticsKpiModel {
     this.cancellationRate,
     this.orderVolume,
     this.totalTransactionValue,
-    this.applicableRevenue,
-    this.grossProfit,
+    this.gross,
+    this.grossTransactionValue,
     this.profit,
+    this.grossProfit,
+    this.loss,
+    this.grossLoss,
     this.netProfit,
+    this.netProfitLoss,
+    this.totalCompletedBasePrice,
+    this.totalCost,
+    this.totalPromoValue,
+    this.applicableRevenue,
     this.profitMargin,
     this.avgResponseTimeHours,
     this.avgResponseTimeText,

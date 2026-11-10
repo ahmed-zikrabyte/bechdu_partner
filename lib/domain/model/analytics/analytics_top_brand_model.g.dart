@@ -25,4 +25,3 @@ Map<String, dynamic> _$AnalyticsTopBrandModelToJson(
       'profit': instance.profit,
       'grossProfit': instance.grossProfit,
     };
-

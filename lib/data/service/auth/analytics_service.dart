@@ -23,48 +23,53 @@ class AnalyticsService implements AnalyticsRepo {
     String? executivePhone,
   }) async {
     try {
-      debugPrint('ANALYTICS SERVICE CALLED');
+      final queryParameters = <String, dynamic>{
+        'range': range,
+      };
 
-      debugPrint(
-        'REQUESTING: ${ApiEndPoints.baseUrl}${ApiEndPoints.getPartnerAnalytics}',
-      );
+      if (range == 'custom') {
+        if (startDate == null || endDate == null) {
+          return Left(
+            Failure(message: 'Start date and end date are required'),
+          );
+        }
 
-      debugPrint('QUERY PARAMETERS: range=$range');
+        queryParameters['startDate'] = startDate;
+        queryParameters['endDate'] = endDate;
+      }
+
+      if (executivePhone != null &&
+          executivePhone.isNotEmpty &&
+          executivePhone != 'all') {
+        queryParameters['executivePhone'] = executivePhone;
+      }
+
+      debugPrint('ANALYTICS API REQUEST');
+      debugPrint('URL: ${ApiEndPoints.getPartnerAnalytics}');
+      debugPrint('PARAMETERS: $queryParameters');
 
       final response = await _apiService.get(
         ApiEndPoints.getPartnerAnalytics,
-        queryParameters: {
-          'range': range,
-          if (startDate != null) 'startDate': startDate,
-          if (endDate != null) 'endDate': endDate,
-          if (executivePhone != null) 'executivePhone': executivePhone,
-        },
+        queryParameters: queryParameters,
       );
 
-      debugPrint('RAW ANALYTICS API RESPONSE: ${response.data}');
+      debugPrint('ANALYTICS API STATUS: ${response.statusCode}');
+      debugPrint('ANALYTICS API RESPONSE: ${response.data}');
 
       return Right(
         AnalyticsResponseModel.fromJson(
-          response.data as Map<String, dynamic>,
+          Map<String, dynamic>.from(response.data),
         ),
       );
     } on DioException catch (e) {
-      debugPrint('========== ANALYTICS API ERROR ==========');
-      debugPrint('URL: ${e.requestOptions.uri}');
-      debugPrint('STATUS: ${e.response?.statusCode}');
-      debugPrint('RESPONSE: ${e.response?.data}');
-      debugPrint('ERROR TYPE: ${e.type}');
-      debugPrint('ERROR MESSAGE: ${e.message}');
-      debugPrint('========================================');
+      debugPrint('ANALYTICS API ERROR: ${e.response?.data}');
 
       return Left(
         Failure(message: e.message ?? 'Failed to load analytics'),
       );
     } catch (e, stackTrace) {
-      debugPrint('========== ANALYTICS OTHER ERROR ==========');
-      debugPrint('ERROR: $e');
+      debugPrint('ANALYTICS ERROR: $e');
       debugPrint('STACK TRACE: $stackTrace');
-      debugPrint('==========================================');
 
       return Left(
         Failure(message: 'Failed to load analytics'),
