@@ -582,30 +582,21 @@ class _ScreenAnalyticsState extends State<ScreenAnalytics> {
     );
   }
 
-  // Financial & Profit Performance Cards (GMV, Revenue, Profit & Gross Profit)
+  // Financial & Profit Performance Cards
   Widget _buildFinancialCards(AnalyticsResponseModel analytics) {
     final kpis = analytics.kpis;
-    final grossProfit = kpis?.grossProfit ?? analytics.grossProfit;
-    final profit = kpis?.profit ?? kpis?.netProfit ?? analytics.profit;
-    final gmv = kpis?.totalTransactionValue;
-    final revenue = kpis?.applicableRevenue;
-    final margin = kpis?.profitMargin;
 
     return Column(
       children: [
-        // Top Row: Gross Profit & Net Profit Cards
+        // Row 1: Gross & Profit
         Row(
           children: [
             Expanded(
               child: _HeroStatCard(
-                title: 'Gross Profit',
-                value: _formatCurrency(grossProfit),
-                subtitle: margin != null
-                    ? 'Margin: ${_formatPercent(margin)}'
-                    : grossProfit != null && gmv != null && gmv > 0
-                        ? 'Margin: ${_formatPercent(grossProfit / gmv * 100)}'
-                        : 'Earnings on sales',
-                icon: Icons.trending_up_rounded,
+                title: 'Gross',
+                value: _formatCurrency(kpis?.gross),
+                subtitle: 'Gross Amount',
+                icon: Icons.account_balance_wallet_rounded,
                 iconColor: kGreenPrimary,
                 bgColor: klightGreen.withValues(alpha: 0.15),
                 borderColor: kGreenPrimary.withValues(alpha: 0.35),
@@ -614,10 +605,10 @@ class _ScreenAnalyticsState extends State<ScreenAnalytics> {
             kWidth10,
             Expanded(
               child: _HeroStatCard(
-                title: 'Net Profit',
-                value: _formatCurrency(profit),
-                subtitle: 'Applicable Rev: ${_formatCurrency(revenue)}',
-                icon: Icons.account_balance_wallet_outlined,
+                title: 'Profit',
+                value: _formatCurrency(kpis?.profit),
+                subtitle: 'Total Profit',
+                icon: Icons.trending_up_rounded,
                 iconColor: kBluePrimary,
                 bgColor: kBluelight.withValues(alpha: 0.25),
                 borderColor: kBluePrimary.withValues(alpha: 0.3),
@@ -625,22 +616,94 @@ class _ScreenAnalyticsState extends State<ScreenAnalytics> {
             ),
           ],
         ),
+
         kHeight10,
 
-        // Second Row: Transaction Value (GMV) & Completed Pickups
+// Row 2: Loss & Gross Loss
+        Row(
+          children: [
+            Expanded(
+              child: _MetricCard(
+                title: 'Loss',
+                value: _formatCurrency(kpis?.loss),
+                subtitle: 'Total Loss',
+                icon: Icons.trending_down_rounded,
+                iconColor: kRed,
+              ),
+            ),
+            kWidth10,
+            Expanded(
+              child: _MetricCard(
+                title: 'Gross Loss',
+                value: _formatCurrency(kpis?.grossLoss),
+                subtitle: 'Gross Loss Amount',
+                icon: Icons.money_off_rounded,
+                iconColor: kOrangePrimary,
+              ),
+            ),
+          ],
+        ),
+
+        kHeight10,
+
+// Row 3: Gross Profit & Net Profit
+        Row(
+          children: [
+            Expanded(
+              child: _MetricCard(
+                title: 'Gross Profit',
+                value: _formatCurrency(kpis?.grossProfit),
+                subtitle: 'Gross earnings',
+                icon: Icons.trending_up_rounded,
+                iconColor: kGreenPrimary,
+              ),
+            ),
+            kWidth10,
+            Expanded(
+              child: _MetricCard(
+                title: 'Net Profit',
+                value: _formatCurrency(kpis?.netProfit),
+                subtitle: 'Net profit amount',
+                icon: Icons.account_balance_wallet_outlined,
+                iconColor: kBluePrimary,
+              ),
+            ),
+          ],
+        ),
+
+        kHeight10,
+
+// Row 4: GMV & Net Profit/Loss
         Row(
           children: [
             Expanded(
               child: _MetricCard(
                 title: 'Transaction Value (GMV)',
-                value: _formatCurrency(gmv),
+                value: _formatCurrency(kpis?.totalTransactionValue),
                 subtitle:
                     'Vol: ${kpis?.orderVolume ?? kpis?.pickupCompleted ?? 0} Orders',
                 icon: Icons.currency_rupee_rounded,
-                iconColor: kGreenPrimary,
+                iconColor: kBluePrimary,
               ),
             ),
             kWidth10,
+            Expanded(
+              child: _MetricCard(
+                title: 'Net Profit Loss',
+                value: _formatCurrency(kpis?.netProfitLoss),
+                subtitle: 'Final Net Amount',
+                icon: Icons.account_balance_rounded,
+                iconColor: kGreenPrimary,
+              ),
+            ),
+          ],
+        ),
+
+        kHeight10,
+
+// Row 5: Pickup Completed
+        Row(
+          children: [
             Expanded(
               child: _MetricCard(
                 title: 'Pickup Completed',
@@ -650,8 +713,12 @@ class _ScreenAnalyticsState extends State<ScreenAnalytics> {
                 iconColor: kBluePrimary,
               ),
             ),
+            kWidth10,
+            const Expanded(child: SizedBox()),
           ],
         ),
+
+        kHeight10,
       ],
     );
   }

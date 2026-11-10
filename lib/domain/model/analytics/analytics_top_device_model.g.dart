@@ -27,4 +27,3 @@ Map<String, dynamic> _$AnalyticsTopDeviceModelToJson(
       'profit': instance.profit,
       'grossProfit': instance.grossProfit,
     };
-

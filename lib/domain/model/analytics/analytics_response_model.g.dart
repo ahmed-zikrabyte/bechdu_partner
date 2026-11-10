@@ -33,8 +33,8 @@ AnalyticsResponseModel _$AnalyticsResponseModelFromJson(
               AnalyticsExecutiveModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       topBrands: (json['topBrands'] as List<dynamic>?)
-          ?.map((e) =>
-              AnalyticsTopBrandModel.fromJson(e as Map<String, dynamic>))
+          ?.map(
+              (e) => AnalyticsTopBrandModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       topDevices: (json['topDevices'] as List<dynamic>?)
           ?.map((e) =>
